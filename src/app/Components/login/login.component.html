@@ -1,0 +1,85 @@
+<div class="bg-dark">
+  <!--<div *ngFor="let response of contactoDataRequest">
+      <div [ngClass]="errorClass" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div><strong>Well done!</strong></div>
+        <div>{{response.message}}</div>
+      </div>
+    </div>-->
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+        <div class="loginForm">
+          <h4>Bienvenido</h4>
+          <p>Ingresa tus credenciales</p>
+
+          <form [formGroup]="loginForm" (ngSubmit)="validarUsuario()" id="loginForm" novalidate>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text form_ico bg-transparent"><i class="far fa-user" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <input type="text" class="form-control" formControlName="correo" placeholder="Correo electrónico" />
+              </div>
+              <div class="error_content"
+                *ngIf="loginForm.get('correo').errors && (loginForm.get('correo').dirty || loginForm.get('correo').touched); else ok_email">
+                <div *ngIf="loginForm.get('correo').hasError('required')">campo obligatorio</div>
+                <div *ngIf="loginForm.get('correo').hasError('pattern')">Error en el correo</div>
+                <div class="error_text">
+                  <span class="text-danger"><i class="fas fa-times" aria-hidden="true"></i></span>
+                </div>
+              </div>
+              <ng-template #ok_email>
+                <div class="ok_text"
+                  *ngIf="!loginForm.get('correo').hasError('required') && !loginForm.get('correo').hasError('pattern')">
+                  <span class="text-success"><i class="fas fa-check" aria-hidden="true"></i></span>
+                </div>
+              </ng-template>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text form_ico bg-transparent"><i class="far fa-eye-slash"
+                      aria-hidden="true"></i></div>
+                </div>
+                <input type="password" class="form-control" formControlName="password" placeholder="Contraseña" />
+              </div>
+              <div class="error_content"
+                *ngIf="loginForm.get('password').errors && (loginForm.get('password').dirty || loginForm.get('password').touched); else ok_password">
+                <div *ngIf="loginForm.get('password').hasError('required')">campo obligatorio</div>
+                <div class="error_text">
+                  <span class="text-danger"><i class="fas fa-times" aria-hidden="true"></i></span>
+                </div>
+              </div>
+              <ng-template #ok_password>
+                <div class="ok_text" *ngIf="!loginForm.get('password').hasError('required')">
+                  <span class="text-success"><i class="fas fa-check" aria-hidden="true"></i></span>
+                </div>
+              </ng-template>
+            </div>
+
+            
+            <div class="custom-control custom-checkbox mb-2">
+              <input name="recordarme" type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">&iquest;Recordar usuario?</label>
+            </div>
+
+            <!--<div class="mb-5">
+              <a [routerLink]="['/registro']" routerLinkActive="router-link-active"  class="float-right" role="button" aria-pressed="true">&iquest;Ya tienes cuenta?/Regístrate</a>
+            </div>-->
+
+            <div>
+              <button type="submit" [disabled]="loginForm.invalid"
+                class="btn btn-lg btn-success btn-block">Iniciar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-8">
+        hola
+      </div>
+    </div>
+  </div>
+</div>

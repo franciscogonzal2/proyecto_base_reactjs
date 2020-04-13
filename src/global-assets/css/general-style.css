@@ -1,0 +1,90 @@
+/*--------------------------------------------*/
+/*------- CSS CORE deSistemasWEB 2017 -------*/
+/*------------------------------------------*/
+
+/*miscelaneas*/
+.general-container, .general-container-error{position: relative;margin-bottom: 2rem;}
+.general-container-error{margin-bottom: 0rem;}
+.contenedor{margin-bottom:20px;}
+.contenido_gen{margin-right: auto;margin-left: auto;padding-top: 0px; padding-bottom: 0.1rem; margin-bottom:20px;}
+.contenido_gen .title{ text-align: center; margin-top: 10px;}
+.cardHeight{background: #fefefe; margin-bottom: 2rem; border-bottom: 1px solid #02664e;}
+
+.intro{padding-bottom: 18px;}
+.area_index_txt{padding-top:8px;}
+.img_content, .img_content_radius{background-color: rgba(248, 249, 250, 0.9); margin-bottom: 1rem; padding: 20px;text-align: center;border: 1px solid #eeeeee; }
+.img_content_radius{border-radius: 50%; max-width: 200px;border: 0px solid #eeeeee;}
+
+a.gen{color:#005e34; text-decoration:underline; transition: background-color, ease-in, 0.5s;}
+a.gen:hover{color:#fe5300;}
+
+.main-banner, .main-banner-portafolio{margin-top:0rem;margin-bottom: 60px !important;}
+.main-banner-portafolio{margin-top:-8rem;}
+.banner{height: 50vh !important;width: 100%;box-shadow: 0px 30px 40px -12px rgba(100,100,100,0.25) inset; background-color: #777;/*background-attachment: fixed;*/background-position:center center !important;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover; transition: all 500ms; background-repeat: no-repeat;}
+
+/*brand*/
+.navbar-brand {-webkit-transition: all 0.4s ease-in-out;-moz-transition: all 0.4s ease-in-out;transition: all 0.4s ease-in-out;}
+.navbar-toggler-right {position: absolute;right: 1rem;top: 26px;}
+.logo, .logo.logo-brand{ display: inline-flex; font-style: italic;letter-spacing: 2px; }
+.logo .p1{ color: #17580a;}
+.logo .p2{ color: #3a6650;}
+.logo .p3{ color: #dd5310;}
+
+.logo-brand .p1, .logo-brand .p2, .logo-brand .p3{ color: #ffffff;}
+
+/*separador de seccion*/
+hr.separador {border-top: 1px solid #4CAF50;text-align: center;margin-top:50px;margin-bottom:50px;}
+hr.separador:after {font-family: 'FontAwesome'; content: "\f005";display: inline-block;position: relative;top: -15px;padding: 0 10px;background: #FFF;color: #4CAF50;font-size: 18px;}
+a.sin_link{pointer-events: none;cursor: default;}
+
+/*boton de lineas blancas customised*/
+.btn{padding: 0.40rem 1rem 0.50rem 1rem !important}
+.btn-outline-blanco {color: #fff;background-image: none;background-color: transparent;border: 1px solid #eee;}
+.btn-outline-blanco:hover {color: #333;background-color: #fff;border-color: #fff;}
+.btn-outline-blanco:focus, .btn-outline-blanco.focus {box-shadow: 0 0 0 3px rgba(250, 240, 250, 0.5);}
+
+/*modal*/
+body.modal-open .fixed-top{padding-left: 16px;}/*corrige el desplazamiento del body al levantar el modal*/
+.header_modal_basico{ background: #4CAF50; color: #fff; font-weight: 600; border-top-left-radius: 4px; border-top-right-radius: 4px; }
+.header_modal_premium{ background: #111111; color: #fff; font-weight: 600; border-top-left-radius: 4px; border-top-right-radius: 4px; }
+
+/*tool-tips*/
+.tooltip-inner {white-space: pre-wrap;}
+.collapse-chevron .fa-angle-down{transition: .3s transform ease-in-out; transform: rotate(-180deg);}
+.collapse-chevron .collapsed .fa-angle-down {transform: rotate(-360deg);}
+
+/*nav-pills*/
+.nav-pills .nav-link{color: #777;background-color:transparent; margin-bottom: 10px; border-radius:0px !important;}
+.nav-pills .nav-link img{-webkit-filter: grayscale(100%);filter: grayscale(100%);-webkit-transition: all 0.4s ease-in;-moz-transition: all 0.4s ease-in;-ms-transition: all 0.4s ease-in;-o-transition: all 0.4s ease-in;transition: all 0.4s ease-in;}
+.nav-pills .nav-link:hover {color: #555;background-color:transparent; border-bottom: 2px solid #dedede !important;transition: all 0.2s ease-in;}
+.nav-pills .nav-link:hover img{-webkit-filter: grayscale(50%);filter: grayscale(50%);}
+.nav-pills .nav-link.active,.nav-pills .nav-item.show .nav-link {color: #01b4b9; font-weight:500;background-color: rgba(205,229,244,0.01);}
+.nav-pills .nav-link.active img{-webkit-filter: grayscale(0%);filter: grayscale(0%);}
+
+/**nav-pills: criptomonedas*/
+.nav-pills .nav-link.nav-criptomonedas{height: 130px !important; width: 140px;margin-right: 10px !important;}
+.nav-pills .nav-link.nav-criptomonedas.active{border:1px solid #bbb;}
+
+/*alert*/
+.alert{padding:4px !important;}
+
+/*btn-group-justified*/
+.btn-group-justified {display: table;width: 100%;table-layout: fixed;border-collapse: separate; }
+.btn-group-justified .btn,.btn-group-justified .btn-group {float: none;display: table-cell;width: 1%; }
+.btn-group-justified .btn .btn,.btn-group-justified .btn-group .btn {width: 100%; }
+.btn-group-justified .btn .dropdown-menu,.btn-group-justified .btn-group .dropdown-menu {left: auto; }
+
+/* MEDIA QUERY */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px){
+    .contenido_gen .title{ text-align: left;margin-top: -6px; }
+    .cardHeight{margin-bottom:0rem; border-bottom: none;}
+    .img_content, .img_content_radius{margin-bottom: 2rem; }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .img_content, .img_content_radius{margin-bottom: 0rem; }
+}
+

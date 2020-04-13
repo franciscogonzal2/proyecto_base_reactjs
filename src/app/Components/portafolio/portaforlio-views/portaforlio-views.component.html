@@ -1,0 +1,45 @@
+<div *ngIf="generalError" class="general-container-error">
+    <app-error-loading [errMsj]="generalErrorMsj"></app-error-loading>
+  </div>
+  
+  <div *ngIf="!generalError" class="general-container">
+    <app-loading *ngIf="loading"></app-loading>
+    <div *ngIf="!loading">
+      <div *ngFor="let element of portafolioData">
+        <div class="main-banner-portafolio">
+          <div *ngIf="!loading" class="banner animated fadeIn" [ngStyle]="{'background-image':'url(' + element.backgroundImage + ')'}"></div>
+        </div>
+  
+        <div *ngIf="!loading" class="container">
+          <h1 [innerHTML]="element.titulo"></h1>
+          <br />
+          <p [innerHTML]="element.subTitulo" class="lead intro"></p>
+          <div class="row">
+            <div *ngFor="let items of element.item" class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+              <div class="portafolio">
+                <div class="gridPortaf">
+                  <div>
+                    <figure (click)="onOpen()">
+                      <img [src]="items.imgElements" alt="web">
+                      <figcaption (click)="showModal(element.type,items.tituloElements,items.imgElements,items.dateElements,items.urlElements)">
+                        <div class="search">
+                          <i class="fas fa-search fa-2x" aria-hidden="true"></i>
+                        </div>
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div *ngIf="visible">
+            <app-portafolio-modal [modalId]="modal_id" [modalTitulo]="modal_titulo" [modalImagenUrl]="modal_imagen" [modalFechaCreacion]="modal_fechaCreacion"
+             [modalUrl]="modal_url" (onClose)="onClose()">
+            </app-portafolio-modal>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

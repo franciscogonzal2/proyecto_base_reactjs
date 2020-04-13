@@ -1,0 +1,3 @@
+.loader_error{display: flex;position: fixed; background: white;flex-direction: column;justify-content: center;height: 100vh;width: 100vw;z-index: 10000;overflow-y: hidden !important;}
+.loader_error-content{margin: 0px auto; text-align: center; font-size: 1rem;}
+.loading-icon {margin-bottom: 1rem;}

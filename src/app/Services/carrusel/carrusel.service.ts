@@ -1,0 +1,24 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { FuncionesService } from '../../Services/funciones/funciones.service';
+
+@Injectable()
+export class CarruselService {
+
+  constructor( private http: HttpClient, private fn: FuncionesService ) {}
+
+  getCarruselData(): Observable<carruselDataInterface[]>{
+    return this.http.get<carruselDataInterface[]>( this.fn.getUrlToService("carrusel") );
+  }
+}
+
+export interface carruselDataInterface{
+  sliderUrl: string,
+  tituloSlider: string,
+  subTituloSlider: string,
+  subTituloTextSlider: string,
+  botonSliderdUrl: string,
+  botonSliderdText: string,
+}
+
