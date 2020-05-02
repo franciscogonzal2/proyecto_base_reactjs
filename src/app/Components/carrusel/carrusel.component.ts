@@ -22,9 +22,9 @@ export class CarruselComponent implements OnInit{
         this.carruselData = data;
         this.loading = false;
 			},
-			(err: any) => {
+			(error: any) => {
 				this.generalError = true;
-				this.generalErrorMsj = err.message;
+				this.generalErrorMsj = error.message;
 		  }
     );
   }

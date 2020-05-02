@@ -12,7 +12,7 @@ import { ResponsiveComponent } from './Components/responsive/responsive.componen
 import { WebpacksComponent } from './Components/webpacks/webpacks.component';
 import { PortafolioComponent } from './Components/portafolio/portafolio.component';
 import { PortaforlioViewsComponent } from './Components/portafolio/portaforlio-views/portaforlio-views.component';
-import { LoginComponent } from './Components/login/login.component';
+import { LogInComponent } from './Components/logIn/logIn.component';
 import { RegistroComponent } from './Components/registro/registro.component';
 
 /*error 404*/
@@ -67,8 +67,8 @@ const APP_ROUTES: Routes = [
 		  ]
 	},
 	{
-		path: 'login',
-		component: LoginComponent
+		path: 'logIn',
+		component: LogInComponent
 	},
 	{
 		path: 'registro',

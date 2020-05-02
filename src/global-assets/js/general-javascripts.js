@@ -18,7 +18,7 @@ function scrollFunction(){
 function scrollUpNavbar(){
 	let currentScroll = $(this).scrollTop();
 	if ($(this).width() > 768){
-		if (currentScroll > 0 && currentScroll < $(document).height() - $(window).height()){
+		if (currentScroll > 60 && currentScroll < $(document).height() - $(window).height()){
 		if (currentScroll > this.previousScroll){
 			$(".navbar").removeClass("is-visible").addClass("is-hidden");
 			$(".dropdown-menu").removeClass("is-visible").addClass("is-hidden");

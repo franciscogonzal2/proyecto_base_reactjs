@@ -24,9 +24,9 @@ export class NosotrosComponent implements OnInit {
 				this.nosotrosData = data;
 				this.loading = false;
 			},
-			(err: any) => {
+			(error: any) => {
 				this.generalError = true;
-				this.generalErrorMsj = err.message;
+				this.generalErrorMsj = error.message;
 		  	}
 		);
 	}

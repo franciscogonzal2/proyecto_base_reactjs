@@ -18,7 +18,7 @@ import { OfertaService  } from './Services/oferta/oferta.service';
 import { PortafolioService  } from './Services/portafolio/portafolio.service';
 import { ResponsiveService } from './Services/responsive/responsive.service';
 import { WebdesignService } from './Services/webdesign/webdesign.service';
-import { AuthService } from './Services/auth0/auth.service';
+import { LogInService } from './Services/logIn/logIn.service';
 import { CookieService } from 'ng2-cookies';
 
 /*Pipes*/
@@ -44,7 +44,7 @@ import { LoadingComponent } from './Components/common/loading/loading.component'
 import { GototopComponent } from './Components/common/gototop/gototop.component';
 import { ErrorLoadingComponent } from './Components/common/error-loading/error-loading.component';
 import { TabsComponent } from './Components/common/tabs/tabs.component';
-import { LoginComponent } from './Components/login/login.component';
+import { LogInComponent } from './Components/logIn/logIn.component';
 import { RegistroComponent } from './Components/registro/registro.component';
 
 /*modulo principal*/
@@ -70,14 +70,14 @@ import { RegistroComponent } from './Components/registro/registro.component';
 		GototopComponent,
 		ErrorLoadingComponent,
 		TabsComponent,
-		LoginComponent,
+		LogInComponent,
 		RegistroComponent
 	],
 	imports: [
 		BrowserModule,
+		HttpClientModule,
 		ROUTING,
 		FormsModule,
-		HttpClientModule,
 		ReactiveFormsModule
 	],
 	providers: [
@@ -92,7 +92,7 @@ import { RegistroComponent } from './Components/registro/registro.component';
 		PortafolioService,
 		ResponsiveService,
 		WebdesignService,
-		AuthService,
+		LogInService,
 		CookieService, 
 	],
 	bootstrap: [AppComponent]

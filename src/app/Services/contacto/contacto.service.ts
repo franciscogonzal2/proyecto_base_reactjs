@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { FuncionesService } from '../../Services/funciones/funciones.service';
 
 @Injectable()
@@ -15,45 +16,25 @@ export class ContactoService {
     return this.http.get<contactoDataInterface[]>(this.fn.getUrlToService("contacto"));
   }
 
-  createContactoData(bodyRequest): Observable<contactoDataResponseInterface[]> {
-    
-    /*let options =  {
-        headers: new HttpHeaders(
-        {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "*",
-          "Content-Type": "application/json; charset=UTF-8",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS"
-        })
-    };
-
-    return this.http.post<contactoDataResponseInterface[]>( 
-      this.fn.getUrlToService("testCreateContacto"), 
-      bodyRequest,
-      { 
-        ...options,
-        responseType: 'json'
-      }
-    );*/
-    
-
-    const headers = new HttpHeaders(
+  createContactoData(bodyRequest: object): Observable<contactoDataResponseInterface[]> {
+    const url: string = this.fn.getUrlToService("createContacto");
+    const Headers = new HttpHeaders(
       {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        'Content-Type': 'application/json; charset=UTF-8'
+        'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
+        'Access-Control-Allow-Methods': 'POST',
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Access-Control-Max-Age': '3600'
       }
     );
-      
-    return this.http.post<contactoDataResponseInterface[]>(
-      this.fn.getUrlToService("testCreateContacto"),
+
+    return this.http.post<contactoDataResponseInterface[]>( 
+      url,
       bodyRequest,
-      {
-        headers,
-        responseType: 'json'
-      }
-    );
+      { headers: Headers, responseType: 'json' }
+      ).pipe(
+          catchError( err => this.fn.handleError(err))
+        )
   }
 }
 
@@ -97,6 +78,9 @@ export interface FormContacto {
   titulo: string;
   ok_icon: string;
   error_icon: string;
+  save_button: string;
+  cancel_button: string;
+  reset_button: string;
   inputName: InputName;
   inputEmail: InputEmail;
   inputTel: InputTel;

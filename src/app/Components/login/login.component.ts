@@ -1,20 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { AuthService } from "../../Services/auth0/auth.service";
+import { LogInService, LogInDataInterface, LogInDataResponseInterface } from "../../Services/logIn/logIn.service";
+import { FuncionesService } from '../../Services/funciones/funciones.service';
 import { CookieService } from 'ng2-cookies';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-logIn',
+  templateUrl: './logIn.component.html',
+  styleUrls: ['./logIn.component.css']
 })
-export class LoginComponent implements OnInit {
-
+export class LogInComponent implements OnInit {
+  /*propiedades*/
+	loading: boolean = true;
+	generalError: boolean = false;
+  generalErrorMsj: string;
+  errorClass: Array<string> = [];
   loginForm: FormGroup;
-  recordarme: boolean = true;
+  recuerdame: boolean = false;
+	//get data
+  logInData: LogInDataInterface[] = [];
+  logInDataResponse: LogInDataResponseInterface [] = [];
 
   constructor(
-    private auth: AuthService,
+    private user: LogInService,
+    private fn: FuncionesService,
     private cookies: CookieService
   ){}
 
@@ -23,28 +32,35 @@ export class LoginComponent implements OnInit {
     const isEmail = this.cookies.check("userEmail");
     if( isEmail ){
       this.loginForm.patchValue({"correo": this.cookies.get("userEmail")});
-      this.recordarme = true;
+      this.recuerdame = true;
     }
-   
+
+    this.user.getLogInData()
+    .subscribe(
+      (data: LogInDataInterface[] ) =>{
+        this.logInData = data;
+        this.loading = false;
+      },
+      (error: any)=>{
+        this.generalError = true;
+				this.generalErrorMsj = error.message;
+      }
+    )
   }
 
   validarUsuario(){
-    this.auth.logIn(this.loginForm.value)
+    this.user.logIn(this.loginForm.value)
     .subscribe(
-      (data) =>{
-        console.warn("data");
-        console.log(data);
-        if( this.recordarme ){
-          console.log(this.loginForm.value.correo);
+      (data: LogInDataResponseInterface[] ) =>{
+        this.checkError(data);
+        this.loading = false;
+        if( this.recuerdame ){
           this.cookies.set("userEmail",this.loginForm.value.correo);
         }
       },
-      (error)=>{
-        console.warn("error");
-        console.log(error);
-        if( this.recordarme ){
-          this.cookies.set("userEmail",this.loginForm.value.correo);
-        }
+      (error: any)=>{
+        this.generalError = true;
+				this.generalErrorMsj = error;
       }
     )
     this.resetForm();
@@ -66,10 +82,15 @@ export class LoginComponent implements OnInit {
 			}
 		);
   }
+
+  checkError(data: LogInDataResponseInterface []){
+		const code: number = data['http_response_code'];
+		this.errorClass = this.fn.checkClassError(code);
+		this.logInDataResponse = data;
+	}
   
   resetForm(){
 		this.loginForm.reset();
 	}
-
 
 }

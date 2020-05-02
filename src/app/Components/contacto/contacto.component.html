@@ -7,10 +7,10 @@
 	<app-loading *ngIf="loading"></app-loading>
 
 	<div *ngFor="let contacto of contactoData">
-		<div class="main-banner">
+		<!--<div class="main-banner">
 			<div *ngIf="!loading" class="banner animated fadeIn"
 				[ngStyle]="{'background-image':'url(' + contacto.contactoContent.backgroundImage + ')'}"></div>
-		</div>
+		</div>-->
 
 		<div *ngIf="!loading" class="container">
 			<div class="row">
@@ -48,7 +48,7 @@
 								<div [innerHTML]="contacto.leftSection.info"></div>
 
 								<div class="myForm">
-									<div *ngFor="let response of contactoDataRequest">
+									<div *ngFor="let response of contactoDataResponse">
 										<div [ngClass]="errorClass" role="alert">
 											<button type="button" class="close" data-dismiss="alert"
 												aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -61,28 +61,25 @@
 										<div class="form-group">
 											<div class="input-group">
 												<div class="input-group-prepend">
-													<div class="input-group-text form_ico bg-transparent"><i
-															class="far fa-address-book" aria-hidden="true"></i></div>
+													<div class="input-group-text form_ico bg-transparent">
+														<i class="far fa-address-book" aria-hidden="true"></i>
+													</div>
 												</div>
-												<input type="text" class="form-control" formControlName="nombre"
-													value=""
-													[placeholder]="contacto.formContacto.inputName.placeholder" />
+												<input type="text" class="form-control" formControlName="nombre" value="" [placeholder]="contacto.formContacto.inputName.placeholder" />
 											</div>
-											<div class="error_content"
-												*ngIf="myForm.get('nombre').errors && (myForm.get('nombre').dirty || myForm.get('nombre').touched); else ok_name">
-												<div *ngIf="myForm.get('nombre').hasError('required')"
-													[innerHTML]="contacto.formContacto.inputName.required_text"></div>
+											<div *ngIf="myForm.get('nombre').errors && (myForm.get('nombre').dirty || myForm.get('nombre').touched); else ok_name"  class="error_content">
+												<div *ngIf="myForm.get('nombre').hasError('required')" [innerHTML]="contacto.formContacto.inputName.required_text"></div>
 												<div class="error_text">
-													<span class="text-danger"><i
-															[ngClass]="contacto.formContacto.error_icon"
-															aria-hidden="true"></i></span>
+													<span class="text-danger">
+														<i [ngClass]="contacto.formContacto.error_icon" aria-hidden="true"></i>
+													</span>
 												</div>
 											</div>
 											<ng-template #ok_name>
 												<div class="ok_text" *ngIf="!myForm.get('nombre').hasError('required')">
-													<span class="text-success"><i
-															[ngClass]="contacto.formContacto.ok_icon"
-															aria-hidden="true"></i></span>
+													<span class="text-success">
+														<i [ngClass]="contacto.formContacto.ok_icon" aria-hidden="true"></i>
+													</span>
 												</div>
 											</ng-template>
 										</div>
@@ -90,31 +87,26 @@
 										<div class="form-group">
 											<div class="input-group">
 												<div class="input-group-prepend">
-													<div class="input-group-text form_ico bg-transparent"><i
-															class="far fa-envelope" aria-hidden="true"></i></div>
+													<div class="input-group-text form_ico bg-transparent">
+														<i class="far fa-envelope" aria-hidden="true"></i>
+													</div>
 												</div>
-												<input type="text" class="form-control" formControlName="correo"
-													value=""
-													[placeholder]="contacto.formContacto.inputEmail.placeholder" />
+												<input type="text" class="form-control" formControlName="correo" value="" [placeholder]="contacto.formContacto.inputEmail.placeholder" />
 											</div>
-											<div class="error_content"
-												*ngIf="myForm.get('correo').errors && (myForm.get('correo').dirty || myForm.get('correo').touched); else ok_email">
-												<div *ngIf="myForm.get('correo').hasError('required')"
-													[innerHTML]="contacto.formContacto.inputEmail.required_text"></div>
-												<div *ngIf="myForm.get('correo').hasError('pattern')"
-													[innerHTML]="contacto.formContacto.inputEmail.wrong_text"></div>
+											<div *ngIf="myForm.get('correo').errors && (myForm.get('correo').dirty || myForm.get('correo').touched); else ok_email" class="error_content">
+												<div *ngIf="myForm.get('correo').hasError('required')" [innerHTML]="contacto.formContacto.inputEmail.required_text"></div>
+												<div *ngIf="myForm.get('correo').hasError('pattern')" [innerHTML]="contacto.formContacto.inputEmail.wrong_text"></div>
 												<div class="error_text">
-													<span class="text-danger"><i
-															[ngClass]="contacto.formContacto.error_icon"
-															aria-hidden="true"></i></span>
+													<span class="text-danger">
+														<i [ngClass]="contacto.formContacto.error_icon" aria-hidden="true"></i>
+													</span>
 												</div>
 											</div>
 											<ng-template #ok_email>
-												<div class="ok_text"
-													*ngIf="!myForm.get('correo').hasError('required') && !myForm.get('correo').hasError('pattern')">
-													<span class="text-success"><i
-															[ngClass]="contacto.formContacto.ok_icon"
-															aria-hidden="true"></i></span>
+												<div *ngIf="!myForm.get('correo').hasError('required') && !myForm.get('correo').hasError('pattern')" class="ok_text">
+													<span class="text-success">
+														<i [ngClass]="contacto.formContacto.ok_icon" aria-hidden="true"></i>
+													</span>
 												</div>
 											</ng-template>
 										</div>
@@ -122,31 +114,26 @@
 										<div class="form-group">
 											<div class="input-group">
 												<div class="input-group-prepend">
-													<div class="input-group-text form_ico bg-transparent"><i
-															class="fas fa-phone" aria-hidden="true"></i></div>
+													<div class="input-group-text form_ico bg-transparent">
+														<i class="fas fa-phone" aria-hidden="true"></i>
+													</div>
 												</div>
-												<input type="text" class="form-control" formControlName="telefono"
-													value=""
-													[placeholder]="contacto.formContacto.inputTel.placeholder" />
+												<input type="text" class="form-control" formControlName="telefono" value="" [placeholder]="contacto.formContacto.inputTel.placeholder" />
 											</div>
-											<div class="error_content"
-												*ngIf="myForm.get('telefono').errors && (myForm.get('telefono').dirty || myForm.get('telefono').touched); else ok_tel">
-												<div *ngIf="myForm.get('telefono').hasError('required')"
-													[innerHTML]="contacto.formContacto.inputTel.required_text"></div>
-												<div *ngIf="myForm.get('telefono').hasError('pattern')"
-													[innerHTML]="contacto.formContacto.inputTel.wrong_text"></div>
+											<div *ngIf="myForm.get('telefono').errors && (myForm.get('telefono').dirty || myForm.get('telefono').touched); else ok_tel" class="error_content">
+												<div *ngIf="myForm.get('telefono').hasError('required')" [innerHTML]="contacto.formContacto.inputTel.required_text"></div>
+												<div *ngIf="myForm.get('telefono').hasError('pattern')" [innerHTML]="contacto.formContacto.inputTel.wrong_text"></div>
 												<div class="error_text">
-													<span class="text-danger"><i
-															[ngClass]="contacto.formContacto.error_icon"
-															aria-hidden="true"></i></span>
+													<span class="text-danger">
+														<i [ngClass]="contacto.formContacto.error_icon" aria-hidden="true"></i>
+													</span>
 												</div>
 											</div>
 											<ng-template #ok_tel>
-												<div class="ok_text"
-													*ngIf="!myForm.get('telefono').hasError('required') && !myForm.get('telefono').hasError('pattern')">
-													<span class="text-success"><i
-															[ngClass]="contacto.formContacto.ok_icon"
-															aria-hidden="true"></i></span>
+												<div *ngIf="!myForm.get('telefono').hasError('required') && !myForm.get('telefono').hasError('pattern')" class="ok_text" >
+													<span class="text-success">
+														<i [ngClass]="contacto.formContacto.ok_icon" aria-hidden="true"></i>
+													</span>
 												</div>
 											</ng-template>
 										</div>
@@ -154,30 +141,27 @@
 										<div class="form-group">
 											<div class="input-group">
 												<div class="input-group-prepend">
-													<div class="input-group-text form_ico bg-transparent"><i
-															class="far fa-file-alt" aria-hidden="true"></i></div>
+													<div class="input-group-text form_ico bg-transparent">
+														<i class="far fa-file-alt" aria-hidden="true"></i>
+													</div>
 												</div>
 												<textarea type="text" rows="6" class="form-control"
 													formControlName="mensaje" value=""
 													[placeholder]="contacto.formContacto.inputMensaje.placeholder"></textarea>
 											</div>
-											<div class="error_content"
-												*ngIf="myForm.get('mensaje').errors && (myForm.get('mensaje').dirty || myForm.get('mensaje').touched); else ok_msj">
-												<div *ngIf="myForm.get('mensaje').hasError('required')"
-													[innerHTML]="contacto.formContacto.inputMensaje.required_text">
-												</div>
+											<div *ngIf="myForm.get('mensaje').errors && (myForm.get('mensaje').dirty || myForm.get('mensaje').touched); else ok_msj" class="error_content">
+												<div *ngIf="myForm.get('mensaje').hasError('required')" [innerHTML]="contacto.formContacto.inputMensaje.required_text"></div>
 												<div class="error_text">
-													<span class="text-danger"><i
-															[ngClass]="contacto.formContacto.error_icon"
-															aria-hidden="true"></i></span>
+													<span class="text-danger">
+														<i [ngClass]="contacto.formContacto.error_icon" aria-hidden="true"></i>
+													</span>
 												</div>
 											</div>
 											<ng-template #ok_msj>
-												<div class="ok_text"
-													*ngIf="!myForm.get('mensaje').hasError('required')">
-													<span class="text-success"><i
-															[ngClass]="contacto.formContacto.ok_icon"
-															aria-hidden="true"></i></span>
+												<div class="ok_text" *ngIf="!myForm.get('mensaje').hasError('required')">
+													<span class="text-success">
+														<i [ngClass]="contacto.formContacto.ok_icon" aria-hidden="true"></i>
+													</span>
 												</div>
 											</ng-template>
 										</div>
@@ -187,18 +171,21 @@
 												<button type="button" (click)="gotoHome()"
 													[innerHTML]="contacto.formContacto.cancel_button"
 													onclick="topFunction()"
-													class="btn btn-lg btn-outline-secondary w-100"></button>
+													class="btn btn-lg btn-outline-secondary w-100">
+												</button>
 											</div>
-											<div class="col d-none d-sm-block">
+											<!--<div class="col d-none d-sm-block">
 												<button type="button" (click)="resetForm()"
 													[innerHTML]="contacto.formContacto.reset_button"
 													onclick="topFunction(500)"
-													class="btn btn-lg btn-outline-secondary w-100"></button>
-											</div>
+													class="btn btn-lg btn-outline-secondary w-100">
+												</button>
+											</div>-->
 											<div class="col-6">
 												<button type="submit" [disabled]="myForm.invalid"
 													[innerHTML]="contacto.formContacto.save_button"
-													class="btn btn-lg btn-success w-100"></button>
+													class="btn btn-lg btn-success w-100">
+												</button>
 											</div>
 										</div>
 									</form>

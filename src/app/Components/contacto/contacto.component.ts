@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ContactoService, contactoDataInterface, contactoDataResponseInterface } from '../../Services/contacto/contacto.service';
+import { FuncionesService } from '../../Services/funciones/funciones.service';
 
 @Component({
   selector: 'app-contacto',
@@ -22,12 +23,12 @@ export class ContactoComponent implements OnInit {
 	showP:boolean = false;
 	//get data
 	contactoData: contactoDataInterface[] = [];
-	contactoDataRequest: contactoDataResponseInterface[] = [];
+	contactoDataResponse: contactoDataResponseInterface[] = [];
 	
 	constructor(
-		public form: FormBuilder,
 		private route: ActivatedRoute,
 		private contactoService: ContactoService,
+		private fn: FuncionesService,
 		private router: Router
 	){
 		this.route.params.subscribe( params => {
@@ -43,9 +44,9 @@ export class ContactoComponent implements OnInit {
 				this.contactoData = data;
 				this.loading = false;
 			},
-			(err: any) => {
+			(error: any) => {
 				this.generalError = true;
-				this.generalErrorMsj = err.message;
+				this.generalErrorMsj = error.message;
 		  	}
 		);
 
@@ -95,10 +96,7 @@ export class ContactoComponent implements OnInit {
 
 	saveData(){
 		let bodyRequest = {
-			"nombre" : this.myForm.value.nombre,
-			"correo" : this.myForm.value.correo,
-			"telefono" : this.myForm.value.telefono,
-			"mensaje" : this.myForm.value.mensaje,
+			...this.myForm.value,
 			"idPaquete" : this.packsVal
 		};
 
@@ -108,40 +106,19 @@ export class ContactoComponent implements OnInit {
 				this.checkError(data);
 				this.loading = false;
 			},
-			(error) => {
-				console.log(error);
+			(error: any) => {
 				this.generalError = true;
-				this.generalErrorMsj = error.message;
+				this.generalErrorMsj = error;
 			}
 		);
 		
 		this.resetForm();
 	}
 
-	checkError(data){
-		const code: string = data.http_response_code;
-		let alertFlag: string = "";
-
-		switch(code){
-			case "200":
-			case "201": alertFlag = "alert-success"; break;
-			case "400": alertFlag = "alert-warning"; break;
-			case "204":
-			case "503": alertFlag = "alert-danger"; break;
-			default: alertFlag = "alert-danger"; break;
-		}
-
-		this.errorClass = [
-			"alert",
-			"alert-success",
-			"alert-dismissible",
-			"fade",
-			"show",
-			"alertWrapper",
-			alertFlag
-		];
-
-		this.contactoDataRequest = data;
+	checkError(data: contactoDataResponseInterface[]){
+		const code: number = data['http_response_code'];
+		this.errorClass = this.fn.checkClassError(code);
+		this.contactoDataResponse = data;
 	}
 
 	gotoHome(){

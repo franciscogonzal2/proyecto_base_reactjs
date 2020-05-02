@@ -18,9 +18,9 @@ export class TabsComponent implements OnInit {
 				(data: portafolioDataInterface[]) => {
           this.tabsData = data;
         },
-        (err: any) => {
+        (error: any) => {
 					this.generalError = true;
-					this.generalErrorMsj = "---";//err.message;
+					this.generalErrorMsj = "---";//error.message;
 				}
 			);
   }

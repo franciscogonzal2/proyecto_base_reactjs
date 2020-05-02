@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-
+import { HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
 @Injectable()
 export class FuncionesService {
 
@@ -7,22 +8,24 @@ export class FuncionesService {
 
   //Glabal Url
   getUrlToService(val: string){
-    const globalUrl = "http://www.desistemasweb.com/backend/";
-
+    const globalUrl = "http://www.desistemasweb.com/";
+    const globalType = "backend_dev/";
     const serviceUrl = {
-      carrusel: `${globalUrl}carrusel/carrusel.php`,
-      contacto: `${globalUrl}contacto/contacto.php`,
-      createContacto: `${globalUrl}contacto/createContacto.php`,
-      footer: `${globalUrl}footer/footer.php`,
-      home: `${globalUrl}home/home.php`,
-      nosotros: `${globalUrl}nosotros/nosotros.php`,
-      oferta: `${globalUrl}oferta/oferta.php`,
-      webpacks: `${globalUrl}webPacks/webpacks.php`,
-      portafolio: `${globalUrl}portafolio/portafolio.php`,
-      responsive: `${globalUrl}responsive/responsive.php`,
-      webdesign: `${globalUrl}webDesign/webdesign.php`,
-      logIn: `${globalUrl}authorization/authorization.php`,
-      createUser: `${globalUrl}authorization/createContacto.php`,
+      carrusel: `${globalUrl}${globalType}carrusel/carrusel.php`,
+      contacto: `${globalUrl}${globalType}contacto/contacto.php`,
+      createContacto: `${globalUrl}${globalType}contacto/createContacto.php`,
+      footer: `${globalUrl}${globalType}footer/footer.php`,
+      home: `${globalUrl}${globalType}home/home.php`,
+      nosotros: `${globalUrl}${globalType}nosotros/nosotros.php`,
+      oferta: `${globalUrl}${globalType}oferta/oferta.php`,
+      webpacks: `${globalUrl}${globalType}webPacks/webpacks.php`,
+      portafolio: `${globalUrl}${globalType}portafolio/portafolio.php`,
+      responsive: `${globalUrl}${globalType}responsive/responsive.php`,
+      webdesign: `${globalUrl}${globalType}webDesign/webdesign.php`,
+      logIn: `${globalUrl}${globalType}users/logIn.php`,
+      validateUser: `${globalUrl}${globalType}users/validateUser.php`,
+      newUser: `${globalUrl}${globalType}users/newUser.php`,
+      createUser: `${globalUrl}${globalType}users/createUser.php`
     }
 
     return serviceUrl[val];
@@ -61,5 +64,49 @@ export class FuncionesService {
     };
     return result;
   }
+
+  checkClassError(code:number){
+    let alertFlag: string = "";
+    let errorClass: Array<any>;
+
+		switch(code){
+			case 200:
+			case 201: alertFlag = "alert-success"; break;
+			case 400: alertFlag = "alert-warning"; break;
+			case 204:
+			case 503: alertFlag = "alert-danger"; break;
+			default: alertFlag = "alert-danger"; break;
+		}
+
+		errorClass = [
+			"alert",
+			"alert-success",
+			"alert-dismissible",
+			"fade",
+			"show",
+			"alertWrapper",
+			alertFlag
+    ];
+    
+    return errorClass;
+  }
+
+
+
+  handleError(error: HttpErrorResponse) {
+    let ERROR: string;
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      ERROR = 'An error occurred:', error.error.message;
+      //console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      ERROR = `Backend returned code ${error.status}, ` + `body was: ${error.error}`;
+      //console.error( `Backend returned code ${error.status}, ` + `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError('<strong>Algo malo a pasado, por favor intente mas tarde.</strong><br />' + ERROR);
+  };
 
 }

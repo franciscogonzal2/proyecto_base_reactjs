@@ -10,8 +10,8 @@
 			<!-- modal-header -->
 			<div class="modal-header">
 				<h5 class="modal-title">
-					<span [innerHTML]="modalTitulo"></span> / 
-					<span [innerHTML]="modalFechaCreacion"></span>
+					<div [innerHTML]="modalTitulo"></div>
+					<div [innerHTML]="modalFechaCreacion" class="lead subtitle"></div>
 				</h5>
 				<button type="button" class="close" aria-label="Close" (click)="closeModalDialog()">
 					<span aria-hidden="true">&times;</span>

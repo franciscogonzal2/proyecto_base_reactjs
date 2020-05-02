@@ -1,8 +1,7 @@
 <div class="loader_error">
     <div class="loader_error-content">
       <div class="loading-icon text-danger"><i class="fas fa-3x fa-exclamation-circle" aria-hidden="true"></i></div>
-      <div><strong>Parece que ha habido un error...</strong></div>
-      <div>{{ errMsj }}</div>
+      <div [innerHTML]="errMsj"></div>
       <div *ngIf="showButton">
         <hr>
         <a routerLink="/home" role="button" class="btn btn-outline-danger">Ir a casa</a>

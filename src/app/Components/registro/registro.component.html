@@ -1,3 +1,193 @@
-<p>
-  registro works!
-</p>
+<div *ngIf="generalError" class="general-container-error">
+	<app-error-loading [errMsj]="generalErrorMsj"></app-error-loading>
+</div>
+
+<div *ngIf="!generalError" class="bg-dark">
+
+	<app-loading *ngIf="loading"></app-loading>
+
+<div *ngFor="let newUser of newUserData" class="animated fadeInLeft">
+
+  <div *ngFor="let response of newUserDataResponse">
+    <div [ngClass]="errorClass" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div><strong>Well done!</strong></div>
+      <div>{{response.message}}</div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading" class="container">
+    <div class="row">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+        <div class="newUserForm">
+          <h4 [innerHTML]="newUser.newUserContent.titulo"></h4>
+          <p [innerHTML]="newUser.newUserContent.subTitulo"></p>
+
+          <form [formGroup]="newUserForm" (ngSubmit)="crearUsuario()" id="newUserForm" novalidate>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text form_ico bg-transparent">
+                    <i class="far fa-user" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <input formControlName="correo" type="text" class="form-control" [placeholder]="newUser.formNewUser.inputEmail.placeholder" />
+              </div>
+              <div class="error_content" *ngIf="newUserForm.get('correo').errors && (newUserForm.get('correo').dirty || newUserForm.get('correo').touched); else ok_email">
+                <div *ngIf="newUserForm.get('correo').hasError('required')" [innerHTML]="newUser.formNewUser.inputEmail.required_text"></div>
+                <div *ngIf="newUserForm.get('correo').hasError('pattern')" [innerHTML]="newUser.formNewUser.inputEmail.wrong_text"></div>
+                <div class="error_text">
+                  <span class="text-danger"><i class="fas fa-times" aria-hidden="true"></i></span>
+                </div>
+              </div>
+              <ng-template #ok_email>
+                <div class="ok_text" *ngIf="!newUserForm.get('correo').hasError('required') && !newUserForm.get('correo').hasError('pattern')">
+                  <span class="text-success"><i class="fas fa-check" aria-hidden="true"></i></span>
+                </div>
+              </ng-template>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text form_ico bg-transparent">
+                    <i class="far fa-eye-slash" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <input formControlName="password" type="password" class="form-control" autocomplete="on" [placeholder]="newUser.formNewUser.inputPassword.placeholder" />
+              </div>
+              <div class="error_content" *ngIf="newUserForm.get('password').errors && (newUserForm.get('password').dirty || newUserForm.get('password').touched); else ok_password">
+                <div *ngIf="newUserForm.get('password').hasError('required')" [innerHTML]="newUser.formNewUser.inputPassword.required_text"></div>
+                <div class="error_text">
+                  <span class="text-danger"><i class="fas fa-times" aria-hidden="true"></i></span>
+                </div>
+              </div>
+              <ng-template #ok_password>
+                <div class="ok_text" *ngIf="!newUserForm.get('password').hasError('required')">
+                  <span class="text-success"><i class="fas fa-check" aria-hidden="true"></i></span>
+                </div>
+              </ng-template>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text form_ico bg-transparent">
+                    <i class="far fa-eye-slash" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <input formControlName="password2" type="password" class="form-control" autocomplete="on" [placeholder]="newUser.formNewUser.inputPassword2.placeholder" />
+              </div>
+
+              <div class="error_content" *ngIf="newUserForm.get('password2').errors && (newUserForm.get('password2').dirty || newUserForm.get('password2').touched); else notSame_password2">
+                <div *ngIf="newUserForm.get('password2').hasError('required')" [innerHTML]="newUser.formNewUser.inputPassword2.required_text"></div>
+                <div class="error_text">
+                  <span class="text-danger"><i class="fas fa-times" aria-hidden="true"></i></span>
+                </div>
+              </div>
+
+              <ng-template #notSame_password2>
+                <div class="error_content" *ngIf="newUserForm.errors && (newUserForm.dirty || newUserForm.touched); else ok_password2">
+                  <div *ngIf="newUserForm.hasError('notSame')" [innerHTML]="newUser.formNewUser.inputPassword2.notSame_text"></div>
+                  <div class="error_text">
+                    <span class="text-danger"><i class="fas fa-times" aria-hidden="true"></i></span>
+                  </div>
+                </div>
+              </ng-template>
+
+              <ng-template #ok_password2>
+                <div class="ok_text" *ngIf="!newUserForm.get('password2').hasError('required')">
+                  <span class="text-success"><i class="fas fa-check" aria-hidden="true"></i></span>
+                </div>
+              </ng-template>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text form_ico bg-transparent">
+                    <i class="far fa-user" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <input formControlName="nickName" type="text" class="form-control" [placeholder]="newUser.formNewUser.inputNickName.placeholder" />
+              </div>
+              <div class="error_content" *ngIf="newUserForm.get('nickName').errors && (newUserForm.get('nickName').dirty || newUserForm.get('nickName').touched); else ok_nickName">
+                <div *ngIf="newUserForm.get('nickName').hasError('required')" [innerHTML]="newUser.formNewUser.inputNickName.required_text"></div>
+                <div *ngIf="newUserForm.get('nickName').hasError('pattern')" [innerHTML]="newUser.formNewUser.inputNickName.wrong_text"></div>
+                <div class="error_text">
+                  <span class="text-danger"><i class="fas fa-times" aria-hidden="true"></i></span>
+                </div>
+              </div>
+              <ng-template #ok_nickName>
+                <div class="ok_text" *ngIf="!newUserForm.get('nickName').hasError('required') && !newUserForm.get('nickName').hasError('pattern')">
+                  <span class="text-success"><i class="fas fa-check" aria-hidden="true"></i></span>
+                </div>
+              </ng-template>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text form_ico bg-transparent">
+                    <i class="far fa-user" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <input formControlName="firstName" type="text" class="form-control" [placeholder]="newUser.formNewUser.inputFirstName.placeholder" />
+              </div>
+              <div class="error_content" *ngIf="newUserForm.get('firstName').errors && (newUserForm.get('firstName').dirty || newUserForm.get('firstName').touched); else ok_firstName">
+                <div *ngIf="newUserForm.get('firstName').hasError('required')" [innerHTML]="newUser.formNewUser.inputFirstName.required_text"></div>
+                <div *ngIf="newUserForm.get('firstName').hasError('pattern')" [innerHTML]="newUser.formNewUser.inputFirstName.wrong_text"></div>
+                <div class="error_text">
+                  <span class="text-danger"><i class="fas fa-times" aria-hidden="true"></i></span>
+                </div>
+              </div>
+              <ng-template #ok_firstName>
+                <div class="ok_text" *ngIf="!newUserForm.get('firstName').hasError('required') && !newUserForm.get('firstName').hasError('pattern')">
+                  <span class="text-success"><i class="fas fa-check" aria-hidden="true"></i></span>
+                </div>
+              </ng-template>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text form_ico bg-transparent">
+                    <i class="far fa-user" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <input formControlName="lastName" type="text" class="form-control" [placeholder]="newUser.formNewUser.inputLastName.placeholder" />
+              </div>
+              <div class="error_content" *ngIf="newUserForm.get('lastName').errors && (newUserForm.get('lastName').dirty || newUserForm.get('lastName').touched); else ok_lastName">
+                <div *ngIf="newUserForm.get('lastName').hasError('required')" [innerHTML]="newUser.formNewUser.inputLastName.required_text"></div>
+                <div *ngIf="newUserForm.get('lastName').hasError('pattern')" [innerHTML]="newUser.formNewUser.inputLastName.wrong_text"></div>
+                <div class="error_text">
+                  <span class="text-danger"><i class="fas fa-times" aria-hidden="true"></i></span>
+                </div>
+              </div>
+              <ng-template #ok_lastName>
+                <div class="ok_text" *ngIf="!newUserForm.get('lastName').hasError('required') && !newUserForm.get('lastName').hasError('pattern')">
+                  <span class="text-success"><i class="fas fa-check" aria-hidden="true"></i></span>
+                </div>
+              </ng-template>
+            </div>
+
+            <div class="custom-control custom-checkbox mb-2">
+              <input name="recordarme" type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1" [innerHTML]="newUser.formNewUser.checkboxRememberMe.label"></label>
+            </div>
+
+            <div class="mb-5">
+              <a routerLink="/logIn" routerLinkActive="router-link-active" [innerHTML]="newUser.formNewUser.logIn.label" class="float-right" role="button" aria-pressed="true" ></a>
+            </div>
+
+            <div>
+              <button type="submit" [disabled]="newUserForm.invalid"
+                class="btn btn-lg btn-success btn-block" [innerHTML]="newUser.formNewUser.save_button"></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

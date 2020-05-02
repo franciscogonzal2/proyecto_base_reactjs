@@ -16,7 +16,7 @@
 
 			<div class="row">
 				<div *ngFor="let item of data.itemCard" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-					<div class="contenedor content-card-gen" align="center">
+					<div class="contenedor content-card-gen">
 						<div class="img_card_content"><img class="img-fluid" [src]="item.imgCardUrl | noimg" [alt]="item.imgCardAlt" /></div>
 						<h4 [innerHTML]="item.tituloCard"></h4>
 						<div class="card-body">
@@ -34,7 +34,7 @@
 			<div class="row no-gutters">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-5">
 					<div class="contenedor">
-						<div align="center" class="area_index_img"><img [src]="data.comunicate.imgComunicateUrl  | noimg " [alt]="data.comunicate.imgComunicateAlt" class="img-fluid" /></div>
+						<div class="area_index_img"><img [src]="data.comunicate.imgComunicateUrl  | noimg " [alt]="data.comunicate.imgComunicateAlt" class="img-fluid" /></div>
 					</div>
 				</div>
 
@@ -43,17 +43,13 @@
 						<div class="area_index_txt">
 							<h2 class="text-primary">{{ data.comunicate.tituloComunicate }}</h2>
 							<p>{{ data.comunicate.contentComunicate }}</p>
-							<div align="left">
+							<div>
 								<a [routerLink]="data.comunicate.botonComunicateUrl" class="btn btn-outline-primary btn-lg" onclick="topFunction()">{{ data.comunicate.botonComunicateText }}</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<hr class="separador" />
-
 		</div>
 	</div>
-
 </div>

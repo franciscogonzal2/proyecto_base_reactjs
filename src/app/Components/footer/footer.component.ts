@@ -23,8 +23,8 @@ export class FooterComponent implements OnInit {
         this.footerData = data;
         this.loading = false;
       },
-      (err: any) => {
-        console.log(err.message);
+      (error: any) => {
+        console.log(error.message);
       }
     );
   }
