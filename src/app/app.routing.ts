@@ -14,6 +14,11 @@ import { PortafolioComponent } from './Components/portafolio/portafolio.componen
 import { PortaforlioViewsComponent } from './Components/portafolio/portaforlio-views/portaforlio-views.component';
 import { LogInComponent } from './Components/logIn/logIn.component';
 import { RegistroComponent } from './Components/registro/registro.component';
+import { UserComponent } from './Components/user/user.component';
+
+/* Guards */
+import { UserGuard } from './Guards/user/user.guard';
+
 
 /*error 404*/
 import { NotfoundComponent } from './Components/notfound/notfound.component';
@@ -73,6 +78,11 @@ const APP_ROUTES: Routes = [
 	{
 		path: 'registro',
 		component: RegistroComponent
+	},
+	{
+		path: 'user',
+		component: UserComponent,
+		canActivate: [ UserGuard ]
 	},
 	{
 		path: '**',

@@ -65,6 +65,10 @@ export class LogInService {
     return this.userToken;
   }
 
+  isSingIn(): boolean {
+    return this.userToken.length > 2;
+  }
+
 }
 
 export interface LogInContent {

@@ -46,6 +46,7 @@ import { ErrorLoadingComponent } from './Components/common/error-loading/error-l
 import { TabsComponent } from './Components/common/tabs/tabs.component';
 import { LogInComponent } from './Components/logIn/logIn.component';
 import { RegistroComponent } from './Components/registro/registro.component';
+import { UserComponent } from './Components/user/user.component';
 
 /*modulo principal*/
 @NgModule({
@@ -71,7 +72,8 @@ import { RegistroComponent } from './Components/registro/registro.component';
 		ErrorLoadingComponent,
 		TabsComponent,
 		LogInComponent,
-		RegistroComponent
+		RegistroComponent,
+		UserComponent
 	],
 	imports: [
 		BrowserModule,

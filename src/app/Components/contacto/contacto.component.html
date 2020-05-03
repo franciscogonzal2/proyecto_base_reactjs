@@ -7,10 +7,10 @@
 	<app-loading *ngIf="loading"></app-loading>
 
 	<div *ngFor="let contacto of contactoData">
-		<!--<div class="main-banner">
+		<div class="main-banner">
 			<div *ngIf="!loading" class="banner animated fadeIn"
 				[ngStyle]="{'background-image':'url(' + contacto.contactoContent.backgroundImage + ')'}"></div>
-		</div>-->
+		</div>
 
 		<div *ngIf="!loading" class="container">
 			<div class="row">
@@ -47,7 +47,7 @@
 								<h4 [innerHTML]="contacto.leftSection.titulo"></h4>
 								<div [innerHTML]="contacto.leftSection.info"></div>
 
-								<div class="myForm">
+								<div class="myForm" >
 									<div *ngFor="let response of contactoDataResponse">
 										<div [ngClass]="errorClass" role="alert">
 											<button type="button" class="close" data-dismiss="alert"

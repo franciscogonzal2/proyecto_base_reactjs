@@ -6,6 +6,9 @@ a.dropdown-item :active{background: #aaa !important; font-size: 2rem;}
 .nav-item.dropdown{cursor: pointer;}
 .brand-img{ width: 3rem; height: 3rem;}
 
+.nav-link-login{ color: #6c757d; }
+.nav-link-login:hover{ color: rgba(255, 255, 255, 0.8); transition: all  0.3s ease; }
+
 .dropdown-header{ color: rgba(255, 255, 255, 0.8)}
 .dropdown-item{ color: rgba(255, 255, 255, 0.6) !important; background-color: transparent !important;}
 .dropdown-item:hover{color: #eeeeee;}
@@ -34,8 +37,7 @@ a.dropdown-item :active{background: #aaa !important; font-size: 2rem;}
 /*MEDIA QUERY*/
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px){
-    .navbar-brand, .navbar-collapse{ margin-left: 1rem !important;}
-    
+    .navbar-brand, .navbar-collapse{ margin-left: 1rem !important;}   
 }
 
 /* Medium devices (tablets, 768px and up) */

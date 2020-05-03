@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { environment } from '../../../environments/environment';
 @Injectable()
 export class FuncionesService {
 
@@ -9,7 +10,7 @@ export class FuncionesService {
   //Glabal Url
   getUrlToService(val: string){
     const globalUrl = "http://www.desistemasweb.com/";
-    const globalType = "backend_dev/";
+    const globalType = environment.globalType;
     const serviceUrl = {
       carrusel: `${globalUrl}${globalType}carrusel/carrusel.php`,
       contacto: `${globalUrl}${globalType}contacto/contacto.php`,

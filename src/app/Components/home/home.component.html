@@ -18,8 +18,8 @@
 				<div *ngFor="let item of data.itemCard" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
 					<div class="contenedor content-card-gen">
 						<div class="img_card_content"><img class="img-fluid" [src]="item.imgCardUrl | noimg" [alt]="item.imgCardAlt" /></div>
-						<h4 [innerHTML]="item.tituloCard"></h4>
 						<div class="card-body">
+							<h4 [innerHTML]="item.tituloCard"></h4>
 							<p class="card-text" [innerHTML]="item.contentCard"></p>
 							<div class="btn_card_index">
 								<a [routerLink]="item.botonCardUrl" class="btn btn-link" onclick="topFunction()">{{ item.botonCardText }}</a>
