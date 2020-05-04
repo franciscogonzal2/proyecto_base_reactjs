@@ -10,23 +10,22 @@
 						<div><img [src]="footer.copy.logo" alt="desistemasWEB//" class="img-fluid" /></div>
 						<div class="lead tx" [innerHTML]="footer.copy.nombreEmpresa"></div>
 						<p><small [innerHTML]="footer.copy.disclaimer"></small></p>
-					</div>
-				</div>
-				<div class="col-12 col-lg-5">
-					<div *ngFor="let direccion of footer.direccion">
-						<div class="direccion">
-							<div class="direccion-i"><i class="{{ direccion.icon }}" aria-hidden="true"></i></div>
-							<div class="direccion-text"  [innerHTML]="direccion.textos" ></div>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-lg-4">
-					<div class="contenedor redes">
-						<div>
+						<div class="redes">
 							<a *ngFor="let redes of footer.redes" [href]="redes.url" class="afoot {{ redes.redesClass }}">
 								<i class="{{ redes.icon }} fa-2x" aria-hidden="true"></i>
 							</a>
 						</div>
+					</div>
+				</div>
+				<div class="col-12 col-lg-6">
+					<h3 [innerHTML]="footer.direccion.titulo"></h3>
+					<div *ngFor="let texto of footer.direccion.textos">
+						<p [innerHTML]="texto"></p>
+					</div>
+				</div>
+				<div class="col-12 col-lg-3">
+					<div *ngFor="let enlace of footer.enlaces" >
+						<div class="list-footer"><a [href]="enlace.url" [innerHTML]="enlace.linkText"></a></div>
 					</div>
 				</div>
 			</div>

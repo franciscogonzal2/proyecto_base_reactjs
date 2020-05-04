@@ -27,12 +27,18 @@ export interface Redes {
 }
 
 export interface Direccion {
-  icon: string;
-  textos: string;
+  titulo: string;
+  textos: string[];
+}
+
+export interface Enlaces {
+  url: string;
+  linkText: string;
 }
 
 export interface footerDataInterface {
   copy: Copy;
   redes: Redes[];
   direccion: Direccion[];
+  enlaces: Enlaces[];
 }

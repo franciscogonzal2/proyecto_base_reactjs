@@ -1,4 +1,4 @@
 /*go to top*/
-#goToTop {display: none; background: rgba(0,0,0,0.4); padding: 10px; position: fixed;bottom: 0px;right: 0px;z-index: 100;color: #CCCCCC !important;cursor: pointer;border: 0;text-decoration: none;transition: all 0.5ms ease;}
-#goToTop:hover{text-decoration:none;color: #FFFFFF !important;background: rgba(0,0,0,0.6);}
+#goToTop {display: none; color: rgba(0,0,0,0.4); padding: 10px; position: fixed;bottom: 0px;right: 0px;z-index: 100;cursor: pointer;border: 0;text-decoration: none;transition: all 0.5ms ease;}
+#goToTop:hover{text-decoration:none;color: rgba(0,0,0,0.6);}
 .goToTopContent{display: block;text-align: center; }

@@ -41,7 +41,7 @@ export class LogInService {
       { headers: Headers, responseType: 'json' }
     ).pipe(
       map( resp => {
-          this.setToken(resp['jwt']);
+          this.setToken(resp['jwt'], resp['expireAt'] );
           return resp; 
         }
       ),
@@ -54,9 +54,14 @@ export class LogInService {
     this.cookies.delete("jwt",'/')
   }
 
-  setToken( token: string ){
+  setToken( token: string, expireAt: number ){
     this.userToken = token;
     this.cookies.set("jwt", this.userToken);
+
+    let hoy = new Date();
+    hoy.setSeconds(expireAt);
+
+    this.cookies.set("expire", hoy.getTime().toString() );
   }
 
   getToken(){
@@ -65,8 +70,21 @@ export class LogInService {
     return this.userToken;
   }
 
-  isSingIn(): boolean {
-    return this.userToken.length > 2;
+  isSignIn(): boolean {
+
+    if(this.userToken.length < 2){
+      return false;
+    }
+    const currentDate = new Date;
+    const expira = Number(this.cookies.get("expire"));
+    const expiraDate = new Date;
+    expiraDate.setTime(expira);
+
+    if( expiraDate > currentDate ){
+      return true;
+    }else {
+      return false;
+    }
   }
 
 }

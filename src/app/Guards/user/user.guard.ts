@@ -12,7 +12,7 @@ export class UserGuard implements CanActivate {
     private route: Router ){}
   
   canActivate(): boolean {
-    if(this.logIn.isSingIn()){
+    if(this.logIn.isSignIn()){
       return true;
     }else { 
       this.route.navigateByUrl('/logIn');

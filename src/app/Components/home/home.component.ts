@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService, homeDataInterface } from '../../Services/home/home.service';
+import { Router } from '@angular/router';
+import { LogInService } from '../../Services/logIn/logIn.service';
 
 @Component({
   selector: 'app-home',
@@ -15,9 +17,17 @@ export class HomeComponent implements OnInit {
 	//get data
 	homeData: homeDataInterface[] = [];
 	
-	constructor(private homeServices: HomeService) {}
+	constructor(
+		private homeServices: HomeService,
+		private logIn: LogInService,
+		private route: Router ) {}
 
 	ngOnInit() {
+		//estoy logueado?
+		if( this.logIn.isSignIn() ){
+			this.route.navigateByUrl('/user');
+		}
+
 		this.homeServices.getHomeData()
 		.subscribe(
 			(data: homeDataInterface[]) =>{

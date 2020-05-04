@@ -7,7 +7,7 @@ a.dropdown-item :active{background: #aaa !important; font-size: 2rem;}
 .brand-img{ width: 3rem; height: 3rem;}
 
 .nav-link-login{ color: #6c757d; }
-.nav-link-login:hover{ color: rgba(255, 255, 255, 0.8); transition: all  0.3s ease; }
+.nav-link-login:hover{ color: rgba(255, 255, 255, 0.8); transition: all  0.3s ease; cursor: pointer; }
 
 .dropdown-header{ color: rgba(255, 255, 255, 0.8)}
 .dropdown-item{ color: rgba(255, 255, 255, 0.6) !important; background-color: transparent !important;}

@@ -31,7 +31,10 @@
 				<li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="portafolio" onclick="topFunction()">Portafolio</a></li>
 				<li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="contacto" onclick="topFunction()">Contáctenos</a></li>
 			</ul>
-			<div class="float-right" routerLinkActive="active"><a class="nav-link-login" routerLink="logIn" onclick="topFunction()"><i class="fas fa-lock" aria-hidden="true"></i></a></div>
+			<div class="float-right" routerLinkActive="active">
+				<a *ngIf="!isSignIn" class="nav-link-login" routerLink="logIn" onclick="topFunction()"><i class="fas fa-lock" aria-hidden="true"></i></a>
+				<a *ngIf="isSignIn" class="nav-link-login" (click)="logOut()" onclick="topFunction()"><i class="fas fa-unlock" aria-hidden="true"></i> Salir</a>
+			</div>
 		</div>
 	</div>
 </nav>

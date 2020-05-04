@@ -41,7 +41,7 @@ export class RegistroService {
       { headers: Headers, responseType: 'json' }
     ).pipe(
       map( resp => {
-          this.setToken(resp['jwt']);
+        this.setToken(resp['jwt'], resp['expireAt'] );
           return resp; 
         }
       ),
@@ -49,7 +49,7 @@ export class RegistroService {
     )
   }
 
-  setToken( token: string ){
+  setToken( token: string, expireAt: number ){
     this.userToken = token;
     this.cookies.set("jwt", this.userToken);
   }
