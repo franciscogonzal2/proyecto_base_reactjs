@@ -26,19 +26,19 @@ export class RegistroService {
 
   createNewUser( formNewUser ): Observable<NewUserDataResponseInterface[]>{
     const url: string = this.fn.getUrlToService("createUser");
-    const Headers = new HttpHeaders(
+    const headers = new HttpHeaders(
       {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
-        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Headers': '*',
         'Content-Type': 'application/json; charset=UTF-8',
-        'Access-Control-Max-Age': '3600'
+        'Access-Control-Allow-Methods': 'POST, OPTIONS'
       }
     );
+
     return this.http.post<NewUserDataResponseInterface[]>(
       url,
       formNewUser,
-      { headers: Headers, responseType: 'json' }
+      { headers }
     ).pipe(
       map( resp => {
         this.setToken(resp['jwt'], resp['expireAt'] );
@@ -131,6 +131,7 @@ export interface NewUserDataInterface {
 
 //response data
 export interface NewUserDataResponseInterface {
+  title: string;
   message: string;
   http_response_code: number,
   jwt: string;

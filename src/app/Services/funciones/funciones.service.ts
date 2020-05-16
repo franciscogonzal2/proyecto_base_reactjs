@@ -9,24 +9,23 @@ export class FuncionesService {
 
   //Glabal Url
   getUrlToService(val: string){
-    const globalUrl = "http://www.desistemasweb.com/";
-    const globalType = environment.globalType;
+    const globalUrl = environment.globalUrl;
     const serviceUrl = {
-      carrusel: `${globalUrl}${globalType}carrusel/carrusel.php`,
-      contacto: `${globalUrl}${globalType}contacto/contacto.php`,
-      createContacto: `${globalUrl}${globalType}contacto/createContacto.php`,
-      footer: `${globalUrl}${globalType}footer/footer.php`,
-      home: `${globalUrl}${globalType}home/home.php`,
-      nosotros: `${globalUrl}${globalType}nosotros/nosotros.php`,
-      oferta: `${globalUrl}${globalType}oferta/oferta.php`,
-      webpacks: `${globalUrl}${globalType}webPacks/webpacks.php`,
-      portafolio: `${globalUrl}${globalType}portafolio/portafolio.php`,
-      responsive: `${globalUrl}${globalType}responsive/responsive.php`,
-      webdesign: `${globalUrl}${globalType}webDesign/webdesign.php`,
-      logIn: `${globalUrl}${globalType}users/logIn.php`,
-      validateUser: `${globalUrl}${globalType}users/validateUser.php`,
-      newUser: `${globalUrl}${globalType}users/newUser.php`,
-      createUser: `${globalUrl}${globalType}users/createUser.php`
+      carrusel: `${globalUrl}/carrusel/carrusel.php`,
+      contacto: `${globalUrl}/contacto/contacto.php`,
+      createContacto: `${globalUrl}/contacto/createContacto.php`,
+      footer: `${globalUrl}/footer/footer.php`,
+      home: `${globalUrl}/home/home.php`,
+      nosotros: `${globalUrl}/nosotros/nosotros.php`,
+      oferta: `${globalUrl}/oferta/oferta.php`,
+      webpacks: `${globalUrl}/webPacks/webpacks.php`,
+      portafolio: `${globalUrl}/portafolio/portafolio.php`,
+      responsive: `${globalUrl}/responsive/responsive.php`,
+      webdesign: `${globalUrl}/webDesign/webdesign.php`,
+      logIn: `${globalUrl}/users/logIn.php`,
+      validateUser: `${globalUrl}/users/validateUser.php`,
+      newUser: `${globalUrl}/users/newUser.php`,
+      createUser: `${globalUrl}/users/createUser.php`
     }
 
     return serviceUrl[val];

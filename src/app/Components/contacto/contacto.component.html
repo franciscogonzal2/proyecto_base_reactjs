@@ -50,10 +50,12 @@
 								<div class="myForm" >
 									<div *ngFor="let response of contactoDataResponse">
 										<div [ngClass]="errorClass" role="alert">
-											<button type="button" class="close" data-dismiss="alert"
-												aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<div><strong>Well done!</strong></div>
-											<div>{{response.message}}</div>
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											<div><strong [innerHTML]="response.title"></strong></div>
+											<hr />
+											<div [innerHTML]="response.message"></div>
 										</div>
 									</div>
 
@@ -145,7 +147,7 @@
 														<i class="far fa-file-alt" aria-hidden="true"></i>
 													</div>
 												</div>
-												<textarea type="text" rows="6" class="form-control"
+												<textarea type="text" rows="2" class="form-control"
 													formControlName="mensaje" value=""
 													[placeholder]="contacto.formContacto.inputMensaje.placeholder"></textarea>
 											</div>
@@ -174,17 +176,14 @@
 													class="btn btn-lg btn-outline-secondary w-100">
 												</button>
 											</div>
-											<!--<div class="col d-none d-sm-block">
-												<button type="button" (click)="resetForm()"
-													[innerHTML]="contacto.formContacto.reset_button"
-													onclick="topFunction(500)"
-													class="btn btn-lg btn-outline-secondary w-100">
-												</button>
-											</div>-->
 											<div class="col-6">
-												<button type="submit" [disabled]="myForm.invalid"
+												<button *ngIf="isLoading === false" type="submit" [disabled]="myForm.invalid"
 													[innerHTML]="contacto.formContacto.save_button"
 													class="btn btn-lg btn-success w-100">
+												</button>
+												<button *ngIf="isLoading === true" type="button" [disabled]="myForm.invalid"
+													class="btn btn-lg btn-success w-100">
+													<i class="fas fa-sync-alt fa-spinner fa-pulse" aria-hidden="true"></i>
 												</button>
 											</div>
 										</div>

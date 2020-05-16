@@ -18,20 +18,19 @@ export class ContactoService {
 
   createContactoData(bodyRequest: object): Observable<contactoDataResponseInterface[]> {
     const url: string = this.fn.getUrlToService("createContacto");
-    const Headers = new HttpHeaders(
+    const headers = new HttpHeaders(
       {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
-        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Headers': '*',
         'Content-Type': 'application/json; charset=UTF-8',
-        'Access-Control-Max-Age': '3600'
+        'Access-Control-Allow-Methods': 'POST, OPTIONS'
       }
     );
 
     return this.http.post<contactoDataResponseInterface[]>( 
       url,
       bodyRequest,
-      { headers: Headers, responseType: 'json' }
+      { headers }
       ).pipe(
           catchError( err => this.fn.handleError(err))
         )
@@ -95,6 +94,7 @@ export interface contactoDataInterface {
 
 //response data
 export interface contactoDataResponseInterface {
+  title: string;
   message: string;
   http_response_code: number
 }

@@ -13,6 +13,7 @@ import { FuncionesService } from '../../Services/funciones/funciones.service';
 export class ContactoComponent implements OnInit {
 	/*propiedades*/
 	loading: boolean = true;
+	isLoading: boolean = false;
 	generalError: boolean = false;
 	generalErrorMsj: string;
 	errorClass: Array<string> = [];
@@ -95,6 +96,7 @@ export class ContactoComponent implements OnInit {
 	}
 
 	saveData(){
+		this.isLoading = true;
 		let bodyRequest = {
 			...this.myForm.value,
 			"idPaquete" : this.packsVal
@@ -105,6 +107,7 @@ export class ContactoComponent implements OnInit {
 			(data: contactoDataResponseInterface[]) =>{
 				this.checkError(data);
 				this.loading = false;
+				this.isLoading = false;
 			},
 			(error: any) => {
 				this.generalError = true;
@@ -116,7 +119,7 @@ export class ContactoComponent implements OnInit {
 	}
 
 	checkError(data: contactoDataResponseInterface[]){
-		const code: number = data['http_response_code'];
+		const code: number = data[0].http_response_code;
 		this.errorClass = this.fn.checkClassError(code);
 		this.contactoDataResponse = data;
 	}
@@ -129,7 +132,4 @@ export class ContactoComponent implements OnInit {
 		this.myForm.reset();
 	}
 
-	/*getOffSet(){
-		return document.getElementById('myForm').offsetTop;
-	}*/
 }

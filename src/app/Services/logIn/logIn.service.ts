@@ -25,27 +25,26 @@ export class LogInService {
 
   logIn( formlogIn: FormGroup ): Observable<LogInDataResponseInterface[]>{
     const url: string = this.fn.getUrlToService("validateUser");
-    const Headers = new HttpHeaders(
+    const headers = new HttpHeaders(
       {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
-        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Headers': '*',
         'Content-Type': 'application/json; charset=UTF-8',
-        'Access-Control-Max-Age': '3600'
+        'Access-Control-Allow-Methods': 'POST, OPTIONS'
       }
     );
     
     return this.http.post<LogInDataResponseInterface[]>( 
       url,
       formlogIn, 
-      { headers: Headers, responseType: 'json' }
+      { headers }
     ).pipe(
       map( resp => {
           this.setToken(resp['jwt'], resp['expireAt'] );
           return resp; 
         }
       ),
-      retry(3),
+      //retry(3),
       catchError( err => this.fn.handleError(err))
     )
   }
@@ -131,6 +130,7 @@ export interface LogInDataInterface {
 
 //response data
 export interface LogInDataResponseInterface {
+  title: string;
   message: string;
   http_response_code: number;
   jwt: string;

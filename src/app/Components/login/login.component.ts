@@ -84,7 +84,7 @@ export class LogInComponent implements OnInit {
   }
 
   checkError(data: LogInDataResponseInterface []){
-		const code: number = data['http_response_code'];
+		const code: number = data[0].http_response_code;
 		this.errorClass = this.fn.checkClassError(code);
 		this.logInDataResponse = data;
 	}

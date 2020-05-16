@@ -108,7 +108,6 @@ export class RegistroComponent implements OnInit {
         updateOn: 'blur',
       })
     }, { validators: this.checkPasswords });
-    console.log(this.newUserForm);
   }
 
   checkPasswords(fg: FormGroup) {
@@ -120,7 +119,7 @@ export class RegistroComponent implements OnInit {
   }
 
   checkError(data: NewUserDataResponseInterface[]) {
-    const code: number = data['http_response_code'];
+    const code: number = data[0].http_response_code;
     this.errorClass = this.fn.checkClassError(code);
     this.newUserDataResponse = data;
   }

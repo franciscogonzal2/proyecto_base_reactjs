@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  globalType: "backend_dev/"
+  globalUrl: "http://localhost:8012/backend_desistemasweb",
 };
 
 /*
