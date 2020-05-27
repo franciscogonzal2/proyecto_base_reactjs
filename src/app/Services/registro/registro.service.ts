@@ -1,24 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { FuncionesService } from '../funciones/funciones.service';
-import { CookieService } from 'ng2-cookies';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegistroService {
-   /*propiedades*/
-   userToken: string;
-   
+export class RegistroService {   
    constructor(
      private http: HttpClient,
-     private fn: FuncionesService,
-     private cookies: CookieService
-   ){
-     this.getToken();
-   }
+     private fn: FuncionesService
+   ){}
 
   getNewUserData(): Observable<NewUserDataInterface[]>{
     return this.http.get<NewUserDataInterface[]>( this.fn.getUrlToService("newUser") );
@@ -40,27 +33,10 @@ export class RegistroService {
       formNewUser,
       { headers }
     ).pipe(
-      map( resp => {
-        this.setToken(resp['jwt'], resp['expireAt'] );
-          return resp; 
-        }
-      ),
       catchError( err => this.fn.handleError(err))
     )
   }
-
-  setToken( token: string, expireAt: number ){
-    this.userToken = token;
-    this.cookies.set("jwt", this.userToken);
-  }
-
-  getToken(){
-    const isToken = this.cookies.check("jwt");
-    this.userToken = isToken ? this.cookies.get("jwt") : "";
-    return this.userToken;
-  }
 }
-
 
 export interface NewUserContent {
   backgroundImage: string;
@@ -106,8 +82,9 @@ export interface CheckboxRememberMe {
   label: string;
 }
 
-export interface SignUp {
+export interface logIn {
   label: string;
+  url: string;
 }
 
 export interface FormNewUser {
@@ -121,7 +98,7 @@ export interface FormNewUser {
   inputFirstkName: InputFirstName;
   inputLastName: InputLastName;
   checkboxRememberMe: CheckboxRememberMe;
-  signUp: SignUp;
+  logIn: logIn;
 }
 
 export interface NewUserDataInterface {

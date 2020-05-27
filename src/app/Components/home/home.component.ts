@@ -11,6 +11,7 @@ import { LogInService } from '../../Services/logIn/logIn.service';
 
 export class HomeComponent implements OnInit {
 	/*propiedades*/
+	states: any;
 	loading: boolean = true;
 	generalError: boolean = false;
 	generalErrorMsj: string;
@@ -20,9 +21,11 @@ export class HomeComponent implements OnInit {
 	constructor(
 		private homeServices: HomeService,
 		private logIn: LogInService,
-		private route: Router ) {}
+		private route: Router
+	) {}
 
 	ngOnInit() {
+
 		//estoy logueado?
 		if( this.logIn.isSignIn() ){
 			this.route.navigateByUrl('/user');

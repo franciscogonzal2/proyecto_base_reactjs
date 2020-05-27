@@ -13,6 +13,9 @@ a.dropdown-item :active{background: #aaa !important; font-size: 2rem;}
 .dropdown-item{ color: rgba(255, 255, 255, 0.6) !important; background-color: transparent !important;}
 .dropdown-item:hover{color: #eeeeee;}
 .dropdown-menu{ background-color: rgba(0, 0, 0, 0.08) !important; border: 1px solid rgba(0, 0, 0, 0.04) !important;}
+.dropdownLang{width: 5rem !important; min-width: 5rem !important;}
+.lang{ text-align: right; width: 2.3rem;}
+.logIn{ text-align: right; }
 
 /**Efecto menu horizontal - scroll up**/
 .navbar, .dropdown-menu{-webkit-transition: all 0.3s;-moz-transition: all 0.3s;transition: all 0.3s; -webkit-transform: translate3d(0, 0, 0);-moz-transform: translate3d(0, 0, 0);-ms-transform: translate3d(0, 0, 0);-o-transform: translate3d(0, 0, 0);transform: translate3d(0, 0, 0);-webkit-backface-visibility: hidden;backface-visibility: hidden;}

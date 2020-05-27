@@ -1,0 +1,15 @@
+
+<!-- EL MERO MENU -->
+<app-navbar
+[renderMenu]="renderMenu"
+(reLoadMenu)="reLoadMenu($event)"
+(reLoadLang)="reLoadLang($event)"
+></app-navbar>
+
+<!-- EL MERO CONTENEDOR DE RUTAS: NIVEL 1 -->
+<router-outlet></router-outlet>
+
+<!-- EL MERO FOOTER -->
+<app-footer
+[gototopView]="href"
+></app-footer>

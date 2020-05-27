@@ -5,6 +5,7 @@ import { catchError, retry, map } from 'rxjs/operators';
 import { FuncionesService } from '../funciones/funciones.service';
 import { CookieService } from 'ng2-cookies';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class LogInService {
@@ -14,7 +15,8 @@ export class LogInService {
   constructor(
     private http: HttpClient,
     private fn: FuncionesService,
-    private cookies: CookieService
+    private cookies: CookieService,
+    private route: Router
   ){
     this.getToken();
   }
@@ -40,17 +42,18 @@ export class LogInService {
       { headers }
     ).pipe(
       map( resp => {
-          this.setToken(resp['jwt'], resp['expireAt'] );
+          this.setToken(resp[0].jwt, Number(resp[0].expireAt));
           return resp; 
         }
       ),
-      //retry(3),
       catchError( err => this.fn.handleError(err))
     )
   }
 
   logOut(){
-    this.cookies.delete("jwt",'/')
+    this.cookies.delete("jwt",'/');
+    this.cookies.delete("expire",'/');
+    this.route.navigateByUrl('/home');
   }
 
   setToken( token: string, expireAt: number ){
@@ -74,18 +77,14 @@ export class LogInService {
     if(this.userToken.length < 2){
       return false;
     }
+
     const currentDate = new Date;
     const expira = Number(this.cookies.get("expire"));
     const expiraDate = new Date;
     expiraDate.setTime(expira);
 
-    if( expiraDate > currentDate ){
-      return true;
-    }else {
-      return false;
-    }
+    return expiraDate > currentDate ? true : false // ese false se debe de validar tambien desde el backend
   }
-
 }
 
 export interface LogInContent {
@@ -111,6 +110,7 @@ export interface CheckboxRememberMe {
 
 export interface SignUp {
   label: string;
+  url: string;
 }
 
 export interface FormLogIn {

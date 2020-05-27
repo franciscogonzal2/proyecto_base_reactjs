@@ -5,8 +5,10 @@ import { FuncionesService } from '../../Services/funciones/funciones.service';
 
 @Injectable()
 export class HomeService {
-
-  constructor( private http: HttpClient, private fn: FuncionesService) {}
+  constructor(
+    private http: HttpClient,
+    private fn: FuncionesService
+  ) {}
 
   getHomeData(): Observable<homeDataInterface[]>{
     return this.http.get<homeDataInterface[]>( this.fn.getUrlToService("home") );

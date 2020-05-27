@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 @Injectable()
 export class FuncionesService {
+  reloadMenuAgain: boolean;
 
   constructor() {}
 
@@ -71,8 +73,9 @@ export class FuncionesService {
 
 		switch(code){
 			case 200:
-			case 201: alertFlag = "alert-success"; break;
-			case 400: alertFlag = "alert-warning"; break;
+      case 201: alertFlag = "alert-success"; break;
+      case 400:
+			case 401: alertFlag = "alert-warning"; break;
 			case 204:
 			case 503: alertFlag = "alert-danger"; break;
 			default: alertFlag = "alert-danger"; break;
@@ -91,22 +94,24 @@ export class FuncionesService {
     return errorClass;
   }
 
-
-
   handleError(error: HttpErrorResponse) {
-    let ERROR: string;
+    let ERROR = {};
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
-      ERROR = 'An error occurred:', error.error.message;
-      //console.error('An error occurred:', error.error.message);
+      ERROR = {
+        statusError: "frontend",
+        errors: error.error,
+      }
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      ERROR = `Backend returned code ${error.status}, ` + `body was: ${error.error}`;
-      //console.error( `Backend returned code ${error.status}, ` + `body was: ${error.error}`);
+      ERROR = ERROR = {
+        statusError: "backend",
+        errors: error.error,
+      }
     }
     // return an observable with a user-facing error message
-    return throwError('<strong>Algo malo a pasado, por favor intente mas tarde.</strong><br />' + ERROR);
+    return throwError(ERROR);
   };
 
 }

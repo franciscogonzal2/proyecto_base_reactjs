@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { LogInService, LogInDataInterface, LogInDataResponseInterface } from "../../Services/logIn/logIn.service";
 import { FuncionesService } from '../../Services/funciones/funciones.service';
 import { CookieService } from 'ng2-cookies';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logIn',
@@ -10,10 +11,11 @@ import { CookieService } from 'ng2-cookies';
   styleUrls: ['./logIn.component.css']
 })
 export class LogInComponent implements OnInit {
+  @Output() reLoadMenu: EventEmitter<boolean> = new EventEmitter();
   /*propiedades*/
 	loading: boolean = true;
-	generalError: boolean = false;
-  generalErrorMsj: string;
+  generalError: boolean = false;
+	generalErrorMsj: string;
   errorClass: Array<string> = [];
   loginForm: FormGroup;
   recuerdame: boolean = false;
@@ -24,10 +26,16 @@ export class LogInComponent implements OnInit {
   constructor(
     private user: LogInService,
     private fn: FuncionesService,
-    private cookies: CookieService
+    private cookies: CookieService,
+    private route: Router
   ){}
 
   ngOnInit() {
+    //isSignIn?
+    if(this.user.isSignIn()){
+      this.route.navigateByUrl('/user');
+    }
+
     this.validateForm();
     const isEmail = this.cookies.check("userEmail");
     if( isEmail ){
@@ -42,8 +50,7 @@ export class LogInComponent implements OnInit {
         this.loading = false;
       },
       (error: any)=>{
-        this.generalError = true;
-				this.generalErrorMsj = error.message;
+				this.generalError = error;
       }
     )
   }
@@ -57,10 +64,17 @@ export class LogInComponent implements OnInit {
         if( this.recuerdame ){
           this.cookies.set("userEmail",this.loginForm.value.correo);
         }
+        this.reLoadMenu.emit(true);
+        setTimeout(()=>{ this.route.navigateByUrl('/user') }, 6000);
       },
       (error: any)=>{
-        this.generalError = true;
-				this.generalErrorMsj = error;
+        if( error.statusError === "backend" ){
+          this.checkError(error.errors);
+        }else{
+          this.generalError = true;
+				  this.generalErrorMsj = error;
+        }
+				
       }
     )
     this.resetForm();
@@ -83,14 +97,18 @@ export class LogInComponent implements OnInit {
 		);
   }
 
-  checkError(data: LogInDataResponseInterface []){
-		const code: number = data[0].http_response_code;
+  checkError(value: LogInDataResponseInterface []){
+		const code: number = value[0].http_response_code;
 		this.errorClass = this.fn.checkClassError(code);
-		this.logInDataResponse = data;
+		this.logInDataResponse = value;
 	}
   
   resetForm(){
 		this.loginForm.reset();
-	}
+  }
+  
+  setRecuerdame(){
+    this.recuerdame = !this.recuerdame;
+  }
 
 }

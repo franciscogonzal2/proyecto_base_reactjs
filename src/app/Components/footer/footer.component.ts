@@ -7,8 +7,8 @@ import { FooterService, footerDataInterface } from '../../Services/footer/footer
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
+  @Input() language: string;
   @Input() gototopView: string;
-  @Input() showFooter: boolean;
   /*propiedades*/
   loading: boolean = true;
   //get data
@@ -24,7 +24,7 @@ export class FooterComponent implements OnInit {
         this.loading = false;
       },
       (error: any) => {
-        console.log(error.message);
+        //console.log(error.message);
       }
     );
   }

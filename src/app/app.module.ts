@@ -3,8 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 
+/*NGRX*/
+import { StoreModule } from '@ngrx/store';
+import { appReducer } from './Redux/Reducers/app/app.reducer';
+
 /*Rutas*/
-import { ROUTING } from './app.routing';
+import { APP_ROUTES } from './app.routing';
 
 /*Servicios*/
 import { HomeService } from './Services/home/home.service';
@@ -21,66 +25,31 @@ import { WebdesignService } from './Services/webdesign/webdesign.service';
 import { LogInService } from './Services/logIn/logIn.service';
 import { CookieService } from 'ng2-cookies';
 
-/*Pipes*/
-import { NoimgPipe } from './Pipes/noimg.pipe';
+/*Modules*/
+import { ContainerModule } from './Components/container.module';
 
 /*Componentes*/
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './Components/navbar/navbar.component';
-import { CarruselComponent } from './Components/carrusel/carrusel.component';
-import { NotfoundComponent } from './Components/notfound/notfound.component';
-import { HomeComponent } from './Components/home/home.component';
-import { NosotrosComponent } from './Components/nosotros/nosotros.component';
-import { OfertaComponent } from './Components/oferta/oferta.component';
-import { WebdesignComponent } from './Components/webdesign/webdesign.component';
-import { ResponsiveComponent } from './Components/responsive/responsive.component';
-import { WebpacksComponent } from './Components/webpacks/webpacks.component';
-import { ContactoComponent } from './Components/contacto/contacto.component';
-import { PortafolioModalComponent } from './Components/modals/portafolio-modal/portafolio-modal.component';
-import { PortafolioComponent } from './Components/portafolio/portafolio.component';
-import { PortaforlioViewsComponent } from './Components/portafolio/portaforlio-views/portaforlio-views.component';
-import { FooterComponent } from './Components/footer/footer.component';
-import { LoadingComponent } from './Components/common/loading/loading.component';
-import { GototopComponent } from './Components/common/gototop/gototop.component';
-import { ErrorLoadingComponent } from './Components/common/error-loading/error-loading.component';
-import { TabsComponent } from './Components/common/tabs/tabs.component';
 import { LogInComponent } from './Components/logIn/logIn.component';
 import { RegistroComponent } from './Components/registro/registro.component';
-import { UserComponent } from './Components/user/user.component';
+import { NotfoundComponent } from './Components/notfound/notfound.component';
 
 /*modulo principal*/
 @NgModule({
 	declarations: [
 		AppComponent,
-		NavbarComponent,
-		CarruselComponent,
-		HomeComponent,
-		NosotrosComponent,
-		OfertaComponent,
-		WebdesignComponent,
-		ResponsiveComponent,
-		WebpacksComponent,
-		ContactoComponent,
-		PortafolioComponent,
-		PortaforlioViewsComponent,
-		PortafolioModalComponent,
-		NotfoundComponent,
-		FooterComponent,
-		NoimgPipe,
-		LoadingComponent,
-		GototopComponent,
-		ErrorLoadingComponent,
-		TabsComponent,
 		LogInComponent,
 		RegistroComponent,
-		UserComponent
+		NotfoundComponent
 	],
 	imports: [
 		BrowserModule,
 		HttpClientModule,
-		ROUTING,
+		APP_ROUTES,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		ContainerModule,
+		StoreModule.forRoot({ app: appReducer })
 	],
 	providers: [
 		HomeService,

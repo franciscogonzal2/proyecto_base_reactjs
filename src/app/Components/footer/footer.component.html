@@ -25,7 +25,9 @@
 				</div>
 				<div class="col-12 col-lg-3">
 					<div *ngFor="let enlace of footer.enlaces" >
-						<div class="list-footer"><a [href]="enlace.url" [innerHTML]="enlace.linkText"></a></div>
+						<div class="list-footer">
+							<a [routerLink]="enlace.url" [innerHTML]="enlace.linkText" onclick="topFunction()"></a>
+						</div>
 					</div>
 				</div>
 			</div>

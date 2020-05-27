@@ -9,7 +9,8 @@ export class UserGuard implements CanActivate {
   
   constructor( 
     private logIn: LogInService,
-    private route: Router ){}
+    private route: Router
+  ){}
   
   canActivate(): boolean {
     if(this.logIn.isSignIn()){

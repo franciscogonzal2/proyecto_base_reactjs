@@ -32,6 +32,7 @@ export interface Promociones {
   url_btn_promo: string;
   titulo_terms: string;
   terms: string;
+  errorMsj?: string;
 }
 
 export interface Beneficio {
