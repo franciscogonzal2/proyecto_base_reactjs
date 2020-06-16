@@ -7,17 +7,21 @@ import { LogInService } from "../../Services/logIn/logIn.service";
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit/*, OnChanges*/ {
-  @Input() isSignIn: boolean;
-  @Output() reLoadMenu: EventEmitter<boolean> = new EventEmitter();
+  //@Input() isSignIn: boolean;
+ //@Output() reLoadMenu: EventEmitter<boolean> = new EventEmitter();
 
-  //isSignIn: boolean;
+  /*propiedades*/
+	loading: boolean = true;
+	generalError: boolean = false;
+  generalErrorMsj: string;
+  isSignIn: boolean;
 
   constructor(
     private logIn: LogInService
   ) {}
 
   ngOnInit(){
-    this.isSignIn = this.logIn.isSignIn()
+    //this.isSignIn = this.logIn.isSignIn()
   }
 
   /*ngOnChanges(changes: SimpleChanges) {

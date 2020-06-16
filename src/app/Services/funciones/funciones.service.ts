@@ -10,14 +10,14 @@ export class FuncionesService {
   constructor() {}
 
   //Glabal Url
-  getUrlToService(val: string){
+  getUrlToService(key: string, language?: string){
     const globalUrl = environment.globalUrl;
     const serviceUrl = {
       carrusel: `${globalUrl}/carrusel/carrusel.php`,
       contacto: `${globalUrl}/contacto/contacto.php`,
       createContacto: `${globalUrl}/contacto/createContacto.php`,
       footer: `${globalUrl}/footer/footer.php`,
-      home: `${globalUrl}/home/home.php`,
+      home: `${globalUrl}/home/home.php?l=${language}`,
       nosotros: `${globalUrl}/nosotros/nosotros.php`,
       oferta: `${globalUrl}/oferta/oferta.php`,
       webpacks: `${globalUrl}/webPacks/webpacks.php`,
@@ -30,7 +30,7 @@ export class FuncionesService {
       createUser: `${globalUrl}/users/createUser.php`
     }
 
-    return serviceUrl[val];
+    return serviceUrl[key];
   }
 
   setLocalStorage(itemName: string, itemData: any){

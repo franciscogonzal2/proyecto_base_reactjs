@@ -1,11 +1,17 @@
+/*Modulos principales*/
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 
-/*NGRX*/
+/*ngRx*/
+import { environment } from "../environments/environment";
 import { StoreModule } from '@ngrx/store';
-import { appReducer } from './Redux/Reducers/app/app.reducer';
+import { reducers, metaReducers } from './Redux/globalReducer';
+import { EffectsModule } from "@ngrx/effects";
+import { EFFECTS } from "./Redux/globalEffects";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+//import { StoreRouterConnectingModule, RouterStateSerializer} from "@ngrx/router-store";
 
 /*Rutas*/
 import { APP_ROUTES } from './app.routing';
@@ -25,10 +31,10 @@ import { WebdesignService } from './Services/webdesign/webdesign.service';
 import { LogInService } from './Services/logIn/logIn.service';
 import { CookieService } from 'ng2-cookies';
 
-/*Modules*/
+/*Modulos de lso componentes*/
 import { ContainerModule } from './Components/container.module';
 
-/*Componentes*/
+/*Componentes de la raiz*/
 import { AppComponent } from './app.component';
 import { LogInComponent } from './Components/logIn/logIn.component';
 import { RegistroComponent } from './Components/registro/registro.component';
@@ -49,7 +55,10 @@ import { NotfoundComponent } from './Components/notfound/notfound.component';
 		FormsModule,
 		ReactiveFormsModule,
 		ContainerModule,
-		StoreModule.forRoot({ app: appReducer })
+		StoreModule.forRoot(reducers, { metaReducers }),
+		!environment.production ? StoreDevtoolsModule.instrument() : [],
+		EffectsModule.forRoot( EFFECTS ),
+		//StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal })
 	],
 	providers: [
 		HomeService,

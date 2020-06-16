@@ -8,11 +8,11 @@
 
 	<div *ngIf="!loading"> 
 		<div class="wrapperCarrusel">
-			<app-carrusel></app-carrusel>
+			<!--<app-carrusel></app-carrusel>--><br>
 		</div>
 		<div *ngFor="let data of homeData" class="container">
-			<h1 [innerHTML]="data.homeContent.titulo" class="titulo"></h1>
-			<p class="lead intro" [innerHTML]="data.homeContent.subTitulo"></p>
+			<h1 [innerHTML]="data.homeHeader.titulo" class="titulo"></h1>
+			<p class="lead intro" [innerHTML]="data.homeHeader.subTitulo"></p>
 
 			<div class="row">
 				<div *ngFor="let item of data.itemCard" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">

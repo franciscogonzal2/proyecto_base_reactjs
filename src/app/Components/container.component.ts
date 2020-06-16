@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Store, select } from '@ngrx/store';
-import { setLanguageAction } from '../Redux/Actions/app/app.action';
-import { AppState } from '../Redux/Interfaces/states.interface';
+import { Store } from '@ngrx/store';
+import { setLanguageAction } from '../Redux/Actions/app/language.action';
+import { AppState } from '../Redux/globalReducer';
 
 @Component({
   selector: 'app-container',
@@ -13,14 +13,14 @@ import { AppState } from '../Redux/Interfaces/states.interface';
 export class ContainerComponent implements OnInit {
   href: string = "";
   renderMenu: boolean = true;
-  language: string;
+  setLanguage: string;
   
   constructor(
     private location: Location,
     private store: Store<AppState>
   ){
-    //init setLanguageAction()
-    this.store.dispatch(setLanguageAction({ language: 'esp' }));
+    //init setLanguageAction
+    this.store.dispatch(setLanguageAction( { language: 'esp' } ) );
 
     if(this.location.path() != ""){
       this.href = this.location.path();
@@ -29,19 +29,15 @@ export class ContainerComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void { 
-    this.store.subscribe( state => {
-      this.language= state.app.language;
-    })
-  }
+  ngOnInit(): void { }
 
   reLoadMenu(flag: boolean){
     this.renderMenu = flag;
   }
 
   reLoadLang( newLang: string ){
-    this.language = newLang;
-    this.store.dispatch(setLanguageAction({ language: newLang }));
+    this.setLanguage = newLang;
+    this.store.dispatch(setLanguageAction( { language: newLang } ) );
   }
 
 }
