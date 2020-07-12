@@ -39,6 +39,7 @@ import { AppComponent } from './app.component';
 import { LogInComponent } from './Components/logIn/logIn.component';
 import { RegistroComponent } from './Components/registro/registro.component';
 import { NotfoundComponent } from './Components/notfound/notfound.component';
+import { GanaDineroComponent } from './Components/gana-dinero/gana-dinero.component';
 
 /*modulo principal*/
 @NgModule({
@@ -46,7 +47,8 @@ import { NotfoundComponent } from './Components/notfound/notfound.component';
 		AppComponent,
 		LogInComponent,
 		RegistroComponent,
-		NotfoundComponent
+		NotfoundComponent,
+		GanaDineroComponent
 	],
 	imports: [
 		BrowserModule,

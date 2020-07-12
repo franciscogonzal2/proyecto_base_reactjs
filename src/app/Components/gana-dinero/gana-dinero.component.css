@@ -1,0 +1,19 @@
+.bg-tabs{
+    margin-top: -5.1rem;
+}
+
+.tab-content{
+    padding-top: 3rem !important;
+}
+
+.nav-link{
+    font-weight: bold !important;
+    font-size: 1rem;
+    color: gray !important;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link.active{
+    color: Dodgerblue !important;
+}
