@@ -2,31 +2,38 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FuncionesService } from '../../Services/funciones/funciones.service';
+import { SharedService } from '../../Services/shared/shared.service';
 
 @Injectable()
 export class WebdesignService {
 
-  constructor( private http: HttpClient, private fn: FuncionesService ) {}
+  constructor(
+    private http: HttpClient,
+    private fn: FuncionesService,
+    private shared: SharedService
+  ) { }
 
-  getWebDesignData(): Observable<webDesignDataInterface[]>{
-    return this.http.get<webDesignDataInterface[]>( this.fn.getUrlToService("webdesign") );
+  getWebDesignData(): Observable<webDesignDataInterface[]> {
+    return this.http.get<webDesignDataInterface[]>(
+      this.fn.getUrlToService("webdesign",
+        this.shared.getSelectedLanguage()
+      ));
   }
 
 }
 
-export interface webDesignContent {
-  backgroundImage: string;
-  titulo: string;
-  subTitulo: string;
-}
-
-export interface webDesignElements {
-  tituloElements: string;
-  imgElements: string;
-  textElements: string;
-}
-
+//Interface
 export interface webDesignDataInterface {
-  contenido: webDesignContent;
-  elementos: webDesignElements[];
+  contenido: {
+    backgroundImage: string;
+    titulo: string;
+    subTitulo: string;
+  };
+  elementos: [
+    {
+      tituloElements: string;
+      imgElements: string;
+      textElements: string;
+    }
+  ];
 }

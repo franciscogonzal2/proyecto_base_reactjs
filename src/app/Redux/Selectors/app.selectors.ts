@@ -1,14 +1,10 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as GlobalInterface from '../globalStates.interface';
-import { LanguageStateSelectorKey } from '../Reducers/app/language.reducer';
+import { createSelector } from '@ngrx/store';
+import * as GlobalReducer from '../globalReducer';
+import { LanguageState } from '../StateInterface/LanguageState';
 
-export const LanguageStateSelector = createFeatureSelector<GlobalInterface.LanguageState>(
-    LanguageStateSelectorKey 
+export const languageStateSelector = (state: GlobalReducer.AppState) => state.lenguaje;
+
+export const languageSelector = createSelector(
+    languageStateSelector,
+    (state: LanguageState) => state.lenguaje
 );
-
-export const LanguageSelector = createSelector(
-    LanguageStateSelector,
-    (state: GlobalInterface.LanguageState) => state.language
-);
-
-

@@ -1,23 +1,43 @@
 import { ActionReducerMap, MetaReducer, createFeatureSelector, createSelector } from '@ngrx/store';
-import { RouterReducerState, RouterStateSerializer } from "@ngrx/router-store";
 import { environment } from '../../environments/environment';
-import * as GlobalInterface from './globalStates.interface';
-import { Params, RouterStateSnapshot } from "@angular/router";
-import { Injectable } from "@angular/core";
+
+//StateInterface
+import { LanguageState } from './StateInterface/LanguageState';
+import { HomeState } from './StateInterface/HomeState';
+import { NosotrosState } from './StateInterface/NosotrosState';
+import { OfertaState } from './StateInterface/OfertaState';
+import { ContactoState } from './StateInterface/ContactoState';
+import { ContactoResponseState } from './StateInterface/ContactoState';
 //Reducers
 import { languageReducer } from './Reducers/app/language.reducer';
 import { homeReducer } from './Reducers/home/home.reducer';
+import { nosotrosReducer } from './Reducers/nosotros/nosotros.reducer';
+import { ofertaReducer } from './Reducers/oferta/oferta.reducer';
+import { contactoReducer } from './Reducers/contacto/contacto.reducer';
+import { contactoResponseReducer } from './Reducers/contacto/contactoResponse.reducer';
+//?
+//import { RouterReducerState, RouterStateSerializer } from "@ngrx/router-store";
+//import { Params, RouterStateSnapshot } from "@angular/router";
+//import { Injectable } from "@angular/core";
 
 //GLOBAL STATES
 export interface AppState {
-    lngg: GlobalInterface.LanguageState;
-    home: GlobalInterface.HomeState
+    lenguaje: LanguageState;
+    home: HomeState;
+    nosotros: NosotrosState;
+    oferta: OfertaState;
+    contacto: ContactoState;
+    contactoResponse: ContactoResponseState;
 }
 
 //GLOBAL REDUCERS
 export const reducers: ActionReducerMap<AppState> = {
-    lngg: languageReducer,
-    home: homeReducer
+    lenguaje: languageReducer,
+    home: homeReducer,
+    nosotros: nosotrosReducer,
+    oferta: ofertaReducer,
+    contacto: contactoReducer,
+    contactoResponse: contactoResponseReducer
 };
 
 export const metaReducers: MetaReducer<any>[] = !environment.production ? [] : [];

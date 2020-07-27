@@ -2,31 +2,42 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FuncionesService } from '../../Services/funciones/funciones.service';
+import { SharedService } from '../../Services/shared/shared.service';
 
 @Injectable()
 export class OfertaService {
 
-  constructor( private http: HttpClient, private fn: FuncionesService ) {}
+  constructor(
+    private http: HttpClient,
+    private fn: FuncionesService,
+    private shared: SharedService
+  ) { }
 
-  getOfertaData(): Observable<ofertaDataInterface[]>{
-    return this.http.get<ofertaDataInterface[]>( this.fn.getUrlToService("oferta") );
+  getOfertaData(): Observable<ofertaDataInterface[]> {
+    return this.http.get<ofertaDataInterface[]>(
+      this.fn.getUrlToService("oferta",
+        this.shared.getSelectedLanguage()
+      ));
   }
 
 }
 
-export interface ofertaContent {
-  backgroundImage: string;
-  titulo: string;
-  subTitulo: string;
-}
-
-export interface ofertaElements {
-  tituloElements: string;
-  imgElements: string;
-  textElements: string;
-}
-
+//Interface
 export interface ofertaDataInterface {
-  contenido: ofertaContent;
-  elementos: ofertaElements[];
+  container: {
+    contenido: {
+      backgroundImage: string;
+      titulo: string;
+      subTitulo: string;
+    };
+    elementos: [
+      {
+        tituloElements: string;
+        imgElements: string;
+        textElements: string;
+      }
+    ];
+  };
+  code: number;
+  error: string;
 }

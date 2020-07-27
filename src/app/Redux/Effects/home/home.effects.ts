@@ -18,10 +18,10 @@ export class HomeEffects {
             ofType(HomeAction.setHomeActionStart),
             concatMap(() => this._home.getHomeData().pipe(
                     map( (response: homeDataInterface[]) =>
-                        HomeAction.setHomeActionSuccess({ data: response })
+                        HomeAction.setHomeActionSuccess({ data: response, loader: false })
                     ),
                     catchError((errors: homeDataInterface[]) =>
-                        of(HomeAction.setHomeActionFail({ data: errors }))
+                        of(HomeAction.setHomeActionFail({ data: errors, loader: false }))
                     )
                 )
             )

@@ -1,4 +1,4 @@
-<app-gototop [pager]="gototopView" ></app-gototop>
+<app-gototop [pager]="gototopView"></app-gototop>
 
 <div class="footer">
 	<footer class="bd-footer">
@@ -11,7 +11,8 @@
 						<div class="lead tx" [innerHTML]="footer.copy.nombreEmpresa"></div>
 						<p><small [innerHTML]="footer.copy.disclaimer"></small></p>
 						<div class="redes">
-							<a *ngFor="let redes of footer.redes" [href]="redes.url" class="afoot {{ redes.redesClass }}">
+							<a *ngFor="let redes of footer.redes" [href]="redes.url"
+								class="afoot {{ redes.redesClass }}">
 								<i class="{{ redes.icon }} fa-2x" aria-hidden="true"></i>
 							</a>
 						</div>
@@ -24,7 +25,7 @@
 					</div>
 				</div>
 				<div class="col-12 col-lg-3">
-					<div *ngFor="let enlace of footer.enlaces" >
+					<div *ngFor="let enlace of footer.enlaces">
 						<div class="list-footer">
 							<a [routerLink]="enlace.url" class="afootLink" onclick="topFunction()">
 								<i class="fas fa-star-of-life" aria-hidden="true"></i>&nbsp;
@@ -32,9 +33,13 @@
 							</a>
 						</div>
 					</div>
+					<a *ngIf="!isSignIn" class="nav-link nav-link-login" routerLink="/logIn" onclick="topFunction()"><i class="fas fa-lock" aria-hidden="true"></i> Iniciar Sesión</a>
+					<a *ngIf="isSignIn" class="nav-link nav-link-login" (click)="logOut()" onclick="topFunction()"><i class="fas fa-unlock" aria-hidden="true"></i> Cerrar Sesión</a>
 				</div>
 			</div>
 		</div>
-		<div class="clearfix"><br /><div style="font-size: 6px; text-align: center;">Cristo te ama</div><br /></div>
+		<div class="clearfix">
+			<div style="font-size: 6px; text-align: center;">Cristo te ama</div>
+		</div>
 	</footer>
 </div>

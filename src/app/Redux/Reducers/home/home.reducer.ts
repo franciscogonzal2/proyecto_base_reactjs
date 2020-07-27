@@ -1,32 +1,43 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as HomeAction from '../../Actions/home/home.action';
-import * as StatesInterface from '../../globalStates.interface';
+import { HomeState } from '../../StateInterface/HomeState';
 
-export const initialState: StatesInterface.HomeState = {
-    data: []
+export const initialState: HomeState = {
+    data: [],
+    loader: true
 };
-
-export const HomeStateSelectorKey = 'HomeStateSelector';
 
 const _homeReducer = createReducer(
     initialState,
     on( HomeAction.setHomeActionStart, 
-        ( state: StatesInterface.HomeState ) => {
-            return { ...state }
+        ( state: HomeState ) => {
+            return { 
+                ...state,
+                data: [], 
+                loader: true
+            }
         }
     ),
     on( HomeAction.setHomeActionSuccess, 
-        ( state: StatesInterface.HomeState, payload: StatesInterface.HomeState ) => {
-            return { ...state, data: payload.data  }
+        ( state: HomeState, payload: HomeState ) => {
+            return {
+                ...state,
+                data: payload.data, 
+                loader: payload.loader 
+            }
         }
     ),
     on( HomeAction.setHomeActionFail, 
-        ( state: StatesInterface.HomeState, payload: StatesInterface.HomeState ) => {
-            return { ...state, data: payload.data  }
+        ( state: HomeState, payload: HomeState ) => {
+            return { 
+                ...state, 
+                data: payload.data, 
+                loader: payload.loader
+            }
         }
     )
 );
 
-export function homeReducer(state: StatesInterface.HomeState | undefined, action: Action) {
+export function homeReducer(state: HomeState | undefined, action: Action) {
     return _homeReducer(state, action);
 }

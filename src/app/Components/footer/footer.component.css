@@ -1,15 +1,14 @@
 /*footer*/
-.footer{padding-top:20px;background: #2d353a; margin:0px;}
+.footer{padding-top:20px;background: #010a20; margin:0px;}
 .footer .container{padding-bottom: 20px; margin-bottom: 20px;}
 .footer p{color:#bbb; margin-bottom: 0.2rem;}
+.footer h3{color:#ccc;text-shadow: 1px 1px 2px #000; margin-top: 4rem;}
 .footer .tx{color:#ddd;}
 .footer .logo_footer{width: 100%; text-align: center; margin-bottom: 4rem;}
-.footer .logo_footer img{-webkit-filter: grayscale(100%);filter: grayscale(100%);-webkit-transition: all 0.5s ease-in;-moz-transition: all 0.5s ease-in;-ms-transition: all 0.5s ease-in;-o-transition: all 0.5s ease-in;transition: all 0.5s ease-in;}
+/*footer .logo_footer img{-webkit-filter: grayscale(100%);filter: grayscale(100%);-webkit-transition: all 0.5s ease-in;-moz-transition: all 0.5s ease-in;-ms-transition: all 0.5s ease-in;-o-transition: all 0.5s ease-in;transition: all 0.5s ease-in;}*/
 .footer .logo_footer:hover  img{-webkit-filter: grayscale(0%);filter: grayscale(0%);}
 .footer .afootLink{color:#acacac;transition: background-color, ease-in, 0.5s;font-weight: 500;}
 .footer .afootLink:hover{text-decoration:none; color:#e7e1c7;}
-
-.footer h3{color:#ccc;text-shadow: 1px 1px 2px #000; margin-top: 4rem;}
 .footer .afoot{display: flex; flex-direction: row; text-decoration:none; width: 50px; height:50px; text-align:center; padding-top:10px; background: #414c4f; border-radius:50%; margin: 4px; color:#acacac;display:inline-block; transition: background-color, ease-in, 0.5s;font-weight: 500; border: 1px solid #414c4f;}
 .footer .afoot:hover{text-decoration:none; color:#e7e1c7;}
 .footer .afoot.face:hover{text-decoration:none; color:#5e80bf; border: 1px solid #5e80bf; background: rgba(0,0,0,0.1);}
@@ -22,6 +21,9 @@
 .list-footer{color:#ccc;}
 .list-footer:hover{background: #303b3e;}
 .list-footer a{ text-decoration: none; display: block; padding: 0.4rem;}
+
+.nav-link-login{ color: #6c757d; margin-top: 4rem;}
+.nav-link-login:hover{ color: rgba(255, 255, 255, 0.8); transition: all  0.3s ease; cursor: pointer; }
 
 /* MEDIA QUERY */
 /* Small devices (landscape phones, 576px and up) */

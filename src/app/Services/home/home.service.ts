@@ -2,31 +2,28 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FuncionesService } from '../../Services/funciones/funciones.service';
-import { Store, select } from '@ngrx/store';
-import { AppState } from '../../Redux/globalReducer';
+import { SharedService } from '../../Services/shared/shared.service';
 
 @Injectable()
 export class HomeService {
-  selectedLanguage: string;
-  
+
   constructor(
     private http: HttpClient,
     private fn: FuncionesService,
-    private store: Store<AppState>
-  ) {}
+    private shared: SharedService
+  ) { }
 
-  getHomeData(): Observable<homeDataInterface[]>{
-
-    this.store.subscribe( stts => {
-      this.selectedLanguage = stts.lngg.language;
-    })
-
-    return this.http.get<homeDataInterface[]>( this.fn.getUrlToService("home", this.selectedLanguage) );
+  getHomeData(): Observable<homeDataInterface[]> {
+    return this.http.get<homeDataInterface[]>(
+      this.fn.getUrlToService("home",
+        this.shared.getSelectedLanguage()
+      )
+    );
   }
 }
 
 /*Interface*/
-export interface homeDataInterface{
+export interface homeDataInterface {
   container: {
     homeHeader: {
       titulo: string;
@@ -50,7 +47,7 @@ export interface homeDataInterface{
       botonComunicatedUrl: string;
       botonComunicateText: string;
     };
-  }
+  };
   code: number;
   error: string;
 }

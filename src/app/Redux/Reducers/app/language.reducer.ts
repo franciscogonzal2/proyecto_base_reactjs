@@ -1,22 +1,22 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { setLanguageAction } from '../../Actions/app/language.action';
-import * as StatesInterface from '../../globalStates.interface';
+import { LanguageState } from '../../StateInterface/LanguageState';
 
-export const initialState: StatesInterface.LanguageState = {
-    language: 'esp'
+export const initialState: LanguageState = {
+    lenguaje: 'esp'
 };
-
-export const LanguageStateSelectorKey = 'LanguageStateSelector';
 
 const _languageReducer = createReducer(
     initialState,
     on( setLanguageAction, 
-        ( state: StatesInterface.LanguageState, payload: any ) => {
-            return { ...state, language: payload.language  }
+        ( state: LanguageState, payload: any ) => {
+            return { ...state, lenguaje: payload.lenguaje  }
         }
     )
 );
 
-export function languageReducer(state: StatesInterface.LanguageState | undefined, action: Action) {
+export function languageReducer(state: LanguageState | undefined, action: Action) {
     return _languageReducer(state, action);
 }
+
+

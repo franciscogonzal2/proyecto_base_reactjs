@@ -10,9 +10,8 @@ import { AppState } from '../Redux/globalReducer';
   styles: [
   ],
 })
-export class ContainerComponent implements OnInit {
+export class ContainerComponent implements OnInit{
   href: string = "";
-  renderMenu: boolean = true;
   setLanguage: string;
   
   constructor(
@@ -20,7 +19,7 @@ export class ContainerComponent implements OnInit {
     private store: Store<AppState>
   ){
     //init setLanguageAction
-    this.store.dispatch(setLanguageAction( { language: 'esp' } ) );
+    this.store.dispatch(setLanguageAction( { lenguaje: 'esp' } ) );
 
     if(this.location.path() != ""){
       this.href = this.location.path();
@@ -28,16 +27,11 @@ export class ContainerComponent implements OnInit {
       this.href = 'home';
     }
   }
-
   ngOnInit(): void { }
-
-  reLoadMenu(flag: boolean){
-    this.renderMenu = flag;
-  }
 
   reLoadLang( newLang: string ){
     this.setLanguage = newLang;
-    this.store.dispatch(setLanguageAction( { language: newLang } ) );
+    this.store.dispatch(setLanguageAction( { lenguaje: newLang } ) );
   }
 
 }

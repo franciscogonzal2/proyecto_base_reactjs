@@ -6,27 +6,34 @@ import { FuncionesService } from '../funciones/funciones.service';
 import { CookieService } from 'ng2-cookies';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SharedService } from '../../Services/shared/shared.service';
 
 @Injectable()
 export class LogInService {
   /*propiedades*/
   userToken: string;
-  
+
   constructor(
     private http: HttpClient,
     private fn: FuncionesService,
     private cookies: CookieService,
-    private route: Router
-  ){
+    private route: Router,
+    private shared: SharedService
+  ) {
     this.getToken();
   }
 
-  getLogInData(): Observable<LogInDataInterface[]>{
-    return this.http.get<LogInDataInterface[]>( this.fn.getUrlToService("logIn") );
+  getLogInData(): Observable<LogInDataInterface[]> {
+    return this.http.get<LogInDataInterface[]>(
+      this.fn.getUrlToService("logIn",
+        this.shared.getSelectedLanguage()
+      ));
   }
 
-  logIn( formlogIn: FormGroup ): Observable<LogInDataResponseInterface[]>{
-    const url: string = this.fn.getUrlToService("validateUser");
+  logIn(formlogIn: FormGroup): Observable<LogInDataResponseInterface[]> {
+    const url: string = this.fn.getUrlToService("validateUser",
+      this.shared.getSelectedLanguage()
+    );
     const headers = new HttpHeaders(
       {
         'Access-Control-Allow-Origin': '*',
@@ -35,38 +42,38 @@ export class LogInService {
         'Access-Control-Allow-Methods': 'POST, OPTIONS'
       }
     );
-    
-    return this.http.post<LogInDataResponseInterface[]>( 
+
+    return this.http.post<LogInDataResponseInterface[]>(
       url,
-      formlogIn, 
+      formlogIn,
       { headers }
     ).pipe(
-      map( resp => {
-          this.setToken(resp[0].jwt, Number(resp[0].expireAt));
-          return resp; 
-        }
+      map(resp => {
+        this.setToken(resp[0].jwt, Number(resp[0].expireAt));
+        return resp;
+      }
       ),
-      catchError( err => this.fn.handleError(err))
+      catchError(err => this.fn.handleError(err))
     )
   }
 
-  logOut(){
-    this.cookies.delete("jwt",'/');
-    this.cookies.delete("expire",'/');
+  logOut() {
+    this.cookies.delete("jwt", '/');
+    this.cookies.delete("expire", '/');
     this.route.navigateByUrl('/home');
   }
 
-  setToken( token: string, expireAt: number ){
+  setToken(token: string, expireAt: number) {
     this.userToken = token;
     this.cookies.set("jwt", this.userToken);
 
     let hoy = new Date();
     hoy.setSeconds(expireAt);
 
-    this.cookies.set("expire", hoy.getTime().toString() );
+    this.cookies.set("expire", hoy.getTime().toString());
   }
 
-  getToken(){
+  getToken() {
     const isToken = this.cookies.check("jwt");
     this.userToken = isToken ? this.cookies.get("jwt") : "";
     return this.userToken;
@@ -74,7 +81,7 @@ export class LogInService {
 
   isSignIn(): boolean {
 
-    if(this.userToken.length < 2){
+    if (this.userToken.length < 2) {
       return false;
     }
 
@@ -87,45 +94,34 @@ export class LogInService {
   }
 }
 
-export interface LogInContent {
-  backgroundImage: string;
-  titulo: string;
-  subTitulo: string;
-}
-
-export interface InputEmail {
-  placeholder: string;
-  required_text: string;
-  wrong_text: string;
-}
-
-export interface InputPassword {
-  placeholder: string;
-  required_text: string;
-}
-
-export interface CheckboxRememberMe {
-  label: string;
-}
-
-export interface SignUp {
-  label: string;
-  url: string;
-}
-
-export interface FormLogIn {
-  ok_icon: string;
-  error_icon: string;
-  save_button: string;
-  inputEmail: InputEmail;
-  inputPassword: InputPassword;
-  checkboxRememberMe: CheckboxRememberMe;
-  signUp: SignUp;
-}
-
+//Interface
 export interface LogInDataInterface {
-  logInContent: LogInContent;
-  formLogIn: FormLogIn;
+  logInContent: {
+    backgroundImage: string;
+    titulo: string;
+    subTitulo: string;
+  };
+  formLogIn: {
+    ok_icon: string;
+    error_icon: string;
+    save_button: string;
+    inputEmail: {
+      placeholder: string;
+      required_text: string;
+      wrong_text: string;
+    };
+    inputPassword: {
+      placeholder: string;
+      required_text: string;
+    };
+    checkboxRememberMe: {
+      label: string;
+    };
+    signUp: {
+      label: string;
+      url: string;
+    };
+  };
 }
 
 //response data

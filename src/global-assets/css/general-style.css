@@ -3,8 +3,7 @@
 /*------------------------------------------*/
 
 /*miscelaneas*/
-.general-container, .general-container-error{position: relative;margin-bottom: 2rem;}
-.general-container-error{margin-bottom: 0rem;}
+.general-container{position: relative;margin-bottom: 2rem;}
 .contenedor{margin-bottom:20px;}
 .contenido_gen{margin-right: auto;margin-left: auto;padding-top: 0px; padding-bottom: 0.1rem; margin-bottom:20px;}
 .contenido_gen .title{ text-align: center; margin-top: 10px;}

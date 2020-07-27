@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ContactoService, contactoDataInterface, contactoDataResponseInterface } from '../../Services/contacto/contacto.service';
+import { contactoDataInterface, contactoDataResponseInterface } from '../../Services/contacto/contacto.service';
 import { FuncionesService } from '../../Services/funciones/funciones.service';
+import { AppState } from '../../Redux/globalReducer';
+import { Store } from '@ngrx/store';
+import { setContactoActionStart } from 'src/app/Redux/Actions/contacto/contacto.action';
+import { setContactoResponseActionStart } from 'src/app/Redux/Actions/contacto/contactoResponse.action';
+import { SharedService } from '../../Services/shared/shared.service';
 
 @Component({
 	selector: 'app-contacto',
@@ -10,9 +15,9 @@ import { FuncionesService } from '../../Services/funciones/funciones.service';
 	styleUrls: ['./contacto.component.css']
 })
 
-export class ContactoComponent implements OnInit {
+export class ContactoComponent implements OnInit, DoCheck {
 	/*propiedades*/
-	loading: boolean = true;
+	loading: boolean;
 	isLoading: boolean = false;
 	generalError: boolean = false;
 	generalErrorMsj: string;
@@ -25,31 +30,41 @@ export class ContactoComponent implements OnInit {
 	//get data
 	contactoData: contactoDataInterface[] = [];
 	contactoDataResponse: contactoDataResponseInterface[] = [];
+	oldLang: string = "";
 
 	constructor(
 		private route: ActivatedRoute,
-		private contactoService: ContactoService,
 		private fn: FuncionesService,
-		private router: Router
+		private router: Router,
+		private store: Store<AppState>,
+		private shared: SharedService
 	) {
 		this.route.params.subscribe(params => {
 			this.packs = params['paquete'];
-		}
-		);
+		});
+
+		this.store.subscribe((stts: any) => {
+			this.loading = stts.contacto.loader;
+		});
 	}
 
 	ngOnInit() {
-		this.contactoService.getContactoData()
-			.subscribe(
-				(data: contactoDataInterface[]) => {
-					this.contactoData = data;
-					this.loading = false;
-				},
-				(error: any) => {
+		this.store.dispatch(setContactoActionStart());
+
+		this.store.subscribe((stts: any) => {
+			let contactoDataAux = stts.contacto.data;
+			let loaderAux = stts.contacto.loader;
+
+			if (contactoDataAux.container || contactoDataAux.error) {
+				if (contactoDataAux.code === 200) {
+					this.loading = loaderAux;
+					this.contactoData = contactoDataAux.container;
+				} else {
 					this.generalError = true;
-					this.generalErrorMsj = error.message;
+					this.generalErrorMsj = contactoDataAux.error.errorMsj;
 				}
-			);
+			}
+		});
 
 		this.validateForm();
 
@@ -65,6 +80,18 @@ export class ContactoComponent implements OnInit {
 			}
 		} else {
 			this.packsVal = 0;
+		}
+	}
+
+	ngDoCheck() {
+		/*Cambio de idioma*/
+		if (this.oldLang === "") {
+			this.oldLang = this.shared.getSelectedLanguage();
+		}
+
+		if (this.oldLang !== "" && this.shared.getSelectedLanguage() !== this.oldLang) {
+			this.oldLang = this.shared.getSelectedLanguage();
+			this.store.dispatch(setContactoActionStart());
 		}
 	}
 
@@ -102,28 +129,35 @@ export class ContactoComponent implements OnInit {
 			"idPaquete": this.packsVal
 		};
 
-		this.contactoService.createContactoData(bodyRequest)
-			.subscribe(
-				(data: contactoDataResponseInterface[]) => {
-					this.checkError(data);
-					this.loading = false;
+		this.store.dispatch(setContactoResponseActionStart({ response: bodyRequest }));
+
+		this.store.subscribe((stts: any) => {
+			let contactoResponseDataAux = stts.contactoResponse.response;
+
+			if (contactoResponseDataAux.container || contactoResponseDataAux.error) {
+				if (contactoResponseDataAux.code === 200) {
+					this.checkError(contactoResponseDataAux.container);
 					this.isLoading = false;
-				},
-				(error: any) => {
-					if (error.statusError === "backend") {
-						this.checkError(error.errors);
+				} else {
+					if (contactoResponseDataAux.container.statusError === "bcknd") {
+						if(contactoResponseDataAux.container.http_response_code){
+							this.checkError(contactoResponseDataAux.container.errors);
+						}else{
+							this.generalError = true;
+							this.generalErrorMsj = contactoResponseDataAux.container.errors;
+						}
 					} else {
 						this.generalError = true;
-						this.generalErrorMsj = error;
+						this.generalErrorMsj = contactoResponseDataAux.container.errors;
 					}
-
 				}
-			);
+			}
+		});
 
 		this.resetForm();
 	}
 
-	checkError(value: contactoDataResponseInterface[]) {
+	checkError(value: any) {
 		const code: number = value[0].http_response_code;
 		this.errorClass = this.fn.checkClassError(code);
 		this.contactoDataResponse = value;

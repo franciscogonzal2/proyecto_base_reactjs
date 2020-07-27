@@ -1,5 +1,5 @@
 import { createAction, props  } from '@ngrx/store';
-import * as StatesInterface from '../../globalStates.interface';
+import { HomeState } from '../../StateInterface/HomeState';
 
 //Action (type, payload)
 
@@ -9,10 +9,10 @@ export const setHomeActionStart = createAction(
 
 export const setHomeActionSuccess = createAction(
     '[home] SET_HOME_ACTION_SUCCESS',
-    props< StatesInterface.HomeState >()
+    props< HomeState >()
 );
 
 export const setHomeActionFail = createAction(
     '[home] SET_HOME_ACTION_FAIL',
-    props< StatesInterface.HomeState >()
+    props< HomeState >()
 );

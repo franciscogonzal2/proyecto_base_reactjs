@@ -13,21 +13,21 @@ export class FuncionesService {
   getUrlToService(key: string, language?: string){
     const globalUrl = environment.globalUrl;
     const serviceUrl = {
-      carrusel: `${globalUrl}/carrusel/carrusel.php`,
-      contacto: `${globalUrl}/contacto/contacto.php`,
-      createContacto: `${globalUrl}/contacto/createContacto.php`,
-      footer: `${globalUrl}/footer/footer.php`,
+      carrusel: `${globalUrl}/carrusel/carrusel.php?l=${language}`,
+      contacto: `${globalUrl}/contacto/contacto.php?l=${language}`,
+      createContacto: `${globalUrl}/contacto/createContacto.php?l=${language}`,
+      footer: `${globalUrl}/footer/footer.php?l=${language}`,
       home: `${globalUrl}/home/home.php?l=${language}`,
-      nosotros: `${globalUrl}/nosotros/nosotros.php`,
-      oferta: `${globalUrl}/oferta/oferta.php`,
-      webpacks: `${globalUrl}/webPacks/webpacks.php`,
-      portafolio: `${globalUrl}/portafolio/portafolio.php`,
-      responsive: `${globalUrl}/responsive/responsive.php`,
-      webdesign: `${globalUrl}/webDesign/webdesign.php`,
-      logIn: `${globalUrl}/users/logIn.php`,
-      validateUser: `${globalUrl}/users/validateUser.php`,
-      newUser: `${globalUrl}/users/newUser.php`,
-      createUser: `${globalUrl}/users/createUser.php`
+      nosotros: `${globalUrl}/nosotros/nosotros.php?l=${language}`,
+      oferta: `${globalUrl}/oferta/oferta.php?l=${language}`,
+      webpacks: `${globalUrl}/webPacks/webpacks.php?l=${language}`,
+      portafolio: `${globalUrl}/portafolio/portafolio.php?l=${language}`,
+      responsive: `${globalUrl}/responsive/responsive.php?l=${language}`,
+      webdesign: `${globalUrl}/webDesign/webdesign.php?l=${language}`,
+      logIn: `${globalUrl}/users/logIn.php?l=${language}`,
+      validateUser: `${globalUrl}/users/validateUser.php?l=${language}`,
+      newUser: `${globalUrl}/users/newUser.php?l=${language}`,
+      createUser: `${globalUrl}/users/createUser.php?l=${language}`
     }
 
     return serviceUrl[key];
@@ -99,19 +99,19 @@ export class FuncionesService {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       ERROR = {
-        statusError: "frontend",
+        statusError: "frntnd",
         errors: error.error,
       }
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       ERROR = ERROR = {
-        statusError: "backend",
+        statusError: "bcknd",
         errors: error.error,
       }
     }
     // return an observable with a user-facing error message
-    return throwError(ERROR);
+    return throwError( { container: ERROR} );
   };
 
 }

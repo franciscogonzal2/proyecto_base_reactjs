@@ -3,24 +3,26 @@ import { BehaviorSubject } from "rxjs";
 import { distinctUntilChanged } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
- 
-// ----------------------------------------------------------------------------------- //
-// ----------------------------------------------------------------------------------- //
- 
+
 // When updating the state, the caller has the option to define the new state partial
 // using a a callback. This callback will provide the current state snapshot.
 interface SetStateCallback<T> {
 	( currentState: T ): Partial<T> | undefined;
 }
+
+export class SimpleStore {
  
-export class SimpleStore<StateType = any> {
- 
-	private stateSubject: BehaviorSubject<StateType>;
+	private stateSubject: BehaviorSubject<any>;
  
 	// I initialize the simple store with the givne initial state value.
-	constructor( initialState: StateType ) {
+	constructor( initialState: any ) {
  
-		this.stateSubject = new BehaviorSubject( initialState );
+		this.stateSubject = new BehaviorSubject(
+			{ 
+				"prev": initialState, 
+				"next": initialState 
+			}
+		);
  
 	}
  
@@ -29,25 +31,23 @@ export class SimpleStore<StateType = any> {
 	// ---
  
 	// I get the current state snapshot.
-	public getSnapshot() : StateType {
+	public getSnapshot() : any {
 		return( this.stateSubject.getValue() );
 	}
  
- 
 	// I get the current state as a stream (will always emit the current state value as
 	// the first item in the stream).
-	public getState(): Observable<StateType> {
+	public getState(): Observable<any> {
 		return( this.stateSubject.asObservable() );
 	}
  
- 
 	// I return the given top-level state key as a stream (will always emit the current
 	// key value as the first item in the stream).
-	public select<K extends keyof StateType>( key: K ) : Observable<StateType[K]> {
+	public select<K extends keyof any>( key: K ) : Observable<any[K]> {
  
 		var selectStream = this.stateSubject.pipe(
 			map(
-				( state: StateType ) => {
+				( state: any ) => {
 					return( state[ key ] );
 				}
 			),
@@ -64,10 +64,10 @@ export class SimpleStore<StateType = any> {
 	// --
 	// CAUTION: Partial<T> does not currently project against "undefined" values. This is
 	// a known type safety issue in TypeScript.
-	public setState( _callback: SetStateCallback<StateType> ) : void;
-	public setState( _partialState: Partial<StateType> ) : void;
+	public setState( _callback: SetStateCallback<any> ) : void;
+	public setState( _partialState: Partial<any> ) : void;
 	public setState( updater: any ) : void {
- debugger;
+
 		var currentState = this.getSnapshot();
 		// If the updater is a function, then it will need the current state in order to
 		// generate the next state. Otherwise, the updater is the Partial<T> object.
@@ -87,7 +87,14 @@ export class SimpleStore<StateType = any> {
 			return;
 		}
  
-		var nextState = Object.assign( {}, currentState, partialState );
+		//var nextState = Object.assign( {}, currentState, partialState );
+		var nextState = Object.assign(
+			{},
+			{ 
+				"prev": currentState.next, 
+				"next": partialState 
+			}
+		);
  
 		this.stateSubject.next( nextState );
  

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FooterService, footerDataInterface } from '../../Services/footer/footer.service';
+import { LogInService } from '../../Services/logIn/logIn.service';
 
 @Component({
   selector: 'app-footer',
@@ -11,12 +12,20 @@ export class FooterComponent implements OnInit {
   @Input() gototopView: string;
   /*propiedades*/
   loading: boolean = true;
+  isSignIn: boolean = false;
   //get data
   footerData: footerDataInterface[] = [];
   
-  constructor( private footerService: FooterService ) {}
+  constructor( 
+    private footerService: FooterService,
+    private logIn: LogInService
+ ) {}
   
 	ngOnInit() {
+    if( this.logIn.isSignIn() ){
+			this.isSignIn = true;
+    }
+
     this.footerService.getFooterData()
 		.subscribe( 
       (data: footerDataInterface[]) =>{
@@ -27,5 +36,10 @@ export class FooterComponent implements OnInit {
         //console.log(error.message);
       }
     );
+  }
+
+  logOut(){
+    this.logIn.logOut();
+    this.isSignIn = false;
   }
 }

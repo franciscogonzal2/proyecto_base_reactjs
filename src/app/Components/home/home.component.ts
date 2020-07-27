@@ -1,12 +1,11 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { HomeService, homeDataInterface } from '../../Services/home/home.service';
+import { homeDataInterface } from '../../Services/home/home.service';
 import { Router } from '@angular/router';
 import { LogInService } from '../../Services/logIn/logIn.service';
+import { SharedService } from '../../Services/shared/shared.service';
 import { AppState } from '../../Redux/globalReducer';
 import { Store } from '@ngrx/store';
 import { setHomeActionStart } from 'src/app/Redux/Actions/home/home.action';
-import { SimpleStore } from 'src/app/Stores/states.store';
-
 
 @Component({
 	selector: 'app-home',
@@ -16,22 +15,21 @@ import { SimpleStore } from 'src/app/Stores/states.store';
 
 export class HomeComponent implements OnInit, DoCheck {
 	/*propiedades*/
-	loading: boolean = true;
+	loading: boolean;
 	generalError: boolean = false;
 	generalErrorMsj: string;
 	//get data
 	homeData: homeDataInterface[] = [];
-	selectedLanguage: string;
-	states: any;
+	oldLang: string = "";
 
 	constructor(
 		private logIn: LogInService,
 		private route: Router,
-		private store: Store<AppState>
-	) { 
-
-		this.states = new SimpleStore({
-			selectedLanguage: ""
+		private store: Store<AppState>,
+		private shared: SharedService
+	) {
+		this.store.subscribe((stts: any) => {
+			this.loading = stts.home.loader;
 		});
 	}
 
@@ -43,40 +41,31 @@ export class HomeComponent implements OnInit, DoCheck {
 
 		this.store.dispatch(setHomeActionStart());
 
-		this.store.subscribe(stts => {
-			this.selectedLanguage = stts.lngg.language;
-
-			this.states.setState({
-				selectedLanguage: this.selectedLanguage
-			});
-
-		});
-
 		this.store.subscribe((stts: any) => {
-			let nextData = stts.home.data;
+			let homeDataAux = stts.home.data;
+			let loaderAux = stts.home.loader;
 
-			if (nextData.container || nextData.error) {
-				if (nextData.code === 200) {
-					this.loading = false;
-					this.homeData = nextData.container;
+			if (homeDataAux.container || homeDataAux.error) {
+				if (homeDataAux.code === 200) {
+					this.loading = loaderAux;
+					this.homeData = homeDataAux.container;
 				} else {
 					this.generalError = true;
-					this.generalErrorMsj = nextData.error.errorMsj;
+					this.generalErrorMsj = homeDataAux.error.errorMsj;
 				}
 			}
 		});
 	}
 
 	ngDoCheck() {
+		/*Cambio de idioma*/
+		if (this.oldLang === "") {
+			this.oldLang = this.shared.getSelectedLanguage();
+		}
 
-		this.states.getState().subscribe(
-			(states: any) => {
-				let lang = this.states.getSnapshot();
-				debugger;
-				/*if (states.prev.selectedLanguage !== "" && states.prev.selectedLanguage !== states.next.selectedLanguage) {
-					this.store.dispatch(setHomeActionStart());
-				}*/
-			}
-		);
+		if (this.oldLang !== "" && this.shared.getSelectedLanguage() !== this.oldLang) {
+			this.oldLang = this.shared.getSelectedLanguage();
+			this.store.dispatch(setHomeActionStart());
+		}
 	}
 }

@@ -3,22 +3,29 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { FuncionesService } from '../funciones/funciones.service';
-
+import { SharedService } from '../../Services/shared/shared.service';
 @Injectable({
   providedIn: 'root'
 })
-export class RegistroService {   
-   constructor(
-     private http: HttpClient,
-     private fn: FuncionesService
-   ){}
+export class RegistroService {
+  constructor(
+    private http: HttpClient,
+    private fn: FuncionesService,
+    private shared: SharedService
+  ) { }
 
-  getNewUserData(): Observable<NewUserDataInterface[]>{
-    return this.http.get<NewUserDataInterface[]>( this.fn.getUrlToService("newUser") );
+  getNewUserData(): Observable<NewUserDataInterface[]> {
+    return this.http.get<NewUserDataInterface[]>(
+      this.fn.getUrlToService("newUser",
+        this.shared.getSelectedLanguage()
+      ));
   }
 
-  createNewUser( formNewUser ): Observable<NewUserDataResponseInterface[]>{
-    const url: string = this.fn.getUrlToService("createUser");
+  createNewUser(formNewUser): Observable<NewUserDataResponseInterface[]> {
+    const url: string = this.fn.getUrlToService("createUser",
+      this.shared.getSelectedLanguage()
+    );
+
     const headers = new HttpHeaders(
       {
         'Access-Control-Allow-Origin': '*',
@@ -33,77 +40,59 @@ export class RegistroService {
       formNewUser,
       { headers }
     ).pipe(
-      catchError( err => this.fn.handleError(err))
+      catchError(err => this.fn.handleError(err))
     )
   }
 }
 
-export interface NewUserContent {
-  backgroundImage: string;
-  titulo: string;
-  subTitulo: string;
-}
-
-export interface InputEmail {
-  placeholder: string;
-  required_text: string;
-  wrong_text: string;
-}
-
-export interface InputPassword {
-  placeholder: string;
-  required_text: string;
-}
-export interface InputPassword2 {
-  placeholder: string;
-  required_text: string;
-  notSame_text: string;
-}
-
-export interface InputNickName {
-  placeholder: string;
-  required_text: string;
-  wrong_text: string;
-}
-
-export interface InputFirstName {
-  placeholder: string;
-  required_text: string;
-  wrong_text: string;
-}
-
-export interface InputLastName {
-  placeholder: string;
-  required_text: string;
-  wrong_text: string;
-}
-
-export interface CheckboxRememberMe {
-  label: string;
-}
-
-export interface logIn {
-  label: string;
-  url: string;
-}
-
-export interface FormNewUser {
-  titulo: string;
-  ok_icon: string;
-  error_icon: string;
-  inputEmail: InputEmail;
-  inputPassword: InputPassword;
-  inputPassword2: InputPassword2;
-  inputNickName: InputNickName;
-  inputFirstkName: InputFirstName;
-  inputLastName: InputLastName;
-  checkboxRememberMe: CheckboxRememberMe;
-  logIn: logIn;
-}
-
+//Interface
 export interface NewUserDataInterface {
-  newUserContent: NewUserContent;
-  formNewUser: FormNewUser;
+  newUserContent: {
+    backgroundImage: string;
+    titulo: string;
+    subTitulo: string;
+  };
+  formNewUser: {
+    titulo: string;
+    ok_icon: string;
+    error_icon: string;
+    inputEmail: {
+      placeholder: string;
+      required_text: string;
+      wrong_text: string;
+    };
+    inputPassword: {
+      placeholder: string;
+      required_text: string;
+    };
+    inputPassword2: {
+      placeholder: string;
+      required_text: string;
+      notSame_text: string;
+    };
+    inputNickName: {
+      placeholder: string;
+      required_text: string;
+      wrong_text: string;
+    };
+    inputFirstkName: {
+      placeholder: string;
+      required_text: string;
+      wrong_text: string;
+    };
+    inputLastName: {
+      placeholder: string;
+      required_text: string;
+      wrong_text: string;
+    };
+    checkboxRememberMe: {
+      label: string;
+    };
+    logIn: {
+      label: string;
+      url: string;
+    };
+  };
 }
 
 //response data

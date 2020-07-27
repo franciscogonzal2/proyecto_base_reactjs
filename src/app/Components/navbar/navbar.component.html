@@ -1,60 +1,57 @@
 <!-- EL MENU -->
-<div *ngIf="renderMenu">
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top navbar-custom" role="navigation">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top navbar-custom" role="navigation">
+	<div class="container">
 		<button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 			<span class="navbar-toggler-icon"></span>
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="container">
-			<a class="navbar-brand navbar-brand-shadow" routerLink="/home" onclick="topFunction()">
-				<div class="logo logo-brand">
-					<span class="p1">desistemas</span>
-					<span class="p2">WEB</span>
-					<span class="p3">//</span>
-				</div>
-			</a>
-			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-				<ul class="navbar-nav mr-auto">
-					<li *ngFor="let ltrs of literals" [ngClass]="setClass(ltrs)">
-						<a *ngIf="!ltrs.subMenu" class="nav-link" [routerLink]="ltrs.link" onclick="topFunction()">
+		<a class="navbar-brand navbar-brand-shadow" routerLink="/home" onclick="topFunction()">
+			<div class="logo logo-brand">
+				<span class="p1">desistemas</span>
+				<span class="p2">WEB</span>
+				<span class="p3">//</span>
+			</div>
+		</a>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav mr-auto">
+				<li *ngFor="let ltrs of literals" [ngClass]="setClass(ltrs)">
+					<a *ngIf="!ltrs.subMenu" class="nav-link" [routerLink]="ltrs.link" onclick="topFunction()">
+						<span [innerHTML]="renderLiteralsMenu( ltrs.label, selectedLanguage )"></span>
+					</a>
+					<div *ngIf="ltrs.subMenu">
+						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" routerLinkActive="active">
 							<span [innerHTML]="renderLiteralsMenu( ltrs.label, selectedLanguage )"></span>
 						</a>
-						<div *ngIf="ltrs.subMenu">
-							<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" routerLinkActive="active">
-								<span [innerHTML]="renderLiteralsMenu( ltrs.label, selectedLanguage )"></span>
-							</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink01">
-								<div *ngFor="let subMenu of ltrs.subMenu">
-									<h6 class="dropdown-header">
-										<i [class]="subMenu.icon" aria-hidden="true"></i>&nbsp;
-										<span [innerHTML]="renderLiteralsMenu( subMenu.label, selectedLanguage )"></span>
-									</h6>
-									<a *ngFor="let item of subMenu.items" [innerHTML]="renderLiteralsMenu( item.labels, selectedLanguage )" class="dropdown-item" [routerLink]="item.link" onclick="topFunction()"></a>
-								</div>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink01">
+							<div *ngFor="let subMenu of ltrs.subMenu">
+								<h6 class="dropdown-header">
+									<i [class]="subMenu.icon" aria-hidden="true"></i>&nbsp;
+									<span [innerHTML]="renderLiteralsMenu( subMenu.label, selectedLanguage )"></span>
+								</h6>
+								<a *ngFor="let item of subMenu.items" [innerHTML]="renderLiteralsMenu( item.labels, selectedLanguage )" class="dropdown-item" [routerLink]="item.link" onclick="topFunction()"></a>
 							</div>
 						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="float-right">
+				<ul class="navbar-nav">
+					<li class="nav-item dropdown">
+						<a #lang class="nav-link lang" id="navbarDropdownMenuLink02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" routerLinkActive="active">
+							{{ selectedLanguage | uppercase }}
+						</a>
+						<div class="dropdown-menu dropdownLang" aria-labelledby="navbarDropdownMenuLink02">
+							<a class="dropdown-item" [ngClass]="selectLangClass('esp', selectedLanguage)" (click)="selectLanguage('esp')" onclick="topFunction()">ESP</a>
+							<a class="dropdown-item" [ngClass]="selectLangClass('eng', selectedLanguage)" (click)="selectLanguage('eng')" onclick="topFunction()">ENG</a>
+						</div>
 					</li>
+					<!--<li class="nav-item logIn">
+						<a *ngIf="!isSignIn" class="nav-link nav-link-login" routerLink="/logIn" onclick="topFunction()"><i class="fas fa-lock" aria-hidden="true"></i></a>
+						<a *ngIf="isSignIn" class="nav-link nav-link-login" (click)="logOut()" onclick="topFunction()"><i class="fas fa-unlock" aria-hidden="true"></i> Salir</a>
+					</li>-->
 				</ul>
-				<div class="float-right">
-					<ul class="navbar-nav">
-						<li class="nav-item dropdown">
-							<a class="nav-link lang" id="navbarDropdownMenuLink02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" routerLinkActive="active">
-								{{ selectedLanguage | uppercase }}
-							</a>
-							<div class="dropdown-menu dropdownLang" aria-labelledby="navbarDropdownMenuLink02">
-								<a ngClass
-								class="dropdown-item" (click)="selectLanguage('esp')" onclick="topFunction()">ESP</a>
-								<a class="dropdown-item" (click)="selectLanguage('eng')" onclick="topFunction()">ENG</a>
-							</div>
-						</li>
-						<li class="nav-item logIn">
-							<a *ngIf="!isSignIn" class="nav-link nav-link-login" routerLink="/logIn" onclick="topFunction()"><i class="fas fa-lock" aria-hidden="true"></i></a>
-							<a *ngIf="isSignIn" class="nav-link nav-link-login" (click)="logOut()" onclick="topFunction()"><i class="fas fa-unlock" aria-hidden="true"></i> Salir</a>
-						</li>
-					</ul>
-				</div>
 			</div>
 		</div>
-	</nav>
-</div>
+	</div>
+</nav>
