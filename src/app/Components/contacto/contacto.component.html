@@ -35,17 +35,25 @@
 			</div>
 
 			<div class="row">
-				<div class="col-12 col-lg-10">
+				<div class="col-12 col-xl-10">
 					<div class="contenido_gen">
 						<div class="row">
-							<div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+							<div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-5">
 								<div class="img_content">
 									<img class="img-fluid" [src]="contacto.leftSection.imgSection" alt="Contacto" />
 								</div>
+								<div class="row address">
+									<div class="col-12 col-md-6 col-lg-12">
+										<div [innerHTML]="contacto.leftSection.telefonos"></div>
+									</div>
+									<div class="col-12 col-md-6 col-lg-12">
+										<div [innerHTML]="contacto.leftSection.correos"></div>
+									</div>
+								</div>
 							</div>
-							<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
-								<h4 [innerHTML]="contacto.leftSection.titulo"></h4>
-								<div [innerHTML]="contacto.leftSection.info"></div>
+							<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-7">
+								<h4 [innerHTML]="contacto.formContacto.titulo"></h4>
+								<div [innerHTML]="contacto.formContacto.info"></div>
 
 								<div class="myForm" >
 									<div *ngFor="let response of contactoDataResponse">

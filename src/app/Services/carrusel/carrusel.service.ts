@@ -23,11 +23,15 @@ export class CarruselService {
 }
 
 export interface carruselDataInterface {
-  sliderUrl: string,
-  tituloSlider: string,
-  subTituloSlider: string,
-  subTituloTextSlider: string,
-  botonSliderdUrl: string,
-  botonSliderdText: string,
+  container: {
+    sliderUrl: string,
+    tituloSlider: string,
+    subTituloSlider: string,
+    subTituloTextSlider: string,
+    botonSliderdUrl: string,
+    botonSliderdText: string,
+  };
+  code: number;
+  error: string;
 }
 

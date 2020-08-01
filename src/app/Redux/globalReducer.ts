@@ -8,6 +8,8 @@ import { NosotrosState } from './StateInterface/NosotrosState';
 import { OfertaState } from './StateInterface/OfertaState';
 import { ContactoState } from './StateInterface/ContactoState';
 import { ContactoResponseState } from './StateInterface/ContactoState';
+import { PortafolioState } from './StateInterface/PortafolioState';
+import { WebDesignState } from './StateInterface/webDesignState';
 //Reducers
 import { languageReducer } from './Reducers/app/language.reducer';
 import { homeReducer } from './Reducers/home/home.reducer';
@@ -15,6 +17,9 @@ import { nosotrosReducer } from './Reducers/nosotros/nosotros.reducer';
 import { ofertaReducer } from './Reducers/oferta/oferta.reducer';
 import { contactoReducer } from './Reducers/contacto/contacto.reducer';
 import { contactoResponseReducer } from './Reducers/contacto/contactoResponse.reducer';
+import { portafolioReducer } from './Reducers/portafolio/portafolio.reducer';
+import { webDesignReducer } from './Reducers/webdesign/webdesign.reducer';
+
 //?
 //import { RouterReducerState, RouterStateSerializer } from "@ngrx/router-store";
 //import { Params, RouterStateSnapshot } from "@angular/router";
@@ -28,6 +33,8 @@ export interface AppState {
     oferta: OfertaState;
     contacto: ContactoState;
     contactoResponse: ContactoResponseState;
+    portafolio: PortafolioState;
+    webdesign: WebDesignState;
 }
 
 //GLOBAL REDUCERS
@@ -37,7 +44,9 @@ export const reducers: ActionReducerMap<AppState> = {
     nosotros: nosotrosReducer,
     oferta: ofertaReducer,
     contacto: contactoReducer,
-    contactoResponse: contactoResponseReducer
+    contactoResponse: contactoResponseReducer,
+    portafolio: portafolioReducer,
+    webdesign: webDesignReducer
 };
 
 export const metaReducers: MetaReducer<any>[] = !environment.production ? [] : [];

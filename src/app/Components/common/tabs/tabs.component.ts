@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PortafolioService, portafolioDataInterface } from '../../../Services/portafolio/portafolio.service';
+import { portafolioDataInterface } from '../../../Services/portafolio/portafolio.service';
+import { AppState } from '../../../Redux/globalReducer';
+import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.component.html',
@@ -7,21 +9,25 @@ import { PortafolioService, portafolioDataInterface } from '../../../Services/po
 })
 export class TabsComponent implements OnInit {
   generalError: boolean = false;
-	generalErrorMsj: string;
+  generalErrorMsj: string;
   tabsData: portafolioDataInterface[] = [];
 
-  constructor( private portafolioService: PortafolioService ){}
+  constructor(
+    private store: Store<AppState>,
+  ) { }
 
   ngOnInit() {
-    this.portafolioService.getPortafolioAllData()
-			.subscribe(
-				(data: portafolioDataInterface[]) => {
-          this.tabsData = data;
-        },
-        (error: any) => {
-					this.generalError = true;
-					this.generalErrorMsj = "---";//error.message;
-				}
-			);
+    this.store.subscribe((stts: any) => {
+      let portafolioDataAux = stts.portafolio.data;
+
+      if (portafolioDataAux.container || portafolioDataAux.error) {
+        if (portafolioDataAux.code === 200) {
+          this.tabsData = portafolioDataAux.container[0]["elementos"];
+        } else {
+          this.generalError = true;
+          this.generalErrorMsj = "";
+        }
+      }
+    });
   }
 }

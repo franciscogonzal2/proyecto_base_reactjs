@@ -6,19 +6,19 @@
 
 	<app-loading *ngIf="loading"></app-loading>
 
-	<div *ngFor="let webDesign of webDesignData">
+	<div *ngFor="let webdesign of webDesignData">
 		<div class="main-banner">
-			<div *ngIf="!loading" class="banner animated fadeIn" [ngStyle]="{'background-image':'url(' + webDesign.contenido.backgroundImage + ')'}"></div>
+			<div *ngIf="!loading" class="banner animated fadeIn" [ngStyle]="{'background-image':'url(' + webdesign.contenido.backgroundImage + ')'}"></div>
 		</div>
 
 		<div *ngIf="!loading" class="container">
-			<h1 [innerHTML]="webDesign.contenido.titulo"></h1><br />
-			<p [innerHTML]="webDesign.contenido.subTitulo" class="lead intro"></p>
+			<h1 [innerHTML]="webdesign.contenido.titulo"></h1><br />
+			<p [innerHTML]="webdesign.contenido.subTitulo" class="lead intro"></p>
 		</div>
 
 		<div *ngIf="!loading" class="container">
 			<div class="row no-gutters">
-				<div *ngFor="let elementos of webDesign.elementos" class="col-12 col-sm-12 col-md-12 col-lg-6">
+				<div *ngFor="let elementos of webdesign.elementos" class="col-12 col-sm-12 col-md-12 col-lg-6">
 					<div class="cardHeight">
 						<div class="row">
 							<div class="col-12 col-sm-6 col-md-4">

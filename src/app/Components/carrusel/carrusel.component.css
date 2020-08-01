@@ -5,6 +5,8 @@
 .carousel-item h1{text-shadow: 2px 2px 1px rgba(50, 50, 50, 0.40);color: #fff;letter-spacing:0.1rem;font-size: 2.4rem;}
 .carousel-item p{color: #f6faf2; letter-spacing:0.05rem;}
 .carousel-caption {z-index: 10;top:30%;left: 10%;}
+.progress-bar-wrapper{position: relative;top: 3.5rem;z-index: 200;}
+.progress {height: 0.2rem !important;background-color: transparent !important; border-radius: 0rem !important;}
 
 /*las imagenes del slider*/
 .imgslide{margin:0px auto; height:70vh !important; background-position:left center !important; transition: background-position 200ms ease-in; -webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover; background-repeat: no-repeat;}

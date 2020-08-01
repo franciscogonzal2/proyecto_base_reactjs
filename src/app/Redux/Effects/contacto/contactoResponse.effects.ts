@@ -12,7 +12,6 @@ export class ContactoResponseEffects {
     constructor(
         private actions$: Actions,
         private _contacto: ContactoService,
-        private fn: FuncionesService,
     ) { }
 
     public contactoResponseAction$ = createEffect(

@@ -54,13 +54,12 @@ export interface contactoDataInterface {
     };
     leftSection: {
       imgSection: string;
-      titulo: string;
-      texto1: string;
-      texto2: string;
-      texto3: string;
+      telefonos: string;
+      correos: string;
     };
     formContacto: {
       titulo: string;
+      info: string;
       ok_icon: string;
       error_icon: string;
       save_button: string;

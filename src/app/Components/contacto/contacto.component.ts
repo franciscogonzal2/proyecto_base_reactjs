@@ -148,7 +148,7 @@ export class ContactoComponent implements OnInit, DoCheck {
 						}
 					} else {
 						this.generalError = true;
-						this.generalErrorMsj = contactoResponseDataAux.container.errors;
+						this.generalErrorMsj = contactoResponseDataAux.error.errorMsj;
 					}
 				}
 			}

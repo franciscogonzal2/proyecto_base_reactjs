@@ -19,21 +19,24 @@ export class WebdesignService {
         this.shared.getSelectedLanguage()
       ));
   }
-
 }
 
 //Interface
 export interface webDesignDataInterface {
-  contenido: {
-    backgroundImage: string;
-    titulo: string;
-    subTitulo: string;
+  container: {
+    contenido: {
+      backgroundImage: string;
+      titulo: string;
+      subTitulo: string;
+    };
+    elementos: [
+      {
+        tituloElements: string;
+        imgElements: string;
+        textElements: string;
+      }
+    ];
   };
-  elementos: [
-    {
-      tituloElements: string;
-      imgElements: string;
-      textElements: string;
-    }
-  ];
+  code: number;
+  error: string;
 }

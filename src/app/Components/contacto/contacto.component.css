@@ -11,3 +11,4 @@
 .error_text{color: #FA787E;}
 .ok_text {color: #78FA89;}
 .alertWrapper{position: fixed;top:60px; left:20px; right: 20px;padding: 20px !important;z-index: 102;}
+.address{ margin-bottom: 2rem; font-style: italic;}
