@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { portafolioDataInterface } from '../../../Services/portafolio/portafolio.service';
-import { AppState } from '../../../Redux/globalReducer';
+import { AppState } from '../../../Redux/globalState';
 import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-tabs',

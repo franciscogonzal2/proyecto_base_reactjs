@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store, select} from '@ngrx/store';
-import { AppState } from '../../Redux/globalReducer';
+import { AppState } from '../../Redux/globalState';
 import { languageSelector } from 'src/app/Redux/Selectors/app.selectors';
 
 @Injectable({
