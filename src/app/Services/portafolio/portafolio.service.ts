@@ -23,25 +23,27 @@ export class PortafolioService {
 
 //Interface
 export interface portafolioDataInterface {
-  container: {
-    elementos: [
-      {
-        type: string;
-        backgroundImage: string;
-        imgTabs: string;
-        titulo: string;
-        subTitulo: string;
-        item: [
-          {
-            tituloElements: string;
-            imgElements: string;
-            dateElements: string;
-            urlElements: string;
-          }
-        ];
-      }
-    ];
-  };
+  container: [
+    {
+      elementos: [
+        {
+          type: string;
+          backgroundImage: string;
+          imgTabs: string;
+          titulo: string;
+          subTitulo: string;
+          item: [
+            {
+              tituloElements: string;
+              imgElements: string;
+              dateElements: string;
+              urlElements: string;
+            }
+          ];
+        }
+      ];
+    }
+  ];
   code: number;
   error: string;
 }

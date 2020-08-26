@@ -3,7 +3,7 @@ import { homeDataInterface } from '../../Services/home/home.service';
 import { Router } from '@angular/router';
 import { LogInService } from '../../Services/logIn/logIn.service';
 import { SharedService } from '../../Services/shared/shared.service';
-import { AppState } from '../../Redux/globalReducer';
+import { AppState } from '../../Redux/globalState';
 import { Store } from '@ngrx/store';
 import { setHomeActionStart } from 'src/app/Redux/Actions/home/home.action';
 

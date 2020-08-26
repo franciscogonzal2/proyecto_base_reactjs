@@ -27,6 +27,7 @@ const container_routes: Routes = [
             { path: 'nosotros', component: NosotrosComponent },
             { path: 'oferta', component: OfertaComponent },
             { path: 'contacto/:paquete', component: ContactoComponent },
+            { path: 'contacto/:paquete/:code', component: ContactoComponent },
             { path: 'contacto', component: ContactoComponent },
             { path: 'webdesign', component: WebdesignComponent },
             { path: 'responsive', component: ResponsiveComponent },

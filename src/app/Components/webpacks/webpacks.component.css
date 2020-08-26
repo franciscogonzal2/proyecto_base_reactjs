@@ -1,37 +1,19 @@
 
 /*promociones del mes*/
-.promo{width: 100%; padding:18px}
-.info_promo{height: 100%; max-width: 100%; margin-bottom: 1rem; background: #FeFeFe;  border:1px solid #eeeeee; padding:18px; font-style: italic;}
-.info_promo .info{text-align: left; color:gray;}
-.info_promo .info h5{margin-top:1rem; color: dimgrey;}
-.info_promo .terms{text-align: right;}
-.terms .btn.small-btn{font-size: 11px; padding: 0px !important; border: none !important;}
-.terms .btn.small-btn:hover{background: none !important; text-decoration: underline; color: inherit;}
 .tachado_oferta{text-decoration: line-through; color: #888;font-size: 14px; padding-top: 2px; margin-top:0px;}
-.textito_color{color:#c70000;}
+.textito_color{color:#ff7300; text-shadow: 1px 0px 1px white;}
+.ico{ font-size: 1rem; cursor: pointer; color: #898989;}
 .textito_oferta{font-size: 12px;font-size: 14px; padding-top: 2px; margin-top:0px;}
 
 /*paquetes web*/
 .columns {padding: 4px 4px 0px 4px;border: 1px solid #eee;margin-bottom: 50px;-webkit-transition: 0.3s;transition: 0.3s; border-radius: 0.3rem;}
 .columns:hover {box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2); border:1px solid #ddd;}
 .columns .header {display:flex; flex-direction: column; padding: 10px; background-color: #111;color: white;text-align: center;font-size: 25px; line-height: 20px; text-shadow: 1px 1px 0px rgba(0,0,0,0.1); border-radius: 0.3rem 0.3rem 0rem 0rem;}
-.columns .grey {background-color: #eee;font-size: 20px;text-align: center; padding-top: 10px !important; padding-bottom: 20px !important;display:block; height:100px;}
+.columns .grey {background-color: #eee;font-size: 20px;text-align: center; padding-top: 10px !important; padding-bottom: 20px !important; display: flex;height: 100px;justify-content: center;align-items: center;flex-direction: column;}
 .columns .grey.grey_oferta{font-size: 20px !important; text-align: center;}
 .titulo_paquetes_web{padding: 10px;}
 .beneficios {display:flex;flex-direction: column}
 .beneficios .item{border-bottom: 1px solid #eee;padding: 10px;font-size: 16px;}
 .beneficios .footer{font-size: 20px;margin-bottom:6px; margin-top:6px;}
 
-/*accordion*/
-.contenedor-accordion,.accordion{margin-top:20px; margin-bottom: 3rem;}
-.accordion .card {margin-bottom:3px; border-radius: 0px; border: 1px solid rgba(0, 0, 0, 0.125);}
-
-.accordion .card .collapse-chevron .collapsed .card-header{background: #fafafa !important; color: #4e4e4e;} /*hidde accordion title*/
-.accordion .card .collapse-chevron .card-header{padding: 10px !important; color: #ff7300; background: #eeeeee !important;} /*show accordion title*/
-
-.accordion .card .collapse-chevron .collapsed .card-header:hover{color: #0056b3; background: #eeeeee !important;} 
-.accordion .card .collapse-chevron .collapsed .card-header:active{background:#bbbbbb;}
-
-.accordion .card .collapse-chevron  a{text-decoration: none !important;}
-.collapse-chevron .fa-angle-down{transition: .3s transform ease-in-out; transform: rotate(-180deg);}
-.card .collapse-chevron .collapsed .fa-angle-down {transform: rotate(-360deg);}
+.smallText{ font-size: 0.8rem;}

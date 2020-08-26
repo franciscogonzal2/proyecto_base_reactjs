@@ -23,20 +23,22 @@ export class NosotrosService {
 
 //Interface
 export interface nosotrosDataInterface {
-  container: {
-    nosotrosContent: {
-      backgroundImage: string;
-      titulo: string;
-      subTitulo: string;
-    };
-    nosotrosElements: [
-      {
-        tituloElements: string;
-        imgElements: string;
-        textElements: string;
-      }
-    ];
-  };
+  container: [
+    {
+      nosotrosContent: {
+        backgroundImage: string;
+        titulo: string;
+        subTitulo: string;
+      };
+      nosotrosElements: [
+        {
+          tituloElements: string;
+          imgElements: string;
+          textElements: string;
+        }
+      ];
+    }
+  ];
   code: number;
   error: string;
 }

@@ -6,7 +6,6 @@
 .gridPortaf figure:hover figcaption {opacity: 1; height: 100%;width: 100%;}
 .gridPortaf figcaption .search{display: flex; flex-direction:column; justify-content: center; align-items: center; height:100%; cursor:pointer;border:2px solid white;}
 
-
 @media (min-width: 576px) {
     .gridPortaf {padding: 0px;margin: 14px auto;}
 }

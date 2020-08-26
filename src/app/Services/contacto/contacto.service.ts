@@ -46,45 +46,47 @@ export class ContactoService {
 
 //Interfaces
 export interface contactoDataInterface {
-  container: {
-    webpacksContent: {
-      backgroundImage: string;
-      titulo: string;
-      subTitulo: string;
-    };
-    leftSection: {
-      imgSection: string;
-      telefonos: string;
-      correos: string;
-    };
-    formContacto: {
-      titulo: string;
-      info: string;
-      ok_icon: string;
-      error_icon: string;
-      save_button: string;
-      cancel_button: string;
-      reset_button: string;
-      inputName: {
-        placeholder: string;
-        required_text: string;
+  container: [
+    {
+      webpacksContent: {
+        backgroundImage: string;
+        titulo: string;
+        subTitulo: string;
       };
-      inputEmail: {
-        placeholder: string;
-        required_text: string;
-        wrong_text: string;
+      leftSection: {
+        imgSection: string;
+        telefonos: string;
+        correos: string;
       };
-      inputTel: {
-        placeholder: string;
-        required_text: string;
-        wrong_text: string;
+      formContacto: {
+        titulo: string;
+        info: string;
+        ok_icon: string;
+        error_icon: string;
+        save_button: string;
+        cancel_button: string;
+        reset_button: string;
+        inputName: {
+          placeholder: string;
+          required_text: string;
+        };
+        inputEmail: {
+          placeholder: string;
+          required_text: string;
+          wrong_text: string;
+        };
+        inputTel: {
+          placeholder: string;
+          required_text: string;
+          wrong_text: string;
+        };
+        inputMensaje: {
+          placeholder: string;
+          required_text: string;
+        };
       };
-      inputMensaje: {
-        placeholder: string;
-        required_text: string;
-      };
-    };
-  };
+    }
+  ];
   code: number;
   error: string;
 }

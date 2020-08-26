@@ -19,21 +19,26 @@ export class ResponsiveService {
         this.shared.getSelectedLanguage()
       ));
   }
-
 }
 
 //Interface
 export interface responsiveDataInterface {
-  contenido: {
-    backgroundImage: string;
-    titulo: string;
-    subTitulo: string;
-  };
-  elementos: [
+  container: [
     {
-      tituloElements: string;
-      imgElements: string;
-      textElements: string;
+      contenido: {
+        backgroundImage: string;
+        titulo: string;
+        subTitulo: string;
+      };
+      elementos: [
+        {
+          tituloElements: string;
+          imgElements: string;
+          textElements: string;
+        }
+      ];
     }
   ];
+  code: number;
+  error: string;
 }

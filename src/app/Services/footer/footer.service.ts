@@ -25,30 +25,36 @@ export class FooterService {
 
 //Interface
 export interface footerDataInterface {
-  copy: {
-    logo: string;
-    nombreEmpresa: string;
-    disclaimer: string;
-  };
-  redes: [
+  container: [
     {
-      url: string;
-      icon: string;
-      redesClass: string;
-    }
-  ];
-  direccion: [
-    {
-      titulo: string;
-      textos: [
-        string
+      copy: {
+        logo: string;
+        nombreEmpresa: string;
+        disclaimer: string;
+      };
+      redes: [
+        {
+          url: string;
+          icon: string;
+          redesClass: string;
+        }
+      ];
+      direccion: [
+        {
+          titulo: string;
+          textos: [
+            string
+          ];
+        }
+      ];
+      enlaces: [
+        {
+          url: string;
+          linkText: string;
+        }
       ];
     }
   ];
-  enlaces: [
-    {
-      url: string;
-      linkText: string;
-    }
-  ];
+  code: number;
+  error: string;
 }

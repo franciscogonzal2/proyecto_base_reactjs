@@ -24,20 +24,22 @@ export class OfertaService {
 
 //Interface
 export interface ofertaDataInterface {
-  container: {
-    contenido: {
-      backgroundImage: string;
-      titulo: string;
-      subTitulo: string;
-    };
-    elementos: [
-      {
-        tituloElements: string;
-        imgElements: string;
-        textElements: string;
-      }
-    ];
-  };
+  container: [
+    {
+      contenido: {
+        backgroundImage: string;
+        titulo: string;
+        subTitulo: string;
+      };
+      elementos: [
+        {
+          tituloElements: string;
+          imgElements: string;
+          textElements: string;
+        }
+      ];
+    }
+  ];
   code: number;
   error: string;
 }

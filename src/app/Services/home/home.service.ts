@@ -24,30 +24,32 @@ export class HomeService {
 
 /*Interface*/
 export interface homeDataInterface {
-  container: {
-    homeHeader: {
-      titulo: string;
-      subTitulo: string;
-    };
-    itemCard: [
-      {
-        imgCardUrl: string;
-        imgCardAlt: string;
-        tituloCard: string;
-        contentCard: string;
-        botonCardUrl: string;
-        botonCardText: string;
-      }
-    ];
-    comunicate: {
-      imgComunicateUrl: string;
-      imgComunicateAlt: string;
-      tituloComunicate: string;
-      contentComunicate: string;
-      botonComunicatedUrl: string;
-      botonComunicateText: string;
-    };
-  };
+  container: [
+    {
+      homeHeader: {
+        titulo: string;
+        subTitulo: string;
+      };
+      itemCard: [
+        {
+          imgCardUrl: string;
+          imgCardAlt: string;
+          tituloCard: string;
+          contentCard: string;
+          botonCardUrl: string;
+          botonCardText: string;
+        }
+      ];
+      comunicate: {
+        imgComunicateUrl: string;
+        imgComunicateAlt: string;
+        tituloComunicate: string;
+        contentComunicate: string;
+        botonComunicatedUrl: string;
+        botonComunicateText: string;
+      };
+    }
+  ];
   code: number;
   error: string;
 }

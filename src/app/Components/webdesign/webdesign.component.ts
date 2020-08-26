@@ -1,6 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { WebdesignService, webDesignDataInterface } from '../../Services/webdesign/webdesign.service';
-import { AppState } from '../../Redux/globalReducer';
+import { AppState } from '../../Redux/globalState';
 import { Store } from '@ngrx/store';
 import { setWebDesignActionStart } from 'src/app/Redux/Actions/webdesign/webdesign.action';
 import { SharedService } from '../../Services/shared/shared.service';

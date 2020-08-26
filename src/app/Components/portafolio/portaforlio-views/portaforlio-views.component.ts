@@ -2,7 +2,7 @@
 import { Component, OnInit, DoCheck, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { portafolioDataInterface } from '../../../Services/portafolio/portafolio.service';
-import { AppState } from '../../../Redux/globalReducer';
+import { AppState } from '../../../Redux/globalState';
 import { Store } from '@ngrx/store';
 import { setPortafolioActionStart } from 'src/app/Redux/Actions/portafolio/portafolio.action';
 import { SharedService } from '../../../Services/shared/shared.service';

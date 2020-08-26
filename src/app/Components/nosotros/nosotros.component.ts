@@ -1,6 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { nosotrosDataInterface } from '../../Services/nosotros/nosotros.service';
-import { AppState } from '../../Redux/globalReducer';
+import { AppState } from '../../Redux/globalState';
 import { Store } from '@ngrx/store';
 import { setNosotrosActionStart } from 'src/app/Redux/Actions/nosotros/nosotros.action';
 import { SharedService } from '../../Services/shared/shared.service';

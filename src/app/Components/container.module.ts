@@ -11,8 +11,6 @@ import { CONTAINER_ROUTES } from './container.routing';
 
 /*Componentes imports*/
 import { ContainerComponent } from './container.component';
-
-//import { ContainerComponent } from './container.component';
 import { NavbarComponent } from '../Components/navbar/navbar.component';
 import { CarruselComponent } from '../Components/carrusel/carrusel.component';
 import { HomeComponent } from '../Components/home/home.component';
@@ -23,12 +21,13 @@ import { ResponsiveComponent } from '../Components/responsive/responsive.compone
 import { WebpacksComponent } from '../Components/webpacks/webpacks.component';
 import { ContactoComponent } from '../Components/contacto/contacto.component';
 import { PortafolioModalComponent } from '../Components/modals/portafolio-modal/portafolio-modal.component';
+import { PromoModalComponent } from './modals/promo-modal/promo-modal.component';
 import { PortafolioComponent } from '../Components/portafolio/portafolio.component';
 import { PortaforlioViewsComponent } from '../Components/portafolio/portaforlio-views/portaforlio-views.component';
 import { FooterComponent } from '../Components/footer/footer.component';
 import { LoadingComponent } from '../Components/common/loading/loading.component';
 import { GototopComponent } from '../Components/common/gototop/gototop.component';
-import { ErrorLoadingComponent } from '../Components/common/error-loading/error-loading.component';
+import { ErrorDefaultComponent } from '../Components/common/error-default/error-default.component';
 import { TabsComponent } from '../Components/common/tabs/tabs.component';
 import { UserComponent } from '../Components/user/user.component';
 
@@ -51,9 +50,10 @@ import { UserComponent } from '../Components/user/user.component';
 		FooterComponent,
 		LoadingComponent,
 		GototopComponent,
-		ErrorLoadingComponent,
+		ErrorDefaultComponent,
 		TabsComponent,
-        UserComponent
+		UserComponent,
+		PromoModalComponent
     ],
     imports:[
         BrowserModule,
@@ -80,9 +80,10 @@ import { UserComponent } from '../Components/user/user.component';
 		FooterComponent,
 		LoadingComponent,
 		GototopComponent,
-		ErrorLoadingComponent,
+		ErrorDefaultComponent,
 		TabsComponent,
-        UserComponent
+		UserComponent,
+		PromoModalComponent
     ]
 })
 export class ContainerModule { }

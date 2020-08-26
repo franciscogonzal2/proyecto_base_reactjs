@@ -1,5 +1,5 @@
 ﻿<div *ngIf="generalError">
-	<app-error-loading [errMsj]="generalErrorMsj" ></app-error-loading>
+	<app-error-default [errMsj]="generalErrorMsj"></app-error-default>
 </div>
 
 <div *ngIf="!generalError" class="general-container">
@@ -8,80 +8,42 @@
 
 	<div *ngFor="let webpacks of webPacksData">
 		<div class="main-banner">
-			<div *ngIf="!loading" class="banner animated fadeIn" [ngStyle]="{'background-image':'url(' + webpacks.webpacksContent.backgroundImage + ')'}"></div>
+			<div *ngIf="!loading" class="banner animated fadeIn"
+				[ngStyle]="{'background-image':'url(' + webpacks.webpacksContent.backgroundImage + ')'}"></div>
 		</div>
 
 		<div *ngIf="!loading" class="container">
 			<h1 [innerHTML]="webpacks.webpacksContent.titulo"></h1><br />
 			<p [innerHTML]="webpacks.webpacksContent.subTitulo" class="lead intro"></p>
 
-			
-			<!--<div class="contenedor contenedor-accordion">
-				<div class="accordion" id="accordion01" role="tablist" aria-multiselectable="true">
-					<div class="card">
-						<div class="collapse-chevron">
-							<a data-toggle="collapse" class="collapsed" href="#" data-target="#GetPromo" role="button" aria-expanded="true" aria-controls="GetPromo">
-								<div class="card-header" role="tab" id="promoHeader">
-									<h5 class="mb-0">
-										<i class="fas fa-gift" aria-hidden="true"></i>
-										<span [innerHTML]="webpacks.webpacksContent.titulo_promocion"></span>
-										<div style="float: right"><i class="fas fa-angle-down" aria-hidden="true"></i></div>
-									</h5>
-								</div>
-							</a>
-						</div>	
-						<div id="GetPromo" class="collapse" role="tabpanel" aria-labelledby="promoHeader" data-parent="#accordion01">
-							<div class="promo">
-								<div class="row">
-									<div *ngFor="let paquetes of webpacks.paquetes" [hidden]="paquetes.promociones[0].errorMsj" class="col-12 col-sm-12 col-md-6"> 
-										<div *ngFor="let promo of paquetes.promociones">
-											<div class="info_promo">
-												<img [src]="promo.img_promo" alt="..." class="img-fluid">
-												<div class="info">
-													<h5 [innerHTML]="promo.titulo_promo"></h5>
-													<p [innerHTML]="promo.info_promo"></p>
-												</div>
-												<div><a [routerLink]="promo.url_btn_promo" onclick="topFunction()" class="btn btn-block btn-outline-info">{{promo.text_btn_promo}}</a></div>
-												<div class="terms">
-													<button [innerHTML]="promo.titulo_terms" (click)="openModalTermsPromo(promo.titulo_terms, promo.terms)" type="button" class="btn small-btn btn-sm btn-outline-secondary"></button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>-->
-
 			<div>
 				<h2 [innerHTML]="webpacks.webpacksContent.titulo_paquetes_web"></h2><br />
 				<div class="row">
-					<div *ngFor="let paquetes of webpacks.paquetes" class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">	
+					<div *ngFor="let pkt of webpacks.paquetes;"
+						class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
 						<div class="contenedor">
 							<div class="columns">
 								<div>
-									<div [innerHTML]="paquetes.nombre_pqt" [ngClass]="bgHeaderClass(paquetes.id_pqt)"></div>
-									<div class="grey">
-										<div [innerHTML]="paquetes.precio_pqt"></div>
-										<div [innerHTML]="paquetes.regular_text_pqt" [ngClass]="redTextClass(paquetes.promociones[0].validez_promo)"></div>
-										<div [innerHTML]="paquetes.regular_text_tachado_pqt" class="tachado_oferta"></div>
+									<div [innerHTML]="pkt.nombre_paquete" [ngClass]="bgHeaderClass(pkt.id)">
 									</div>
-									<div [innerHTML]="paquetes.titulo_detalle_pqt" class="titulo_paquetes_web"></div>
+									<div class="grey">
+										<div [innerHTML]="getSimbol(pkt.precio_regular)"></div>
+										<div [innerHTML]="pkt.regular_text" class="smallText"></div>
+
+										<button *ngIf="isPromotion(pkt.id)" (click)="onOpen(pkt.id)" type="button" class="btn btn-outline-warning">
+											<span [innerHTML]="webpacks.webpacksContent.titulo_promocion"></span>&nbsp;
+											<span [innerHTML]="nPromotion(pkt.id)" class="badge badge-info"></span>
+										</button>
+									</div>
+									<div [innerHTML]="pkt.titulo_detalle" class="titulo_paquetes_web"></div>
 								</div>
 								<div class="beneficios">
-									<div *ngFor="let beneficios of paquetes.beneficios">
-										<div [innerHTML]="beneficios.detalle1" class="item"></div>
-										<div [innerHTML]="beneficios.detalle2" class="item"></div>
-										<div [innerHTML]="beneficios.detalle3" class="item"></div>
-										<div [innerHTML]="beneficios.detalle4" class="item"></div>
-										<div [innerHTML]="beneficios.detalle5" class="item"></div>
-										<div [innerHTML]="beneficios.detalle6" class="item"></div>
-										<div [innerHTML]="beneficios.detalle7" class="item"></div>
+									<div *ngFor="let beneficios of pkt.beneficios">
+										<div [innerHTML]="beneficios" class="item"></div>
 									</div>
 									<div class="footer">
-										<a [routerLink]="paquetes.url_btn_pqt" onclick="topFunction()" [ngClass]="bgBottonClass(paquetes.id_pqt)">{{paquetes.text_btn_pqt}}</a>
+										<a [routerLink]="pkt.url_btn" onclick="topFunction()"
+											[ngClass]="bgBottonClass(pkt.id)" [innerHTML]="pkt.text_btn"></a>
 									</div>
 								</div>
 							</div>
@@ -89,6 +51,9 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div *ngIf="visible">
+			<app-promo-modal [modalObj]="modalPromoData" (onClose)="onClose()"></app-promo-modal>
 		</div>
 	</div>
 </div>

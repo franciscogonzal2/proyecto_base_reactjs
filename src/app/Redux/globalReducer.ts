@@ -1,16 +1,8 @@
-import { ActionReducerMap, MetaReducer, createFeatureSelector, createSelector } from '@ngrx/store';
+import { ActionReducerMap, MetaReducer /*, createFeatureSelector, createSelector*/ } from '@ngrx/store';
 import { environment } from '../../environments/environment';
+import { AppState } from './globalState';
 
-//StateInterface
-import { LanguageState } from './StateInterface/LanguageState';
-import { HomeState } from './StateInterface/HomeState';
-import { NosotrosState } from './StateInterface/NosotrosState';
-import { OfertaState } from './StateInterface/OfertaState';
-import { ContactoState } from './StateInterface/ContactoState';
-import { ContactoResponseState } from './StateInterface/ContactoState';
-import { PortafolioState } from './StateInterface/PortafolioState';
-import { WebDesignState } from './StateInterface/webDesignState';
-//Reducers
+//All Reducers
 import { languageReducer } from './Reducers/app/language.reducer';
 import { homeReducer } from './Reducers/home/home.reducer';
 import { nosotrosReducer } from './Reducers/nosotros/nosotros.reducer';
@@ -19,23 +11,15 @@ import { contactoReducer } from './Reducers/contacto/contacto.reducer';
 import { contactoResponseReducer } from './Reducers/contacto/contactoResponse.reducer';
 import { portafolioReducer } from './Reducers/portafolio/portafolio.reducer';
 import { webDesignReducer } from './Reducers/webdesign/webdesign.reducer';
+import { responsiveReducer } from './Reducers/responsive/responsive.reducer';
+import { webPacksReducer } from './Reducers/webpacks/webpacks.reducer';
+import { footerReducer } from './Reducers/footer/footer.reducer';
+import { carruselReducer } from './Reducers/carrusel/carrusel.reducer';
 
 //?
 //import { RouterReducerState, RouterStateSerializer } from "@ngrx/router-store";
 //import { Params, RouterStateSnapshot } from "@angular/router";
 //import { Injectable } from "@angular/core";
-
-//GLOBAL STATES
-export interface AppState {
-    lenguaje: LanguageState;
-    home: HomeState;
-    nosotros: NosotrosState;
-    oferta: OfertaState;
-    contacto: ContactoState;
-    contactoResponse: ContactoResponseState;
-    portafolio: PortafolioState;
-    webdesign: WebDesignState;
-}
 
 //GLOBAL REDUCERS
 export const reducers: ActionReducerMap<AppState> = {
@@ -46,7 +30,11 @@ export const reducers: ActionReducerMap<AppState> = {
     contacto: contactoReducer,
     contactoResponse: contactoResponseReducer,
     portafolio: portafolioReducer,
-    webdesign: webDesignReducer
+    webdesign: webDesignReducer,
+    responsive: responsiveReducer,
+    webpacks: webPacksReducer,
+    footer: footerReducer,
+    carrusel: carruselReducer
 };
 
 export const metaReducers: MetaReducer<any>[] = !environment.production ? [] : [];

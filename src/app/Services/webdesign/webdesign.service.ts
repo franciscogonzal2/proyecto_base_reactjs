@@ -23,20 +23,22 @@ export class WebdesignService {
 
 //Interface
 export interface webDesignDataInterface {
-  container: {
-    contenido: {
-      backgroundImage: string;
-      titulo: string;
-      subTitulo: string;
-    };
-    elementos: [
-      {
-        tituloElements: string;
-        imgElements: string;
-        textElements: string;
-      }
-    ];
-  };
+  container: [
+    {
+      contenido: {
+        backgroundImage: string;
+        titulo: string;
+        subTitulo: string;
+      };
+      elementos: [
+        {
+          tituloElements: string;
+          imgElements: string;
+          textElements: string;
+        }
+      ];
+    }
+  ];
   code: number;
   error: string;
 }

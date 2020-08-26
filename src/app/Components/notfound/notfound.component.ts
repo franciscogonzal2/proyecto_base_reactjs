@@ -8,7 +8,9 @@ import { Component } from '@angular/core';
 
 export class NotfoundComponent {
 	titulo_page:string = "Esta página no existe";
-	mensaje_principal:string = "Pero no te preocupes, solo dá click en cualquier opción del menu y listo.";
+	mensaje_principal:string = "Pero no te preocupes.";
+	home_url: string = "/home";
+	home_text: string = "Sacame de aqui";
 	bnr404:string = "assets/img-banners/bnr-404.jpg";
 	
 	constructor() {}

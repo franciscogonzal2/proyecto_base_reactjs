@@ -1,6 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { ofertaDataInterface } from '../../Services/oferta/oferta.service';
-import { AppState } from '../../Redux/globalReducer';
+import { AppState } from '../../Redux/globalState';
 import { Store } from '@ngrx/store';
 import { setOfertaActionStart } from 'src/app/Redux/Actions/oferta/oferta.action';
 import { SharedService } from '../../Services/shared/shared.service';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { setLanguageAction } from '../Redux/Actions/app/language.action';
-import { AppState } from '../Redux/globalReducer';
+import { AppState } from '../Redux/globalState';
 
 @Component({
   selector: 'app-container',

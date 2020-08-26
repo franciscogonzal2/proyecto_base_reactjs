@@ -1,0 +1,105 @@
+<!-- After clicking the button open the modal dialog using open/close event binding methods -->
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+<!-- modal -->
+<div class="modal animated fadeIn" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+	<!-- modal-dialog -->
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+		<!-- modal-content -->
+		<div class="modal-content">
+			<!-- modal-header -->
+			<div class="modal-header">
+				<h5 [innerHTML]="tituloModal" class="modal-title"></h5>
+				<button type="button" class="close" aria-label="Close" (click)="closeModalDialog()">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<!-- modal-body -->
+			<div class="modal-body">
+				<div class="container wrapperPromo">
+					<div class="row">
+						<div *ngFor="let obj of dataModal; let i=index" class="col-12">
+							<div class="promo">
+								<div class="row">
+									<div class="col-12 col-md-4">
+										<img class="img-fluid" [src]="obj.img_promo" alt="Img Promo" />
+									</div>
+									<div class="col-12 col-md-8">
+										<div class="promo-detalle">
+											<h5 [innerHTML]="obj.titulo_promo"></h5>
+											<p [innerHTML]="getPromoInfo(obj.info_promo, obj.id_promo, obj.descuento_promo )"></p>
+											<div class="row no-gutters align-items-center">
+												<div class="col-12 col-md-4">
+													<div class="regular-price">
+														<div [innerHTML]="getSimbol(regularPrice)"></div>
+														<div><small [innerHTML]="regulartext"></small></div>
+													</div>
+												</div>
+
+												<div class="col-12 col-md-4">
+													<div class="text-center">
+														<i class="fas fa-3x fa-angle-double-right arrow" aria-hidden="true"></i>
+													</div>
+												</div>
+
+												<div class="col-12 col-md-4">
+													<div class="offer-price">
+														<div [innerHTML]="getSimbol( newPrice(regularPrice, obj.descuento_promo) )"></div>
+														<div><small [innerHTML]="getPromoText(obj.descuento_promo, obj.oferta_text)"></small></div>
+													</div>
+												</div>
+											</div>
+
+											<p class="extra-promo"><em [innerHTML]="obj.info_extra_promo"></em></p>
+											
+											<div class="modal-btn">
+												<a [href]="obj.url_btn_promo+'/'+obj.id_promo" class="btn btn-block btn-outline-success"
+													target="_blank" [innerHTML]="obj.text_btn_promo"></a>
+											</div>
+
+											<p class="extra-promo"><em [innerHTML]="getFechaPromo(obj.fecha_promo, obj.fecha_inicio_promo, obj.fecha_fin_promo)"></em></p>
+
+											<div class="contenedor contenedor-accordion">
+												<div class="accordion" [id]="'accordion'+obj.id_promo" role="tablist"
+													aria-multiselectable="true">
+													<div class="card">
+														<div class="collapse-chevron">
+															<a data-toggle="collapse" class="collapsed" href="#"
+																[attr.data-target]="concatHashtag(obj.id_promo)"
+																role="button" aria-expanded="true"
+																[attr.aria-controls]="obj.id_promo">
+																<div class="card-header" role="tab" id="promoHeader">
+																	<div class="mb-0">
+																		<span [innerHTML]="obj.titulo_terms"></span>
+																		<div style="float: right"><i
+																				class="fas fa-angle-down"
+																				aria-hidden="true"></i></div>
+																	</div>
+																</div>
+															</a>
+														</div>
+														<div [id]="obj.id_promo" class="collapse" role="tabpanel"
+															aria-labelledby="promoHeader"
+															[attr.data-parent]="'#accordion'+obj.id_promo">
+															<div *ngFor="let item of obj.terms">
+																<span [innerHTML]="item" class="terms"></span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- modal-footer -->
+					<!--<div class="modal-footer">
+						<button type="button" class="btn btn-outline-secondary" (click)="closeModalDialog()">Close</button>
+					</div>-->
+				</div>
+			</div>
+		</div>

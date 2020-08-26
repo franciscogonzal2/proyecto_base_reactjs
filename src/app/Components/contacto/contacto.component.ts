@@ -3,7 +3,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { contactoDataInterface, contactoDataResponseInterface } from '../../Services/contacto/contacto.service';
 import { FuncionesService } from '../../Services/funciones/funciones.service';
-import { AppState } from '../../Redux/globalReducer';
+import { AppState } from '../../Redux/globalState';
 import { Store } from '@ngrx/store';
 import { setContactoActionStart } from 'src/app/Redux/Actions/contacto/contacto.action';
 import { setContactoResponseActionStart } from 'src/app/Redux/Actions/contacto/contactoResponse.action';

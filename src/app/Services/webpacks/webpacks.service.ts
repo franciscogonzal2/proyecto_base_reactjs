@@ -24,47 +24,49 @@ export class WebpacksService {
 
 //Interfaces
 export interface webpacksDataInterface {
-  webpacksContent: {
-    backgroundImage: string;
-    titulo: string;
-    subTitulo: string;
-  };
-  paquetes: [
+  container: [
     {
-      id_pqt: string;
-      nombre_pqt: string;
-      titulo_detalle_pqt: string;
-      precio_pqt: string;
-      regular_text_pqt: string;
-      regular_text_tachado_pqt: string;
-      promociones: [
+      webpacksContent: {
+        backgroundImage: string;
+        titulo: string;
+        subTitulo: string;
+        titulo_promocion: string;
+        titulo_paquetes_web: string;
+      };
+      paquetes: [
         {
-          img_promo: string;
-          titulo_promo: string;
-          info_promo: string;
-          descuento_promo: string;
-          fecha_promo: string;
-          validez_promo: string;
-          text_btn_promo: string;
-          url_btn_promo: string;
-          titulo_terms: string;
-          terms: string;
-          errorMsj?: string;
+          id: number;
+          nombre_paquete: string;
+          titulo_detalle: string;
+          precio_regular: number;
+          regular_text: string;
+          oferta_text: string;
+          precio_regular_tachado: string;
+          beneficios: [string];
+          text_btn: string;
+          url_btn: string;
+          promo: [
+            {
+              codigo_promo: string;
+              img_promo: string;
+              titulo_promo: string;
+              info_promo: string;
+              info_extra_promo: string;
+              descuento_promo: number;
+              fecha_promo: string;
+              fecha_inicio_promo: string;
+              fecha_fin_promo: string;
+              validez_promo: boolean;
+              text_btn_promo: string;
+              url_btn_promo: string;
+              titulo_terms: string;
+              terms: [string];
+            }
+          ]
         }
       ];
-      beneficios: [
-        {
-          detalle1: string;
-          detalle2: string;
-          detalle3: string;
-          detalle4: string;
-          detalle5: string;
-          detalle6: string;
-          detalle7: string;
-        }
-      ];
-      text_btn_pqt: string;
-      url_btn_pqt: string;
     }
   ];
+  code: number;
+  error: string;
 }

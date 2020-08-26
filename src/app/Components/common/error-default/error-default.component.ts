@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-error-loading',
-  templateUrl: './error-loading.component.html',
-  styleUrls: ['./error-loading.component.css']
+  selector: 'app-error-default',
+  templateUrl: './error-default.component.html',
+  styleUrls: ['./error-default.component.css']
 })
-export class ErrorLoadingComponent {
+export class ErrorDefaultComponent {
   @Input() errMsj: string;
   showButton: boolean = true;
   constructor(private route: ActivatedRoute) {

@@ -1,14 +1,18 @@
 <!-- EL MERO CARRUSEL -->
 <div *ngIf="generalError">
-	<app-error-loading [errMsj]="generalErrorMsj" ></app-error-loading>
+	<app-error-default [errMsj]="generalErrorMsj" ></app-error-default>
 </div>
 
 
 <div *ngIf="!generalError">
 	<div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" >
-		<div *ngIf="loading" class="progress progress-bar-wrapper">
-			<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': rateLoading + '%'}"></div>
+
+		<div class="progress-bar-wrapper">
+			<div *ngIf="loading" class="progress">
+				<div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': rateLoading + '%'}"></div>
+			</div>
 		</div>
+
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
