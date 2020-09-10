@@ -48,10 +48,15 @@ export class ContactoService {
 export interface contactoDataInterface {
   container: [
     {
-      webpacksContent: {
+      contactoContent: {
         backgroundImage: string;
         titulo: string;
         subTitulo: string;
+        tituloMensajeOkPacks: string;
+        mensajeOkPacks: string;
+        tituloMensajeErrorPacks: string;
+        mensajeErrorPacks: string;
+        packsName: [string];
       };
       leftSection: {
         imgSection: string;
@@ -93,11 +98,13 @@ export interface contactoDataInterface {
 
 //response data
 export interface contactoDataResponseInterface {
-  container: {
-    title: string;
-    message: string;
-    http_response_code: number
-  };
+  container: [
+    {
+      title: string;
+      message: string;
+      http_response_code: number
+    }
+  ];
   code: number;
   error: string;
 }

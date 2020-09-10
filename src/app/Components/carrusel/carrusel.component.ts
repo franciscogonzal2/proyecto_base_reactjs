@@ -37,7 +37,8 @@ export class CarruselComponent implements OnInit, DoCheck{
 
 			if (carruselDataAux.container || carruselDataAux.error) {
 				if (carruselDataAux.code === 200) {
-					//this.loading = loaderAux;
+          this.rLoading();
+          setTimeout(()=>{ this.loading = false; /*this.loading = loaderAux;*/},1000);
 					this.carruselData = carruselDataAux.container;
 				} else {
 					this.generalError = true;

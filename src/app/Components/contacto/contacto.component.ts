@@ -22,8 +22,10 @@ export class ContactoComponent implements OnInit, DoCheck {
 	generalError: boolean = false;
 	generalErrorMsj: string;
 	errorClass: Array<string> = [];
-	packs: string;
-	packsVal: number;
+	packs: string = "";
+	promoCode: string = "";
+	packsVal: number = 0;
+	promoCodeVal: string = "";
 	myForm: FormGroup;
 	showC: boolean = false;
 	showP: boolean = false;
@@ -41,6 +43,7 @@ export class ContactoComponent implements OnInit, DoCheck {
 	) {
 		this.route.params.subscribe(params => {
 			this.packs = params['paquete'];
+			this.promoCode = params['code'];
 		});
 
 		this.store.subscribe((stts: any) => {
@@ -80,6 +83,12 @@ export class ContactoComponent implements OnInit, DoCheck {
 			}
 		} else {
 			this.packsVal = 0;
+		}
+
+		if(this.promoCode){
+			this.promoCodeVal = this.promoCodeVal;
+		}else{
+			this.promoCodeVal = "-";
 		}
 	}
 
@@ -126,7 +135,8 @@ export class ContactoComponent implements OnInit, DoCheck {
 		this.isLoading = true;
 		let bodyRequest = {
 			...this.myForm.value,
-			"idPaquete": this.packsVal
+			"idPaquete": this.packsVal,
+			"promoCode": this.promoCodeVal
 		};
 
 		this.store.dispatch(setContactoResponseActionStart({ response: bodyRequest }));
@@ -169,6 +179,11 @@ export class ContactoComponent implements OnInit, DoCheck {
 
 	resetForm() {
 		this.myForm.reset();
+	}
+
+	getMsjPack(msj: string){
+		const namePack = this.contactoData[0]["contactoContent"].packsName[this.packsVal-1];
+		return msj.replace("<PKT>", namePack);
 	}
 
 }

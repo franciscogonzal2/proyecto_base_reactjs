@@ -18,7 +18,7 @@
 					<div *ngIf="showC; else generalTitle">
 						<div *ngIf="showP; else msjNoValido">
 							<h1 [innerHTML]="contacto.contactoContent.tituloMensajeOkPacks"></h1><br />
-							<p [innerHTML]="contacto.contactoContent.mensajeOkPacks" class="lead intro"></p>
+							<p [innerHTML]="getMsjPack(contacto.contactoContent.mensajeOkPacks)" class="lead intro"></p>
 						</div>
 					</div>
 

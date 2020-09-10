@@ -1,24 +1,23 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-portafolio-modal',
   templateUrl: './portafolio-modal.component.html',
   styleUrls: ['./portafolio-modal.component.css']
 })
-export class PortafolioModalComponent {
-	@Input() modalId:string;
-	@Input() modalTitulo:string;
-	@Input() modalImagenUrl:string;
-	@Input() modalFechaCreacion:string;
-	@Input() modalUrl:string;
+export class PortafolioModalComponent implements OnInit {
+	@Input() modalData: object;
 	@Output() onClose: EventEmitter<boolean> = new EventEmitter();
-
-	display: string ='block'; //default Variable
+	
+	modalArray: Array<object>;
 
 	constructor() {}
 
+	ngOnInit(){
+		this.modalArray = [this.modalData];
+	}
+
 	closeModalDialog(){
-		this.display='none'; //set none css after close dialog
 		this.onClose.emit();
 	}
 }

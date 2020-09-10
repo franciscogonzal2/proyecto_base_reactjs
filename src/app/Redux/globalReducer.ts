@@ -15,6 +15,11 @@ import { responsiveReducer } from './Reducers/responsive/responsive.reducer';
 import { webPacksReducer } from './Reducers/webpacks/webpacks.reducer';
 import { footerReducer } from './Reducers/footer/footer.reducer';
 import { carruselReducer } from './Reducers/carrusel/carrusel.reducer';
+import { logInReducer } from './Reducers/user/logIn.reducer';
+import { logInResponseReducer } from './Reducers/user/logInResponse.reducer';
+import { registroReducer } from './Reducers/user/registro.reducer';
+import { registroResponseReducer } from './Reducers/user/registroResponse.reducer';
+import { userReducer } from './Reducers/user/user.reducer';
 
 //?
 //import { RouterReducerState, RouterStateSerializer } from "@ngrx/router-store";
@@ -34,7 +39,12 @@ export const reducers: ActionReducerMap<AppState> = {
     responsive: responsiveReducer,
     webpacks: webPacksReducer,
     footer: footerReducer,
-    carrusel: carruselReducer
+    carrusel: carruselReducer,
+    logIn: logInReducer,
+    logInResponse: logInResponseReducer,
+    registro: registroReducer,
+    registroResponse: registroResponseReducer,
+    user: userReducer
 };
 
 export const metaReducers: MetaReducer<any>[] = !environment.production ? [] : [];

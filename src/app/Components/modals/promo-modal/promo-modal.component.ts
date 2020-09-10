@@ -9,24 +9,15 @@ export class PromoModalComponent implements OnInit{
 	@Input() modalObj: object;
 	@Output() onClose: EventEmitter<boolean> = new EventEmitter();
 
-	tituloModal: string;
-	dataModal: Array<any>;
-	regularPrice: number;
-	regulartext: string;
-
-	display: string ='block'; //default Variable
-
+	modalArray: Array<object>;
+	
 	constructor() {}
 
 	ngOnInit(){
-		this.tituloModal = this.modalObj["titulo"];
-		this.dataModal = this.modalObj["data"];
-		this.regularPrice = this.modalObj["regularPrice"];
-		this.regulartext = this.modalObj["regularPriceText"];
+		this.modalArray = [this.modalObj];
 	}
 
 	closeModalDialog(){
-		this.display='none'; //set none css after close dialog
 		this.onClose.emit();
 	}
 

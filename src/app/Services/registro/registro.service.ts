@@ -14,14 +14,14 @@ export class RegistroService {
     private shared: SharedService
   ) { }
 
-  getNewUserData(): Observable<NewUserDataInterface[]> {
-    return this.http.get<NewUserDataInterface[]>(
+  getNewUserData(): Observable<newUserDataInterface[]> {
+    return this.http.get<newUserDataInterface[]>(
       this.fn.getUrlToService("newUser",
         this.shared.getSelectedLanguage()
       ));
   }
 
-  createNewUser(formNewUser): Observable<NewUserDataResponseInterface[]> {
+  createNewUser(bodyRequest: object): Observable<newUserDataResponseInterface[]> {
     const url: string = this.fn.getUrlToService("createUser",
       this.shared.getSelectedLanguage()
     );
@@ -35,9 +35,9 @@ export class RegistroService {
       }
     );
 
-    return this.http.post<NewUserDataResponseInterface[]>(
+    return this.http.post<newUserDataResponseInterface[]>(
       url,
-      formNewUser,
+      bodyRequest,
       { headers }
     ).pipe(
       catchError(err => this.fn.handleError(err))
@@ -46,60 +46,72 @@ export class RegistroService {
 }
 
 //Interface
-export interface NewUserDataInterface {
-  newUserContent: {
-    backgroundImage: string;
-    titulo: string;
-    subTitulo: string;
-  };
-  formNewUser: {
-    titulo: string;
-    ok_icon: string;
-    error_icon: string;
-    inputEmail: {
-      placeholder: string;
-      required_text: string;
-      wrong_text: string;
-    };
-    inputPassword: {
-      placeholder: string;
-      required_text: string;
-    };
-    inputPassword2: {
-      placeholder: string;
-      required_text: string;
-      notSame_text: string;
-    };
-    inputNickName: {
-      placeholder: string;
-      required_text: string;
-      wrong_text: string;
-    };
-    inputFirstkName: {
-      placeholder: string;
-      required_text: string;
-      wrong_text: string;
-    };
-    inputLastName: {
-      placeholder: string;
-      required_text: string;
-      wrong_text: string;
-    };
-    checkboxRememberMe: {
-      label: string;
-    };
-    logIn: {
-      label: string;
-      url: string;
-    };
-  };
+export interface newUserDataInterface {
+  container: [
+    {
+      newUserContent: {
+        backgroundImage: string;
+        titulo: string;
+        subTitulo: string;
+      };
+      formNewUser: {
+        titulo: string;
+        ok_icon: string;
+        error_icon: string;
+        inputEmail: {
+          placeholder: string;
+          required_text: string;
+          wrong_text: string;
+        };
+        inputPassword: {
+          placeholder: string;
+          required_text: string;
+        };
+        inputPassword2: {
+          placeholder: string;
+          required_text: string;
+          notSame_text: string;
+        };
+        inputNickName: {
+          placeholder: string;
+          required_text: string;
+          wrong_text: string;
+        };
+        inputFirstkName: {
+          placeholder: string;
+          required_text: string;
+          wrong_text: string;
+        };
+        inputLastName: {
+          placeholder: string;
+          required_text: string;
+          wrong_text: string;
+        };
+        checkboxRememberMe: {
+          label: string;
+        };
+        logIn: {
+          label: string;
+          url: string;
+        };
+      };
+    }
+  ];
+  code: number;
+  error: string;
 }
 
 //response data
-export interface NewUserDataResponseInterface {
-  title: string;
-  message: string;
-  http_response_code: number,
-  jwt: string;
-  expireAt: string;
+export interface newUserDataResponseInterface {
+  container: [
+    {
+      title: string;
+      message: string;
+      http_response_code: number,
+      jwt: string;
+      expireAt: string;
+    }
+  ];
+  code: number;
+  error: string;
 }

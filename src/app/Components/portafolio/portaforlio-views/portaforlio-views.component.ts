@@ -20,11 +20,7 @@ export class PortaforlioViewsComponent implements OnInit, DoCheck, OnDestroy {
   typePortafolio: string;
 
   /*modal data*/
-  modal_id: string;
-  modal_titulo: string;
-  modal_imagen: string;
-  modal_fechaCreacion: string;
-  modal_url: string;
+  modalData: object;
   visible: boolean = false;
 
   //get data
@@ -77,15 +73,14 @@ export class PortaforlioViewsComponent implements OnInit, DoCheck, OnDestroy {
 		}
 	}
 
-  showModal(id: string, titulo: string, urlimg: string, fecha: string, urlweb: string) {
-    this.modal_id = id;
-    this.modal_titulo = titulo;
-    this.modal_imagen = urlimg;
-    this.modal_fechaCreacion = fecha;
-    this.modal_url = urlweb;
-  }
+  onOpen(index: number) {
+    this.modalData = {
+      titulo: this.portafolioData[0]["item"][index].tituloElements,
+      imagen: this.portafolioData[0]["item"][index].imgElements,
+      fechaCreacion: this.portafolioData[0]["item"][index].dateElements,
+      url: this.portafolioData[0]["item"][index].urlElements
+    }
 
-  onOpen() {
     if (this.visible === false) {
       this.visible = true;
     }

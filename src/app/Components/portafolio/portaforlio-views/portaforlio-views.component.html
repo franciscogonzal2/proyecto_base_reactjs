@@ -15,13 +15,13 @@
           <br />
           <p [innerHTML]="element.subTitulo" class="lead intro"></p>
           <div class="row">
-            <div *ngFor="let items of element.item" class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+            <div *ngFor="let items of element.item; let i = index" class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
               <div class="portafolio">
                 <div class="gridPortaf">
                   <div>
-                    <figure (click)="onOpen()">
-                      <img [src]="items.imgElements" alt="web">
-                      <figcaption (click)="showModal(element.type,items.tituloElements,items.imgElements,items.dateElements,items.urlElements)">
+                    <figure (click)="onOpen(i)" data-target="#staticBackdrop" data-toggle="modal">
+                      <img [src]="items.imgElements" alt="item">
+                      <figcaption>
                         <div class="search">
                           <i class="fas fa-search fa-2x" aria-hidden="true"></i>
                         </div>
@@ -34,9 +34,7 @@
           </div>
   
           <div *ngIf="visible">
-            <app-portafolio-modal [modalId]="modal_id" [modalTitulo]="modal_titulo" [modalImagenUrl]="modal_imagen" [modalFechaCreacion]="modal_fechaCreacion"
-             [modalUrl]="modal_url" (onClose)="onClose()">
-            </app-portafolio-modal>
+            <app-portafolio-modal [modalData]="modalData" (onClose)="onClose()"></app-portafolio-modal>
           </div>
         </div>
       </div>

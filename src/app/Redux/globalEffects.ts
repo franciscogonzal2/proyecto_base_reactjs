@@ -9,6 +9,11 @@ import { ResponsiveEffects } from './Effects/responsive/responsive.effects';
 import { WebPacksEffects } from './Effects/webpacks/webpacks.effects';
 import { FooterEffects } from './Effects/footer/footer.effects';
 import { CarruselEffects } from './Effects/carrusel/carrusel.effects';
+import { LogInEffects } from './Effects/user/logIn.effects';
+import { LogInResponseEffects } from './Effects/user/logInResponse.effects';
+import { RegistroEffects } from './Effects/user/registro.effects';
+import { RegistroResponseEffects } from './Effects/user/registroResponse.effects';
+import { UserEffects } from './Effects/user/user.effects';
 
 export const EFFECTS = [
     HomeEffects,
@@ -21,5 +26,10 @@ export const EFFECTS = [
     ResponsiveEffects,
     WebPacksEffects,
     FooterEffects,
-    CarruselEffects
+    CarruselEffects,
+    LogInEffects,
+    LogInResponseEffects,
+    RegistroEffects,
+    RegistroResponseEffects,
+    UserEffects
 ];

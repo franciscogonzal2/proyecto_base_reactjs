@@ -72,4 +72,9 @@ export class FooterComponent implements OnInit, DoCheck {
 		this.logIn.logOut();
 		this.isSignIn = false;
 	}
+
+	creacionEmpresa(text:string){
+		let date = new Date();
+		return text + date.getFullYear()
+	}
 }

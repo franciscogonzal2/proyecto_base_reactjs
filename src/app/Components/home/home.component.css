@@ -11,7 +11,7 @@
 .img_card_content{padding: 10px; background: #efefef; text-align: center;}
 .img_contacto{padding: 20px 60px 20px 60px; margin-bottom: 10px;}
 
-.card-text{text-align: justify;}
+.card-text{text-align: left;min-height: auto;}
 .titulo{display:flex; flex-direction: row; align-items: center;height: 30vh;}
 .titulo + strong{ display: contents !important;}
 
@@ -22,14 +22,21 @@
 	.titulo{height: 20vh;}
 }
 
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px){
+	.card-text{min-height: 10rem;}
+}
+
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
 	.btn_card_index .btn{text-align: right;}
 	.area_index{margin-top:0px;}
 	.area_index_txt{padding: 26px !important;}
+	.card-text{min-height: 11rem;}
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
 	.area_index_txt{padding: 37px !important;}
+	.card-text{min-height: 10rem;}
 }

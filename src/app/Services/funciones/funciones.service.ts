@@ -27,7 +27,8 @@ export class FuncionesService {
       logIn: `${globalUrl}/users/logIn.php?l=${language}`,
       validateUser: `${globalUrl}/users/validateUser.php?l=${language}`,
       newUser: `${globalUrl}/users/newUser.php?l=${language}`,
-      createUser: `${globalUrl}/users/createUser.php?l=${language}`
+      createUser: `${globalUrl}/users/createUser.php?l=${language}`,
+      user: `${globalUrl}/users/user.php?l=${language}`
     }
 
     return serviceUrl[key];

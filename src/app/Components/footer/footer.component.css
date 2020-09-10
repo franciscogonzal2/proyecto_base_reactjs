@@ -2,9 +2,10 @@
 .footer{padding-top:20px;background: #010a20; margin:0px;}
 .footer .container{padding-bottom: 20px; margin-bottom: 20px;}
 .footer p{color:#bbb; margin-bottom: 0.2rem;}
-.footer h3{color:#ccc;text-shadow: 1px 1px 2px #000; margin-top: 4rem;}
+.footer h3{color:#ccc;text-shadow: 1px 1px 2px #000; margin-top: 2rem;}
 .footer .tx{color:#ddd;}
-.footer .logo_footer{width: 100%; text-align: center; margin-bottom: 4rem;}
+.footer .logo_footer{width: 100%; text-align: center;}
+.footer .footer-logo{ background: #e7e1c7;padding: 1rem;border-radius: 1rem;}
 /*footer .logo_footer img{-webkit-filter: grayscale(100%);filter: grayscale(100%);-webkit-transition: all 0.5s ease-in;-moz-transition: all 0.5s ease-in;-ms-transition: all 0.5s ease-in;-o-transition: all 0.5s ease-in;transition: all 0.5s ease-in;}*/
 .footer .logo_footer:hover  img{-webkit-filter: grayscale(0%);filter: grayscale(0%);}
 .footer .afootLink{color:#acacac;transition: background-color, ease-in, 0.5s;font-weight: 500;}
@@ -18,22 +19,27 @@
 .footer .direccion .direccion-text{color:#bbbbbb;font-size:1rem !important; text-align: center; margin-left:4px;}
 .footer .direccion .direccion-i{margin:0px auto; width:50px; height:50px; padding: 5px; border-radius:50%; color:#02664e; font-size: 1.5rem !important;text-align: center;background: rgba(10,10,10,0.5);}
 .redes{margin-top:10px; text-align: center;}
+.enlaces{margin-top: 1rem;}
 .list-footer{color:#ccc;}
 .list-footer:hover{background: #303b3e;}
 .list-footer a{ text-decoration: none; display: block; padding: 0.4rem;}
 
-.nav-link-login{ color: #6c757d; margin-top: 4rem;}
+.nav-link-login{ color: #6c757d;padding-left: 0.4rem !important}
 .nav-link-login:hover{ color: rgba(255, 255, 255, 0.8); transition: all  0.3s ease; cursor: pointer; }
 
 /* MEDIA QUERY */
-/* Small devices (landscape phones, 576px and up) */
+/* SM - Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-	.footer h3{margin-top: 0rem;}
-	.footer .logo_footer{margin-bottom: 0rem;}
 	.footer .direccion{ flex-direction: row;}
 	.footer .direccion .direccion-i{margin:initial;}
 	.footer .direccion .direccion-text{text-align: left;}
 	.footer .direccion .direccion-i{width:30px; height:30px; color:#02664e;background: none; font-size: 1rem !important;}
 	.redes{text-align: center;}
+}
+
+/* LG - Large devices (desktops, 992px and up) */
+@media (min-width: 992px){
+	.enlaces{margin-top: 0rem;}
+	.footer h3{margin-top: 0rem;}
 }
 

@@ -7,11 +7,11 @@
 			<div *ngFor="let footer of footerData" class="row justify-content-center">
 				<div class="col-12 col-lg-3">
 					<div class="logo_footer">
-						<div><img [src]="footer.copy.logo" alt="desistemasWEB//" class="img-fluid" /></div>
-						<div class="lead tx" [innerHTML]="footer.copy.nombreEmpresa"></div>
+						<div class="footer-logo"><img [src]="footer.copy.logo" alt="desistemasWEB//" class="img-fluid" /></div>
+						<div class="lead tx" [innerHTML]="creacionEmpresa(footer.copy.creacionEmpresa)"></div>
 						<p><small [innerHTML]="footer.copy.disclaimer"></small></p>
 						<div class="redes">
-							<a *ngFor="let redes of footer.redes" [href]="redes.url"
+							<a *ngFor="let redes of footer.redes" [href]="redes.url" target="_blank"
 								class="afoot {{ redes.redesClass }}">
 								<i class="{{ redes.icon }} fa-2x" aria-hidden="true"></i>
 							</a>
@@ -25,16 +25,22 @@
 					</div>
 				</div>
 				<div class="col-12 col-lg-3">
-					<div *ngFor="let enlace of footer.enlaces">
-						<div class="list-footer">
-							<a [routerLink]="enlace.url" class="afootLink" onclick="topFunction()">
-								<i class="fas fa-star-of-life" aria-hidden="true"></i>&nbsp;
-								<span [innerHTML]="enlace.linkText"></span>
-							</a>
+					<div class="enlaces">
+						<div *ngFor="let enlace of footer.enlaces" class="list-footer">
+								<a [routerLink]="enlace.url" class="afootLink" onclick="topFunction()">
+									<span [innerHTML]="enlace.linkText"></span>
+								</a>
 						</div>
 					</div>
-					<a *ngIf="!isSignIn" class="nav-link nav-link-login" routerLink="/logIn" onclick="topFunction()"><i class="fas fa-lock" aria-hidden="true"></i> Iniciar Sesión</a>
-					<a *ngIf="isSignIn" class="nav-link nav-link-login" (click)="logOut()" onclick="topFunction()"><i class="fas fa-unlock" aria-hidden="true"></i> Cerrar Sesión</a>
+					<a *ngIf="!isSignIn" class="nav-link nav-link-login" [routerLink]="footer.signIn.url"
+						onclick="topFunction()">
+						<i class="fas fa-lock" aria-hidden="true"></i>&nbsp;
+						<span [innerHTML]="footer.signIn.logInText"></span>
+					</a>
+					<a *ngIf="isSignIn" class="nav-link nav-link-login" (click)="logOut()" onclick="topFunction()">
+						<i class="fas fa-unlock" aria-hidden="true"></i>&nbsp;
+						<span [innerHTML]="footer.signIn.logOutText"></span>
+					</a>
 				</div>
 			</div>
 		</div>

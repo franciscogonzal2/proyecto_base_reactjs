@@ -22,7 +22,7 @@
 							<h4 [innerHTML]="item.tituloCard"></h4>
 							<p class="card-text" [innerHTML]="item.contentCard"></p>
 							<div class="btn_card_index">
-								<a [routerLink]="item.botonCardUrl" class="btn btn-link" onclick="topFunction()">{{ item.botonCardText }}</a>
+								<a [routerLink]="item.botonCardUrl" [innerHTML]="item.botonCardText" class="btn btn-link" onclick="topFunction()"></a>
 							</div>
 						</div>
 					</div>
@@ -42,8 +42,8 @@
 				<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-7">
 					<div class="contenedor area_index">
 						<div class="area_index_txt">
-							<h2 class="text-primary">{{ data.comunicate.tituloComunicate }}</h2>
-							<p>{{ data.comunicate.contentComunicate }}</p>
+							<h2 [innerHTML]="data.comunicate.tituloComunicate" class="text-primary"></h2>
+							<p [innerHTML]="data.comunicate.contentComunicate"></p>
 							<div>
 								<a [routerLink]="data.comunicate.botonComunicateUrl" class="btn btn-outline-primary btn-lg" onclick="topFunction()">{{ data.comunicate.botonComunicateText }}</a>
 							</div>

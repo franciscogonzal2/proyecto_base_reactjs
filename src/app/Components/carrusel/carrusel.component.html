@@ -9,7 +9,7 @@
 
 		<div class="progress-bar-wrapper">
 			<div *ngIf="loading" class="progress">
-				<div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': rateLoading + '%'}"></div>
+				<div class="progress-bar bg-dark" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': rateLoading + '%'}"></div>
 			</div>
 		</div>
 
@@ -23,12 +23,12 @@
 				<div class="imgslide mx-auto" [ngStyle]="{'background-image':'url(' + carousel.sliderUrl + ')'}"></div>
 				<div class="contenedor">
 					<div class="carousel-caption text-left animated bounceInUp">
-						<h1>{{ carousel.tituloSlider }}</h1>
+						<h1 [innerHTML]="carousel.tituloSlider"></h1>
 						<p>
-							<strong>{{ carousel.subTituloSlider }}</strong><br>
-							<span class="d-none d-sm-block">{{ carousel.subTituloTextSlider }}</span>
+							<strong [innerHTML]="carousel.subTituloSlider"></strong><br>
+							<span [innerHTML]="carousel.subTituloTextSlider" class="d-none d-sm-block"></span>
 						</p>
-						<p><a class="btn btn-lg btn-outline-blanco" [routerLink]="carousel.botonSliderdUrl " role="button" onclick="topFunction()">{{ carousel.botonSliderdText }}</a></p>
+						<p><a [innerHTML]="carousel.botonSliderdText" class="btn btn-lg btn-outline-blanco" [routerLink]="carousel.botonSliderdUrl " role="button" onclick="topFunction()"></a></p>
 					</div>
 				</div>
 			</div>

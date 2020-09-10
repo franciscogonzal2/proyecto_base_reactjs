@@ -151,4 +151,8 @@ export class WebpacksComponent implements OnInit, DoCheck {
 		return n;
 	}
 
+	noPack(){
+		return this.webPacksData[0]["paquetes"].length > 0;
+	}
+
 }

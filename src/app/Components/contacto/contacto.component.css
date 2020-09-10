@@ -10,5 +10,5 @@
 .error_text, .ok_text {position:absolute; display: block; right: 10px; top:6px; z-index:90000 !important;}
 .error_text{color: #FA787E;}
 .ok_text {color: #78FA89;}
-.alertWrapper{position: fixed;top:60px; left:20px; right: 20px;padding: 20px !important;z-index: 102;}
-.address{ margin-bottom: 2rem; font-style: italic;}
+.address{ margin-bottom: 2rem; font-style: italic; padding: 1rem;}
+.alertWrapper{position: fixed;top:60px; left:20px; right: 20px;padding: 20px !important;z-index: 102; width: 50%; margin: 0 auto;}

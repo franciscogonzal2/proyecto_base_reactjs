@@ -16,35 +16,35 @@
 			<h1 [innerHTML]="webpacks.webpacksContent.titulo"></h1><br />
 			<p [innerHTML]="webpacks.webpacksContent.subTitulo" class="lead intro"></p>
 
-			<div>
-				<h2 [innerHTML]="webpacks.webpacksContent.titulo_paquetes_web"></h2><br />
-				<div class="row">
-					<div *ngFor="let pkt of webpacks.paquetes;"
-						class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-						<div class="contenedor">
-							<div class="columns">
-								<div>
-									<div [innerHTML]="pkt.nombre_paquete" [ngClass]="bgHeaderClass(pkt.id)">
-									</div>
-									<div class="grey">
-										<div [innerHTML]="getSimbol(pkt.precio_regular)"></div>
-										<div [innerHTML]="pkt.regular_text" class="smallText"></div>
-
-										<button *ngIf="isPromotion(pkt.id)" (click)="onOpen(pkt.id)" type="button" class="btn btn-outline-warning">
-											<span [innerHTML]="webpacks.webpacksContent.titulo_promocion"></span>&nbsp;
-											<span [innerHTML]="nPromotion(pkt.id)" class="badge badge-info"></span>
-										</button>
-									</div>
-									<div [innerHTML]="pkt.titulo_detalle" class="titulo_paquetes_web"></div>
+			<div class="row">
+				<div *ngIf="noPack()" class="col-12">
+					<h2 [innerHTML]="webpacks.webpacksContent.titulo_paquetes_web"></h2><br />
+				</div>
+				<div *ngFor="let pkt of webpacks.paquetes;"
+					class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+					<div class="contenedor">
+						<div class="columns">
+							<div>
+								<div [innerHTML]="pkt.nombre_paquete" [ngClass]="bgHeaderClass(pkt.id)">
 								</div>
-								<div class="beneficios">
-									<div *ngFor="let beneficios of pkt.beneficios">
-										<div [innerHTML]="beneficios" class="item"></div>
-									</div>
-									<div class="footer">
-										<a [routerLink]="pkt.url_btn" onclick="topFunction()"
-											[ngClass]="bgBottonClass(pkt.id)" [innerHTML]="pkt.text_btn"></a>
-									</div>
+								<div class="grey">
+									<div [innerHTML]="getSimbol(pkt.precio_regular)"></div>
+									<div [innerHTML]="pkt.regular_text" class="smallText"></div>
+
+									<button *ngIf="isPromotion(pkt.id)" (click)="onOpen(pkt.id)" type="button" class="btn btn-outline-warning" data-target="#staticBackdrop" data-toggle="modal">
+										<span [innerHTML]="webpacks.webpacksContent.titulo_promocion"></span>&nbsp;
+										<span [innerHTML]="nPromotion(pkt.id)" class="badge badge-info"></span>
+									</button>
+								</div>
+								<div [innerHTML]="pkt.titulo_detalle" class="titulo_paquetes_web"></div>
+							</div>
+							<div class="beneficios">
+								<div *ngFor="let beneficios of pkt.beneficios">
+									<div [innerHTML]="beneficios" class="item"></div>
+								</div>
+								<div class="footer">
+									<a [routerLink]="pkt.url_btn" onclick="topFunction()"
+										[ngClass]="bgBottonClass(pkt.id)" [innerHTML]="pkt.text_btn"></a>
 								</div>
 							</div>
 						</div>

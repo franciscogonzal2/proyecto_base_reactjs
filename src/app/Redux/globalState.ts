@@ -11,6 +11,7 @@ import { ResponsiveState } from './StateInterface/ResponsiveState';
 import { WebPacksState } from './StateInterface/WebPacksState';
 import { FooterState } from './StateInterface/FooterState';
 import { CarruselState } from './StateInterface/CarruselState';
+import * as UserState  from './StateInterface/UserState';
 
 //GLOBAL STATES
 export interface AppState {
@@ -26,4 +27,9 @@ export interface AppState {
     webpacks: WebPacksState;
     footer: FooterState;
     carrusel: CarruselState;
+    logIn: UserState.LogInState;
+    logInResponse: UserState.LogInResponseState;
+    registro: UserState.RegistroState;
+    registroResponse: UserState.RegistroResponseState;
+    user: UserState.UserState;
 }

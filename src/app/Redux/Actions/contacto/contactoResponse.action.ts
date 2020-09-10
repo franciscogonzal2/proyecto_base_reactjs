@@ -2,9 +2,6 @@ import { createAction, props  } from '@ngrx/store';
 import { ContactoResponseState } from '../../StateInterface/ContactoState';
 
 //Action (type, payload)
-export interface request{
-    tipo: string
-}
 
 export const setContactoResponseActionStart = createAction(
     '[contacto] SET_CONTACTO_RESPONSE_ACTION_START',

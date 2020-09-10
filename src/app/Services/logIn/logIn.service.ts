@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
 import { FuncionesService } from '../funciones/funciones.service';
 import { CookieService } from 'ng2-cookies';
-import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SharedService } from '../../Services/shared/shared.service';
 
@@ -23,14 +22,14 @@ export class LogInService {
     this.getToken();
   }
 
-  getLogInData(): Observable<LogInDataInterface[]> {
-    return this.http.get<LogInDataInterface[]>(
+  getLogInData(): Observable<logInDataInterface[]> {
+    return this.http.get<logInDataInterface[]>(
       this.fn.getUrlToService("logIn",
         this.shared.getSelectedLanguage()
       ));
   }
 
-  logIn(formlogIn: FormGroup): Observable<LogInDataResponseInterface[]> {
+  logIn(bodyRequest: object): Observable<logInDataResponseInterface[]> {
     const url: string = this.fn.getUrlToService("validateUser",
       this.shared.getSelectedLanguage()
     );
@@ -43,13 +42,17 @@ export class LogInService {
       }
     );
 
-    return this.http.post<LogInDataResponseInterface[]>(
+    return this.http.post<logInDataResponseInterface[]>(
       url,
-      formlogIn,
+      bodyRequest,
       { headers }
     ).pipe(
-      map(resp => {
-        this.setToken(resp[0].jwt, Number(resp[0].expireAt));
+      map((resp: any) => {
+        let jwt = resp.container[0].jwt;
+        let expireAt = Number(resp.container[0].expireAt);
+        if( jwt && expireAt ){
+          this.setToken(jwt,expireAt);
+        }
         return resp;
       }
       ),
@@ -58,35 +61,34 @@ export class LogInService {
   }
 
   logOut() {
-    this.cookies.delete("jwt", '/');
-    this.cookies.delete("expire", '/');
+    this.cookies.delete("dsw-jwt", '/');
+    this.cookies.delete("dsw-expire-session", '/');
     this.route.navigateByUrl('/home');
   }
 
   setToken(token: string, expireAt: number) {
     this.userToken = token;
-    this.cookies.set("jwt", this.userToken);
+    this.cookies.set("dsw-jwt", this.userToken);
 
     let hoy = new Date();
     hoy.setSeconds(expireAt);
 
-    this.cookies.set("expire", hoy.getTime().toString());
+    this.cookies.set("dsw-expire-session", hoy.getTime().toString());
   }
 
   getToken() {
-    const isToken = this.cookies.check("jwt");
-    this.userToken = isToken ? this.cookies.get("jwt") : "";
+    const isToken = this.cookies.check("dsw-jwt");
+    this.userToken = isToken ? this.cookies.get("dsw-jwt") : "";
     return this.userToken;
   }
 
   isSignIn(): boolean {
-
     if (this.userToken.length < 2) {
       return false;
     }
 
     const currentDate = new Date;
-    const expira = Number(this.cookies.get("expire"));
+    const expira = Number(this.cookies.get("dsw-expire-session"));
     const expiraDate = new Date;
     expiraDate.setTime(expira);
 
@@ -95,40 +97,52 @@ export class LogInService {
 }
 
 //Interface
-export interface LogInDataInterface {
-  logInContent: {
-    backgroundImage: string;
-    titulo: string;
-    subTitulo: string;
-  };
-  formLogIn: {
-    ok_icon: string;
-    error_icon: string;
-    save_button: string;
-    inputEmail: {
-      placeholder: string;
-      required_text: string;
-      wrong_text: string;
-    };
-    inputPassword: {
-      placeholder: string;
-      required_text: string;
-    };
-    checkboxRememberMe: {
-      label: string;
-    };
-    signUp: {
-      label: string;
-      url: string;
-    };
-  };
+export interface logInDataInterface {
+  container: [
+    {
+      logInContent: {
+        backgroundImage: string;
+        titulo: string;
+        subTitulo: string;
+      };
+      formLogIn: {
+        ok_icon: string;
+        error_icon: string;
+        save_button: string;
+        inputEmail: {
+          placeholder: string;
+          required_text: string;
+          wrong_text: string;
+        };
+        inputPassword: {
+          placeholder: string;
+          required_text: string;
+        };
+        checkboxRememberMe: {
+          label: string;
+        };
+        signUp: {
+          label: string;
+          url: string;
+        };
+      };
+    }
+  ];
+  code: number;
+  error: string;
 }
 
 //response data
-export interface LogInDataResponseInterface {
-  title: string;
-  message: string;
-  http_response_code: number;
-  jwt: string;
-  expireAt: string;
+export interface logInDataResponseInterface {
+  container: [
+    {
+      title: string;
+      message: string;
+      http_response_code: number;
+      jwt?: string;
+      expireAt?: string;
+    }
+  ];
+  code: number;
+  error: string;
 }

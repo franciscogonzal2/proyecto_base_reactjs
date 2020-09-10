@@ -1,31 +1,44 @@
 
 /*modal*/
-.promo-modal{ margin-bottom: 2rem;}
+.promo-modal{margin-bottom: 2rem;}
 .modal-body{padding:0px !important;}
-.subtitle{ font-size: 0.8rem;}
+.subtitle{font-size: 0.8rem;}
 .modal-btn{text-align: right;}
-.wrapperPromo{ margin-top: 1rem;}
-.promo{margin-bottom: 1rem; padding-top: 1rem; padding-bottom: 1rem; border: 1px solid #dee2e6;}
-.promo-detalle{ padding-left: 0.4rem; margin-left: 0.7rem;margin-right: 0.63rem;padding: 0.2rem;}
-.regular-price, .offer-price{ padding: 1rem; text-align: center; }
-.regular-price{ background: gray;}
-.offer-price{ background: orangered;}
-.extra-promo{ margin-top: 1rem; margin-bottom: 1rem;}
-.backdrop { background-color:rgba(0,0,0,0.7);position:fixed;top:0;left:0;width:100%;height:100vh;z-index: 1040;overflow: hidden !important;}
+.wrapperPromo{margin-top: 1rem;}
+.promo{margin-bottom: 1rem; padding: 1rem;border: none; border-radius: 1rem; background-position: center center; background-size: cover; background-repeat: no-repeat; box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.05), 0px 2px 3px 0px rgba(0,0,0,0.1);}
+.promo-detalle{padding-left: 0.4rem; margin-left: 0.7rem;margin-right: 0.63rem;padding: 0.2rem;}
+.priceWrapper{position: relative; margin-top: 3rem;}
+.regular-price,.arrow-circle,.offer-price{font-weight: bold;  margin-top: -3rem !important;  margin: 0rem auto;border-radius: 50%;width: 9.5rem;height: 9.5rem;display: flex;flex-direction: column;align-items: center;justify-content: center;padding: 0rem;}
+.regular-price{background: #e9ecef;}
+.littlePrice{font-size: 1.4rem; line-height: 1.4rem;}
+.equisPrice{ color: red; position: absolute;}
+.equis {position: absolute;top: -1.4rem;opacity: 0.8;}
+.equis:before, .equis:after {position: absolute;content: ' ';height: 6rem;width: 2px;background-color: red;}
+.equis:before { transform: rotate(45deg);}
+.equis:after { transform: rotate(-45deg);}
+.arrow-circle{background: #cccccc; color: #332602;}
+.offer-price{background: #ffbb00; color: #cc0000; font-weight: 600;}
+.bigPrice{font-size: 2.4rem; line-height: 2.4rem; text-shadow: 1px 1px wheat;}
+.bigPriceText{font-weight: 600;font-size: 0.9rem;}
+.extra-promo{margin-top: 1rem; margin-bottom: 1rem; text-align: center;}
+.aTerm{cursor: pointer;}
+.backdrop{background-color:rgba(0,0,0,0.7);}
 
 /*accordion*/
 .contenedor-accordion,.accordion{margin-top:1rem; margin-bottom: 0rem;}
-.accordion .card {margin-bottom:3px; border-radius: 0px; background: #ffffff !important; border: 0px !important;}
-.accordion .card .collapse-chevron .collapsed .card-header{color: #4e4e4e;background: #ffffff !important; border: 0px !important;}
-.accordion .card .collapse-chevron .card-header{padding: 0px !important; background: #ffffff !important; color: #0056b3; border: 0px !important;}
-.accordion .card .collapse-chevron .collapsed .card-header:hover{color: #0056b3;} 
-.accordion .card .collapse-chevron .collapsed .card-header:active{color: #0056b3; background: #ffffff !important; border: 0px !important;}
+.accordion .card {margin-bottom:3px; border-radius: 0px; background: transparent !important; border: 0px !important;}
+.accordion .card .collapse-chevron .collapsed .card-header{margin-bottom:0rem !important;color: #4e4e4e;background: transparent !important; border: 0px !important;font-weight: bold;}
+.accordion .card .collapse-chevron .card-header{margin-bottom:1rem !important;padding: 0px !important; background: transparent !important; color: #0056b3; border: 0px !important;font-weight: bold;}
+.accordion .card .collapse-chevron .collapsed .card-header:hover{color: #0056b3; } 
+.accordion .card .collapse-chevron .collapsed .card-header:active{color: #0056b3; border: 0px !important; }
 .accordion .card .collapse-chevron a{text-decoration: none !important;}
 .collapse-chevron .fa-angle-down, .arrow{transition: .3s transform ease-in-out; transform: rotate(-180deg);}
 .card .collapse-chevron .collapsed .fa-angle-down {transform: rotate(-360deg);}
 .arrow{transform: rotate(-270deg);}
-.terms{ padding-left: 0px;}
+.terms{padding-left: 0px;}
 
 @media (min-width: 576px) {
-    .arrow {transform: rotate(0deg);}
+    .arrow{transform: rotate(0deg);}
+    .priceWrapper{padding-left: 2rem; padding-right: 4rem;}
+    .regular-price,.arrow-circle,.offer-price{margin-top: 0rem;}
 }

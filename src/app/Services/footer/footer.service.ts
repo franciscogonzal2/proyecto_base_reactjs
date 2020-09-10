@@ -30,6 +30,7 @@ export interface footerDataInterface {
       copy: {
         logo: string;
         nombreEmpresa: string;
+        creacionEmpresa: string;
         disclaimer: string;
       };
       redes: [
@@ -53,6 +54,11 @@ export interface footerDataInterface {
           linkText: string;
         }
       ];
+      signIn: {
+        logInText: string;
+        logOutText: string;
+        url: string;
+      };
     }
   ];
   code: number;

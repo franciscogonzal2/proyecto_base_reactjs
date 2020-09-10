@@ -4,7 +4,6 @@ import { of } from 'rxjs';
 import { map, concatMap, catchError } from 'rxjs/operators';
 import { ContactoService, contactoDataResponseInterface } from '../../../Services/contacto/contacto.service';
 import * as ContactoAction from '../../Actions/contacto/contactoResponse.action';
-import { FuncionesService } from '../../../Services/funciones/funciones.service';
 
 @Injectable()
 export class ContactoResponseEffects {
@@ -23,7 +22,7 @@ export class ContactoResponseEffects {
                         map((resp: contactoDataResponseInterface[]) =>
                             ContactoAction.setContactoResponseActionSuccess({ response: resp })
                         ),
-                        catchError((errors: contactoDataResponseInterface[]) => 
+                        catchError((errors: contactoDataResponseInterface[]) =>
                             of(ContactoAction.setContactoResponseActionFail({ response: errors }))
                         )
                     )
