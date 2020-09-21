@@ -1,2 +1,2 @@
-# desistemasweb_angular_9
-Proyecto desistemasWEB en Angular versión 9
+# frtend_desistemasweb_Angular
+Proyecto FrontEnd: desistemasWEB// desarrollado en Angular v9
