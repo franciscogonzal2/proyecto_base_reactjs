@@ -31,7 +31,7 @@
 									<div [innerHTML]="getSimbol(pkt.precio_regular)"></div>
 									<div [innerHTML]="pkt.regular_text" class="smallText"></div>
 
-									<button *ngIf="isPromotion(pkt.id)" (click)="onOpen(pkt.id)" type="button" class="btn btn-outline-warning" data-target="#staticBackdrop" data-toggle="modal">
+									<button *ngIf="isPromotion(pkt.id)" (click)="onOpen(pkt.id)" type="button" class="btn btn-outline-warning btn-promos" data-target="#staticBackdrop" data-toggle="modal">
 										<span [innerHTML]="webpacks.webpacksContent.titulo_promocion"></span>&nbsp;
 										<span [innerHTML]="nPromotion(pkt.id)" class="badge badge-info"></span>
 									</button>

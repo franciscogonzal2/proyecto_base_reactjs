@@ -56,7 +56,6 @@ export interface webpacksDataInterface {
               fecha_promo: string;
               fecha_inicio_promo: string;
               fecha_fin_promo: string;
-              validez_promo: boolean;
               text_btn_promo: string;
               url_btn_promo: string;
               titulo_terms: string;

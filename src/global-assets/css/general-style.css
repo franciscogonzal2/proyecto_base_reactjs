@@ -24,9 +24,10 @@ a.gen:hover{color:#fe5300;}
 /*brand*/
 .navbar-brand {-webkit-transition: all 0.4s ease-in-out;-moz-transition: all 0.4s ease-in-out;transition: all 0.4s ease-in-out;}
 .navbar-toggler-right {position: absolute;right: 1rem;top: 26px;}
-.logo, .logo.logo-brand{ display: inline-flex; font-style: italic;letter-spacing: 2px; }
-.logo .p1{ color: #17580a;}
-.logo .p2{ color: #3a6650;}
+.logo, .logo-brand{ display: inline-flex; font-style: italic;letter-spacing: 2px; }
+.logo{font-weight: 600;}
+.logo .p1{ color: #28a745;}
+.logo .p2{ color: #1a7f3a;}
 .logo .p3{ color: #dd5310;}
 
 .logo-brand .p1, .logo-brand .p2, .logo-brand .p3{ color: #ffffff;}

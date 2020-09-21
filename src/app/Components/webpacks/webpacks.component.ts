@@ -109,19 +109,6 @@ export class WebpacksComponent implements OnInit, DoCheck {
 		return "$" + this.addCommas(regularPrice);
 	}
 
-	esOferta(regularPrice: number, i: number) {
-		let promo = this.webPacksData[0]["paquetes"][i].promo;
-
-		let isValidPromo = promo[0].validez_promo;
-
-		if (isValidPromo == 1) {
-			let porcentaje = promo[0].descuento_promo;
-			let newPrice = regularPrice - (regularPrice * porcentaje / 100);
-			return "$" + newPrice;
-		}
-		return "$" + regularPrice;
-	}
-
 	onOpen(index: number) {
 		this.modalPromoData = {
 			titulo: this.webPacksData[0]["webpacksContent"].titulo_promocion,

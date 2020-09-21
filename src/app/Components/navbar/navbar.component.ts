@@ -45,10 +45,10 @@ export class NavbarComponent implements OnInit, OnChanges{
     }
   }
 
-  selectLangClass(lang: string, selectedLanguage: string){
+  selectLangClass(lang: string, selectedLanguage: string, type: string){
     let selectedClass:string = "";
     if(lang === selectedLanguage){
-      selectedClass = "selected";
+      selectedClass = type === "drp" ? "selected" : "checked";
     }
     return selectedClass;
   }

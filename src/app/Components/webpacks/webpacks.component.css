@@ -15,5 +15,5 @@
 .beneficios {display:flex;flex-direction: column}
 .beneficios .item{border-bottom: 1px solid #eee;padding: 10px;font-size: 16px;}
 .beneficios .footer{font-size: 20px;margin-bottom:6px; margin-top:6px;}
-
 .smallText{ font-size: 0.8rem;}
+.btn-promos{ margin-top: 0.4rem;}
