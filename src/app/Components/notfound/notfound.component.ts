@@ -13,7 +13,7 @@ export class NotfoundComponent {
 	mensaje_principal: string;
 	home_text: string;
 	home_url: string = "/home";
-	bnr404:string = "http://desistemasweb.com/images/img-banners/bnr-404.jpg";	
+	bnr404:string = "https://desistemasweb.com/images/img-banners/bnr-404.jpg";	
 	
 	constructor(
 		private shared: SharedService

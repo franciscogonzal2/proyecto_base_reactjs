@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
-import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 @Injectable()
 export class FuncionesService {
-  reloadMenuAgain: boolean;
-
   constructor() {}
 
   //Glabal Url

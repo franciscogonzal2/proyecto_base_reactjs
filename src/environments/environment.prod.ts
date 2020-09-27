@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  globalUrl: "http://www.desistemasweb.com/bknd",
+  globalUrl: "https://www.desistemasweb.com/bknd",
 };
