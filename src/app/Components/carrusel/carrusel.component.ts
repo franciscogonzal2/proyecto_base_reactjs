@@ -29,7 +29,7 @@ export class CarruselComponent implements OnInit, DoCheck {
 		  this.loading = stts.carrusel.loader;
     });*/
 
-    // customize default values of carousels used by this component tree
+    // customize default values of carousels
     this.config.interval = 5000;
     this.config.wrap = true; //cycle
     this.config.keyboard = false;
