@@ -1,4 +1,4 @@
-import { Component, Input, Output,EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { LogInService } from '../../Services/logIn/logIn.service';
 import LITERALS from '../../Literals/navbar.literals';
 import { SharedService } from '../../Services/shared/shared.service';
@@ -8,62 +8,62 @@ import { SharedService } from '../../Services/shared/shared.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit, OnChanges{
+export class NavbarComponent implements OnInit, OnChanges {
   @Input() setLanguage: string;
   @Output() reLoadLang: EventEmitter<string> = new EventEmitter();
   states: any;
   isSignIn: boolean = false;
   selectedLanguage: string;
   literals = LITERALS;
+  collapsed = true;
 
-  constructor( 
+  constructor(
     private logIn: LogInService,
     private shared: SharedService
-  ){}
+  ) { }
 
   ngOnInit() {
-    if( this.logIn.isSignIn() ){
-			this.isSignIn = true;
+    if (this.logIn.isSignIn()) {
+      this.isSignIn = true;
     }
-    
+
     this.selectedLanguage = this.shared.getSelectedLanguage();
   }
 
-  ngOnChanges( changes: SimpleChanges){
+  ngOnChanges(changes: SimpleChanges) {
     let setLanguage = changes["setLanguage"];
-    
-    if( !setLanguage.firstChange && setLanguage.previousValue !== setLanguage.currentValue ){
+
+    if (!setLanguage.firstChange && setLanguage.previousValue !== setLanguage.currentValue) {
       this.selectedLanguage = this.shared.getSelectedLanguage();
     }
   }
 
-  setClass(val: any){
-    if(val.subMenu){
+  setClass(val: any) {
+    if (val.subMenu) {
       return "nav-item dropdown";
-    }else {
+    } else {
       return "nav-item";
     }
   }
 
-  selectLangClass(lang: string, selectedLanguage: string, type: string){
-    let selectedClass:string = "";
-    if(lang === selectedLanguage){
-      selectedClass = type === "drp" ? "selected" : "checked";
+  selectLangClass(lang: string, selectedLanguage: string) {
+    if (lang === selectedLanguage) {
+      return "checked";
     }
-    return selectedClass;
+    return false;
   }
 
-  logOut(){
+  logOut() {
     this.logIn.logOut();
     this.isSignIn = false;
   }
 
-  selectLanguage(lang: string){
+  selectLanguage(lang: string) {
     this.reLoadLang.emit(lang);
   }
 
-  renderLiteralsMenu(element: object, language: string){
-    return element[ `${language}` ];
+  renderLiteralsMenu(element: object, language: string) {
+    return element[`${language}`];
   }
 
 }

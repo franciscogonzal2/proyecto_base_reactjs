@@ -17,9 +17,9 @@
 a.gen{color:#005e34; text-decoration:underline; transition: background-color, ease-in, 0.5s;}
 a.gen:hover{color:#fe5300;}
 
-.main-banner, .main-banner-portafolio{margin-top:0rem;margin-bottom: 60px !important;}
+.main-banner, .main-banner-portafolio{margin-top:0rem;margin-bottom: 40px !important;}
 .main-banner-portafolio{margin-top:-8rem;}
-.banner{height: 50vh !important;width: 100%;box-shadow: 0px 30px 40px -12px rgba(100,100,100,0.25) inset; background-color: #777;/*background-attachment: fixed;*/background-position:center center !important;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover; transition: all 500ms; background-repeat: no-repeat;}
+.banner{height: 50vh !important;width: 100%;box-shadow: 0px 30px 40px -12px rgba(100,100,100,0.25) inset; background-color: #777;background-position:center center !important;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover; transition: all 500ms; background-repeat: no-repeat;}
 
 /*brand*/
 .navbar-brand {-webkit-transition: all 0.4s ease-in-out;-moz-transition: all 0.4s ease-in-out;transition: all 0.4s ease-in-out;}
@@ -74,17 +74,25 @@ body.modal-open .fixed-top{padding-left: 16px;}/*corrige el desplazamiento del b
 .btn-group-justified .btn .btn,.btn-group-justified .btn-group .btn {width: 100%; }
 .btn-group-justified .btn .dropdown-menu,.btn-group-justified .btn-group .dropdown-menu {left: auto; }
 
+.btn:focus {outline: none !important;box-shadow: none !important;}
+.modal-content{ overflow: visible !important; }
+.modal-content .modal-header .btn-close{ background: white; border-radius: 50%; height: 4rem; width: 4rem;  margin-top: -2rem !important; margin-right: -2rem !important;opacity: 1 !important; border: 0; box-shadow: -4px 2px 10px 1px grey !important;}
+.modal-content .modal-header .btn-close:hover{ background: #fe5300; box-shadow: none !important;}
+
+/*snow*/
+.snow-canvas, .snow-canvas2 {display: block;width: 100%;height: 100%;top: 0;left: 0;position: absolute;pointer-events: none;z-index: 2;}
+
 /* MEDIA QUERY */
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px){
-    .contenido_gen .title{ text-align: left;margin-top: -6px; }
-    .cardHeight{margin-bottom:0rem; border-bottom: none;}
-    .img_content, .img_content_radius{margin-bottom: 2rem; }
+	.contenido_gen .title{ text-align: left;margin-top: -6px; }
+	.cardHeight{margin-bottom:0rem; border-bottom: none;}
+	.img_content, .img_content_radius{margin-bottom: 2rem; }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-    .img_content, .img_content_radius{margin-bottom: 0rem; }
+  .img_content, .img_content_radius{margin-bottom: 0rem; }
 }
 

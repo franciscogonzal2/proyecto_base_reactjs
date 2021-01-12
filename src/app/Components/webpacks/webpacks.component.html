@@ -20,8 +20,7 @@
 				<div *ngIf="noPack()" class="col-12">
 					<h2 [innerHTML]="webpacks.webpacksContent.titulo_paquetes_web"></h2><br />
 				</div>
-				<div *ngFor="let pkt of webpacks.paquetes;"
-					class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+				<div *ngFor="let pkt of webpacks.paquetes;" class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
 					<div class="contenedor">
 						<div class="columns">
 							<div>
@@ -31,7 +30,8 @@
 									<div [innerHTML]="getSimbol(pkt.precio_regular)"></div>
 									<div [innerHTML]="pkt.regular_text" class="smallText"></div>
 
-									<button *ngIf="isPromotion(pkt.id)" (click)="onOpen(pkt.id)" type="button" class="btn btn-outline-warning btn-promos" data-target="#staticBackdrop" data-toggle="modal">
+									<button *ngIf="isPromotion(pkt.id)" (click)="onOpenModal(pkt.id, PromoMesModal)" type="button"
+										class="btn btn-outline-warning btn-promos" data-target="#staticBackdrop" data-toggle="modal">
 										<span [innerHTML]="webpacks.webpacksContent.titulo_promocion"></span>&nbsp;
 										<span [innerHTML]="nPromotion(pkt.id)" class="badge badge-info"></span>
 									</button>
@@ -43,8 +43,8 @@
 									<div [innerHTML]="beneficios" class="item"></div>
 								</div>
 								<div class="footer">
-									<a [routerLink]="pkt.url_btn" onclick="topFunction()"
-										[ngClass]="bgBottonClass(pkt.id)" [innerHTML]="pkt.text_btn"></a>
+									<a [routerLink]="pkt.url_btn" onclick="topFunction()" [ngClass]="bgBottonClass(pkt.id)"
+										[innerHTML]="pkt.text_btn"></a>
 								</div>
 							</div>
 						</div>
@@ -52,8 +52,11 @@
 				</div>
 			</div>
 		</div>
-		<div *ngIf="visible">
-			<app-promo-modal [modalObj]="modalPromoData" (onClose)="onClose()"></app-promo-modal>
-		</div>
+
+		<!-- modal promo -->
+		<ng-template #PromoMesModal let-modal>
+			<app-promo-modal [letModal]="modal" [modalPromoData]="modalPromoData"></app-promo-modal>
+		</ng-template>
+
 	</div>
 </div>

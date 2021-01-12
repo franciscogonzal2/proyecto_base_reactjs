@@ -41,6 +41,7 @@ import { RegistroComponent } from './Components/registro/registro.component';
 import { NotfoundComponent } from './Components/notfound/notfound.component';
 import { GanaDineroComponent } from './Components/gana-dinero/gana-dinero.component';
 
+
 /*modulo principal*/
 @NgModule({
 	declarations: [

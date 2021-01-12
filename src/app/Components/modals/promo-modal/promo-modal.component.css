@@ -1,8 +1,5 @@
-
 /*modal*/
-.promo-modal{margin-bottom: 2rem;}
 .modal-body{padding:0px !important;}
-.subtitle{font-size: 0.8rem;}
 .modal-btn{text-align: right;}
 .wrapperPromo{margin-top: 1rem;}
 .promo{margin-bottom: 1rem; padding: 1rem;border: none; border-radius: 1rem; background-position: center center; background-size: cover; background-repeat: no-repeat; box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.05), 0px 2px 3px 0px rgba(0,0,0,0.1);}
@@ -21,24 +18,18 @@
 .bigPrice{font-size: 2.4rem; line-height: 2.4rem; text-shadow: 1px 1px wheat;}
 .bigPriceText{font-weight: 600;font-size: 0.9rem;}
 .extra-promo{margin-top: 1rem; margin-bottom: 1rem; text-align: center;}
-.aTerm{cursor: pointer;}
-.backdrop{background-color:rgba(0,0,0,0.7);}
-
-/*accordion*/
-.contenedor-accordion,.accordion{margin-top:1rem; margin-bottom: 0rem;}
-.accordion .card {margin-bottom:3px; border-radius: 0px; background: transparent !important; border: 0px !important;}
-.accordion .card .collapse-chevron .collapsed .card-header{margin-bottom:0rem !important;color: #4e4e4e;background: transparent !important; border: 0px !important;font-weight: bold;}
-.accordion .card .collapse-chevron .card-header{margin-bottom:1rem !important;padding: 0px !important; background: transparent !important; color: #0056b3; border: 0px !important;font-weight: bold;}
-.accordion .card .collapse-chevron .collapsed .card-header:hover{color: #0056b3; } 
-.accordion .card .collapse-chevron .collapsed .card-header:active{color: #0056b3; border: 0px !important; }
-.accordion .card .collapse-chevron a{text-decoration: none !important;}
-.collapse-chevron .fa-angle-down, .arrow{transition: .3s transform ease-in-out; transform: rotate(-180deg);}
-.card .collapse-chevron .collapsed .fa-angle-down {transform: rotate(-360deg);}
 .arrow{transform: rotate(-270deg);}
-.terms{padding-left: 0px;}
+
+/*collapsed terms*/
+.btn-terms{margin-top: 1rem; cursor: pointer; color: #0056b3;text-decoration: none !important;}
+.collapse-chevron .fa-angle-down, .arrow{transition: .3s transform ease-in-out; transform: rotate(-180deg);}
+.collapse-chevron .rotate{transform: rotate(-360deg);}
+.card-term{padding: 1rem}
+.expira-promo{ font-weight: 700;}
+.terms{padding: 0rem}
 
 @media (min-width: 576px) {
-    .arrow{transform: rotate(0deg);}
-    .priceWrapper{padding-left: 2rem; padding-right: 4rem;}
-    .regular-price,.arrow-circle,.offer-price{margin-top: 0rem;}
+  .arrow{transform: rotate(0deg);}
+  .priceWrapper{padding-left: 2rem; padding-right: 4rem;}
+  .regular-price,.arrow-circle,.offer-price{margin-top: 0rem;}
 }

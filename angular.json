@@ -24,17 +24,14 @@
               "src/assets"
             ],
             "styles": [
-				"src/global-assets/boostraps_v4.4.1/css/bootstrap.min.css",
-				"src/global-assets/fontawesome-free-v_5.12.1/css/all.min.css",
-				"src/global-assets/css/animate.css",
-				"src/global-assets/css/general-style.css"
-			],
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/global-assets/fontawesome-free-v_5.12.1/css/all.min.css",
+              "src/global-assets/css/animate.css",
+              "src/global-assets/css/general-style.css"
+            ],
             "scripts": [
-				"src/global-assets/boostraps_v4.4.1/js/jquery-3.4.1.slim.min.js",
-				"src/global-assets/boostraps_v4.4.1/js/bootstrap.min.js",
-				"src/global-assets/boostraps_v4.4.1/js/popper_v2.2.1.js",
-				"src/global-assets/js/general-javascripts.js"
-			]
+              "src/global-assets/js/general-javascripts.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -125,6 +122,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "desistemasweb"
 }

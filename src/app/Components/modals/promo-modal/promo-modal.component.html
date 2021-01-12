@@ -1,103 +1,75 @@
-<!-- modal -->
-<div class="modal fade animated fadeIn" role="dialog" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
-	tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	<!-- modal-dialog -->
-	<div class="modal-dialog modal-dialog-centered modal-lg">
-		<!-- modal-content -->
-		<div *ngFor="let mdl of modalArray" class="modal-content">
-			<!-- modal-header -->
-			<div class="modal-header">
-				<h5 [innerHTML]="mdl.titulo" class="modal-title" id="staticBackdropLabel"></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"
-					(click)="closeModalDialog()">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-
-			<!-- modal-body -->
-			<div class="modal-body">
-				<div class="container wrapperPromo">
-					<div class="row">
-						<div *ngFor="let obj of mdl.data; let i=index" class="col-12">
-							<div class="promo" [ngStyle]="{'background-image':'url(' + obj.img_promo + ')'}">
-								<div class="row justify-content-center">
-									<div class="col-12 col-lg-8">
-										<div class="promo-detalle">
-											<h4 [innerHTML]="obj.titulo_promo"></h4>
-											<p
-												[innerHTML]="getPromoInfo(obj.info_promo, obj.id_promo, obj.descuento_promo )">
-											</p>
+<div class="animated fadeIn">
+	<div *ngFor="let mdl of modalPromoData" class="modal-content">
+		<!-- modal-header -->
+		<div class="modal-header">
+			<h5 [innerHTML]="mdl.titulo" class="modal-title" id="staticBackdropLabel"></h5>
+			<button type="button" class="btn close btn-close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<!-- modal-body -->
+		<div class="modal-body">
+			<div class="container wrapperPromo">
+				<div class="row">
+					<div *ngFor="let obj of mdl.data; let i=index" class="col-12">
+						<div class="promo" [ngStyle]="{'background-image':'url(' + obj.img_promo + ')'}">
+							<div class="row justify-content-center">
+								<div class="col-12 col-lg-8">
+									<div class="promo-detalle">
+										<h4 [innerHTML]="obj.titulo_promo"></h4>
+										<p [innerHTML]="getPromoInfo(obj.info_promo, obj.id_promo, obj.descuento_promo )">
+										</p>
+									</div>
+								</div>
+								<div class="col-12 col-lg-8">
+									<div class="row no-gutters priceWrapper">
+										<div class="col-12 col-sm-4">
+											<div class="regular-price">
+												<div [innerHTML]="getSimbol(mdl.regularPrice)" class="littlePrice">
+												</div>
+												<div><small [innerHTML]="mdl.regularPriceText"></small></div>
+												<div><span class="equis"></span></div>
+											</div>
+										</div>
+										<div class="col-12 col-sm-4">
+											<div class="text-center arrow-circle">
+												<i class="fas fa-3x fa-angle-double-right arrow" aria-hidden="true"></i>
+											</div>
+										</div>
+										<div class="col-12 col-sm-4">
+											<div class="offer-price">
+												<div [innerHTML]="getSimbol( newPrice(mdl.regularPrice, obj.descuento_promo) )"
+													class="bigPrice"></div>
+												<div [innerHTML]="getPromoText(obj.descuento_promo, obj.oferta_text)" class="bigPriceText">
+												</div>
+											</div>
 										</div>
 									</div>
-									<div class="col-12 col-lg-8">
-										<div class="row no-gutters priceWrapper">
-											<div class="col-12 col-sm-4">
-												<div class="regular-price">
-													<div [innerHTML]="getSimbol(mdl.regularPrice)" class="littlePrice">
-													</div>
-													<div><small [innerHTML]="mdl.regularPriceText"></small></div>
-													<div><span class="equis"></span></div>
-												</div>
-											</div>
-											<div class="col-12 col-sm-4">
-												<div class="text-center arrow-circle">
-													<i class="fas fa-3x fa-angle-double-right arrow"
-														aria-hidden="true"></i>
-												</div>
-											</div>
-											<div class="col-12 col-sm-4">
-												<div class="offer-price">
-													<div [innerHTML]="getSimbol( newPrice(mdl.regularPrice, obj.descuento_promo) )"
-														class="bigPrice"></div>
-													<div [innerHTML]="getPromoText(obj.descuento_promo, obj.oferta_text)"
-															class="bigPriceText">
-													</div>
-												</div>
-											</div>
-										</div>
 
-										<p class="extra-promo">
-											<em [innerHTML]="obj.info_extra_promo"></em>
-										</p>
+									<p class="extra-promo">
+										<em [innerHTML]="obj.info_extra_promo"></em>
+									</p>
 
-										<div class="modal-btn">
-											<a [routerLink]="obj.url_btn_promo+'/'+obj.id_promo"
-												class="btn btn-block btn-outline-success"
-												[innerHTML]="obj.text_btn_promo" (click)="closeModalDialog()"
-												data-dismiss="modal" aria-label="Close"></a>
-										</div>
+									<div class="modal-btn">
+										<a [routerLink]="obj.url_btn_promo+'/'+obj.id_promo" class="btn btn-block btn-success"
+											[innerHTML]="obj.text_btn_promo" (click)="closeModal()" data-dismiss="modal"
+											aria-label="Close"></a>
 
-										<div class="contenedor contenedor-accordion">
-											<div class="accordion" [id]="'accordion'+obj.id_promo" role="tablist"
-												aria-multiselectable="true">
-												<div class="card">
-													<div class="collapse-chevron">
-														<a data-toggle="collapse" class="collapsed aTerm"
-															[attr.data-target]="concatHashtag(obj.id_promo)"
-															role="button" aria-expanded="true"
-															[attr.aria-controls]="obj.id_promo">
-															<div class="card-header" role="tab" id="promoHeader">
-																<div class="mb-0">
-																	<span [innerHTML]="obj.titulo_terms"></span>
-																	<div style="float: right">
-																		<i class="fas fa-angle-down"
-																			aria-hidden="true"></i>
-																	</div>
-																</div>
-															</div>
-														</a>
-													</div>
-													<div [id]="obj.id_promo" class="collapse" role="tabpanel"
-														aria-labelledby="promoHeader"
-														[attr.data-parent]="'#accordion'+obj.id_promo">
-														<div
-															[innerHTML]="getFechaPromo(obj.fecha_promo, obj.fecha_inicio_promo, obj.fecha_fin_promo)">
-														</div>
-														<div *ngFor="let item of obj.terms" [innerHTML]="item"
-															class="terms"></div>
-													</div>
-												</div>
+										<button type="button" class="btn btn-link btn-terms" (click)="isCollapsed = !isCollapsed"
+											[attr.aria-expanded]="!isCollapsed">
+											<div class="collapse-chevron">
+												<span [innerHTML]="obj.titulo_terms"></span>
+												<i class="fas fa-angle-down arrow-icon" [class.rotate]="isCollapsed" aria-hidden="true"></i>
 											</div>
+										</button>
+									</div>
+
+									<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+										<div class="card card-term">
+											<div class="expira-promo"
+												[innerHTML]="getFechaPromo(obj.fecha_promo, obj.fecha_inicio_promo, obj.fecha_fin_promo)">
+											</div>
+											<div *ngFor="let item of obj.terms" [innerHTML]="item"></div>
 										</div>
 									</div>
 								</div>

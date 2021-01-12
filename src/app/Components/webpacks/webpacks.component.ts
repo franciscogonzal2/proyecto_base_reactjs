@@ -1,14 +1,16 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, ViewEncapsulation } from '@angular/core';
 import { webpacksDataInterface } from '../../Services/webpacks/webpacks.service';
 import { AppState } from '../../Redux/globalState';
 import { Store } from '@ngrx/store';
 import { setWebPacksActionStart } from 'src/app/Redux/Actions/webpacks/webpacks.action';
 import { SharedService } from '../../Services/shared/shared.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
 	selector: 'app-webpacks',
 	templateUrl: './webpacks.component.html',
-	styleUrls: ['./webpacks.component.css']
+	styleUrls: ['./webpacks.component.css'],
+	encapsulation: ViewEncapsulation.None
 })
 export class WebpacksComponent implements OnInit, DoCheck {
 	/*propiedades*/
@@ -23,7 +25,8 @@ export class WebpacksComponent implements OnInit, DoCheck {
 
 	constructor(
 		private store: Store<AppState>,
-		private shared: SharedService
+		private shared: SharedService,
+		private modalService: NgbModal
 	) {
 		this.store.subscribe((stts: any) => {
 			this.loading = stts.webpacks.loader;
@@ -109,25 +112,6 @@ export class WebpacksComponent implements OnInit, DoCheck {
 		return "$" + this.addCommas(regularPrice);
 	}
 
-	onOpen(index: number) {
-		this.modalPromoData = {
-			titulo: this.webPacksData[0]["webpacksContent"].titulo_promocion,
-			data: this.webPacksData[0]["paquetes"][index - 1].promo,
-			regularPrice: this.webPacksData[0]["paquetes"][index - 1].precio_regular,
-			regularPriceText: this.webPacksData[0]["paquetes"][index - 1].regular_text
-		}
-
-		if (this.visible === false) {
-			this.visible = true;
-		}
-	}
-
-	onClose() {
-		if (this.visible === true) {
-			this.visible = false;
-		}
-	}
-
 	addCommas(nStr: number) {
 		let n = nStr.toString()
 		while (true) {
@@ -138,7 +122,22 @@ export class WebpacksComponent implements OnInit, DoCheck {
 		return n;
 	}
 
-	noPack(){
+	onOpenModal(index: number, content: any) {
+		//load data
+		this.modalPromoData = [
+			{
+				titulo: this.webPacksData[0]["webpacksContent"].titulo_promocion,
+				data: this.webPacksData[0]["paquetes"][index - 1].promo,
+				regularPrice: this.webPacksData[0]["paquetes"][index - 1].precio_regular,
+				regularPriceText: this.webPacksData[0]["paquetes"][index - 1].regular_text
+			}
+		];
+
+		//open NgbModal
+		this.modalService.open(content, { size: 'lg', scrollable: false });
+	}
+
+	noPack() {
 		return this.webPacksData[0]["paquetes"].length > 0;
 	}
 
