@@ -1,0 +1,14 @@
+@import '../../../scss/base.scss';
+
+.active{
+  color: white !important;
+  background: #444444;
+}
+
+.yellow_bg{
+  background: #ffba01 !important;
+}
+
+.navbar-dark .navbar-toggler{
+  border-color: transparent !important;
+}
